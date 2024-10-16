@@ -1,0 +1,144 @@
+/* 기본 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nanum Gothic', sans-serif;
+    color: #5c1e1e;
+    background-color: #fff;
+    text-align: center;
+}
+
+header {
+    background-color: #a90011;
+    padding: 15px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between; /* 요소 간 간격 조절 */
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* 모바일 메뉴 스타일 */
+.mobile-menu {
+    cursor: pointer;
+    padding: 10px;
+    order: -1; /* 모바일 메뉴를 왼쪽으로 이동 */
+    display: none; /* 기본적으로 숨김 */
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 24px; /* 햄버거 아이콘 크기 */
+    color: white; /* 햄버거 아이콘 색상 */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.auth {
+    display: flex;
+    gap: 15px;
+}
+
+.auth a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* 메인 콘텐츠 스타일 */
+.main-content {
+    margin-top: 50px;
+}
+
+.title h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.title h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.search input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border-style: none;
+    border-bottom: 2px solid #a90011;
+    margin-right: 10px;
+    outline: none;
+}
+
+.search button {
+    background-color: #a90011;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* 모바일에서 기본적으로 숨김 */
+        flex-direction: column; /* 세로로 배열 */
+        position: absolute; /* 절대 위치로 설정 */
+        top: 60px; /* 헤더 아래에 위치 */
+        left: 0;
+        background-color: #a90011; /* 배경색 */
+        width: 100%;
+        z-index: 10; /* 다른 요소 위에 위치 */
+        padding-top: 2em;
+        padding-bottom: 2em;
+        font-weight: bold;
+    }
+
+    .nav-links.active {
+        display: flex; /* active 클래스가 있을 때 보여줌 */
+    }
+
+    .mobile-menu {
+        display: block; /* 모바일에서 햄버거 메뉴 보이기 */
+    }
+}
+
+/* 데스크톱에서 mobile-menu 숨김 */
+@media (min-width: 769px) {
+    .mobile-menu {
+        display: none; /* 데스크톱에서 숨김 */
+    }
+}

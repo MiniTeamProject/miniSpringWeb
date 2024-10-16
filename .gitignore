@@ -1,0 +1,58 @@
+# Ignore pom.xml file
+pom.xml
+
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# Directory for instrumented binaries
+target/
+out/
+
+# Maven dependencies
+.mvn/
+**/target/
+**/lib/
+**/bin/
+
+# IDE specific files
+.idea/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+
+# Eclipse specific files
+.settings/
+.metadata/
+bin/
+*.log
+*.tmp
+
+# IntelliJ specific files
+*.idea/
+*.iml
+out/
+
+# Gradle specific files
+.gradle/
+build/
+
+# User-specific files
+*.user
+*.sublime-workspace
+*.sublime-project
+*.swp
+
+# Environment variable files
+.env
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
