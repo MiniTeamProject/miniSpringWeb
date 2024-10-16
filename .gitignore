@@ -1,5 +1,8 @@
 # Ignore pom.xml file
-pom.xml
+porm.xml
+
+# Ignore .properties
+*.properties
 
 # Compiled class files
 *.class
