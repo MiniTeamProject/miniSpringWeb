@@ -1,4 +1,4 @@
-package user.service;
+package naver.service;
 
 import org.springframework.web.multipart.MultipartFile;
 

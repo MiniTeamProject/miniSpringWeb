@@ -1,4 +1,4 @@
-package user.service.impl;
+package naver.service.impl;
 
 import java.io.InputStream;
 import java.util.UUID;
@@ -16,10 +16,9 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
 import spring.conf.NCPConfiguration;
-import user.service.ObjectStorageService;
 
 @Service
-public class NCPObjectStorageService implements ObjectStorageService {
+public class NCPObjectStorageService implements naver.service.ObjectStorageService {
     final AmazonS3 amazonS3;
     
     public NCPObjectStorageService(NCPConfiguration ncpConfiguration) {
