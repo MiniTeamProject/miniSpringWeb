@@ -20,8 +20,8 @@
                 <li><a href="#">멍캣정보</a></li>
             </ul>
             <div class="auth">
-                <a href="#">로그인</a>
-                <a href="#">회원가입</a>
+                <a href="/miniSpringWeb/user/userLoginForm">로그인 <span>${sessionScope.userDTO.id }</span></a>
+                <a href="/miniSpringWeb/user/userRegistForm">회원가입</a>
             </div>
         </nav>
     </header>
