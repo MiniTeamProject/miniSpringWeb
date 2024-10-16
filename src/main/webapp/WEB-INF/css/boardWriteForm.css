@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* 기본 스타일 */
 * {
     margin: 0;
@@ -85,55 +86,129 @@ nav {
     font-size: 18px;
 }
 
-/* 메인 콘텐츠 스타일 */
-.main-content {
-    margin-top: 50px;
+main {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
 }
 
-.title h1 {
-    font-size: 36px;
-    margin-bottom: 10px;
-}
-
-.title h2 {
-    font-size: 24px;
-    margin-bottom: 30px;
-}
-
-.search {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.search input[type="text"] {
-    padding: 10px;
-    font-size: 16px;
-    border-style: none;
-    border-bottom: 2px solid #a90011;
-    margin-right: 10px;
-    outline: none;
-}
-
-.search button {
-    background-color: #a90011;
-    color: white;
-    border: none;
-    padding: 10px 15px;
+/* 게시물 작성 섹션 */
+.board-write-section {
+    background-color: white;
+    padding: 20px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    cursor: pointer;
 }
 
-footer {
+.board-write-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
     text-align: center;
-    padding: 10px 0;
-    background-color: #f1f1f1;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.form-group input[type="file"] {
+    padding: 5px;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.btn-submit {
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #0056b3;
+}
+
+.btn-cancel {
+    background-color: #6c757d;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268;
+}
+
+/* 푸터 */
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    background-color: #333;
+    color: white;
+    margin-top: 20px;
+    font-size: 14px;
 }
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
-	.nav-icon {
+    .search > input[type="text"] {
+        margin: 0;
+    }
+    
+    #functionWrap {
+        flex-direction: column; /* 세로로 배열 */
+        align-items: center; /* 가운데 정렬 */
+        width: 100%;
+    }
+
+    #btnwrap {
+        width: 100%; /* 모바일에서는 전체 너비 사용 */
+        text-align: right; /* 오른쪽 정렬 유지 */
+        margin-bottom: 10px; /* btnwrap과 search 간격 조정 */
+    }
+
+    .search {
+        width: 100%; /* 모바일에서는 전체 너비 사용 */
+        justify-content: center; /* 가운데 정렬 유지 */
+    }
+    
+    .nav-icon {
         display: inline; /* 모바일에서만 보이도록 설정 */
     }
     
@@ -154,10 +229,6 @@ footer {
         display: none;
     }
     
-	.nav-icon {
-        display: inline; /* 모바일에서만 보이도록 설정 */
-    }
-	
     .nav-links {
         display: none; /* 모바일에서 기본적으로 숨김 */
         flex-direction: column; /* 세로로 배열 */
@@ -179,6 +250,10 @@ footer {
     .mobile-menu {
         display: block; /* 모바일에서 햄버거 메뉴 보이기 */
     }
+
+    #event-alert, #postList, #popular-posts {
+        padding: 10px; /* 패딩 조정 */
+    }
 }
 
 /* 데스크톱에서 mobile-menu 숨김 */
@@ -186,12 +261,26 @@ footer {
 	.nav-links {
         padding-left: 5.5em;
     }
-    
+	
     .mobile-menu {
         display: none; /* 데스크톱에서 숨김 */
     }
     
     .loginview, .logoutview {
         display: none;
+    }
+    
+    main {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    #event-alert, #postList, #popular-posts {
+        border: 1px solid #ddd;
+        padding: 15px;
+        width: 1100px;
+        margin: 0 auto;
     }
 }

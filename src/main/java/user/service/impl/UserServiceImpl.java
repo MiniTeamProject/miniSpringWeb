@@ -1,15 +1,12 @@
 package user.service.impl;
 
-import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections4.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
 
 import user.bean.UserDTO;
-import user.bean.UserPaging;
 import user.dao.UserDAO;
 import user.service.UserService;
 
@@ -17,8 +14,6 @@ import user.service.UserService;
 public class UserServiceImpl implements UserService{
     @Autowired
     private UserDAO userDAO;
-    @Autowired
-    private UserPaging userPaging;
     
 	@Override
 	public UserDTO userLogin(String id, String pwd) {
@@ -29,11 +24,5 @@ public class UserServiceImpl implements UserService{
 		UserDTO userDTO = userDAO.userLogin(map);	
 		return userDTO;
 	}
-    
-    
-    
-    
-
-
 
 }

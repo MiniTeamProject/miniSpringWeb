@@ -1,4 +1,4 @@
-package user.bean;
+package board.bean;
 
 import org.springframework.stereotype.Component;
 
@@ -8,7 +8,7 @@ import lombok.Setter;
 @Component
 @Getter
 @Setter
-public class UserPaging {
+public class BoardPaging {
     private int currentPage;
     private int pageBlock;
     private int pageSize;
@@ -30,16 +30,16 @@ public class UserPaging {
         if(endPage > totalP) endPage = totalP;
         
         if(startPage != 1)
-            pagingHTML.append("<span id='movepaging' onclick='userPaging(" + (startPage-1) + ")'>이전</span>");    
+            pagingHTML.append("<span id='movepaging' onclick='boardPaging(" + (startPage-1) + ")'>이전</span>");    
         
         for(int i=startPage; i<=endPage; i++) {
             if(i == currentPage)
-                pagingHTML.append("<span id='currentPaging' onclick='userPaging(" + i + ")'>" + i + "</span>");   
+                pagingHTML.append("<span id='currentPaging' onclick='boardPaging(" + i + ")'>" + i + "</span>");   
             else
-                pagingHTML.append("<span id='paging' onclick='userPaging(" + i + ")'>" + i + "</span>");
+                pagingHTML.append("<span id='paging' onclick='boardPaging(" + i + ")'>" + i + "</span>");
         }
         
         if(endPage < totalP)
-            pagingHTML.append("<span id='movepaging' onclick='userPaging(" + (endPage+1) + ")'>다음</span>");
+            pagingHTML.append("<span id='movepaging' onclick='boardPaging(" + (endPage+1) + ")'>다음</span>");
     }
 }
