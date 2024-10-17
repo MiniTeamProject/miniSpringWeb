@@ -49,4 +49,16 @@ public class BoardServiceImpl implements BoardService {
         
         return pagingMap;
     }
+    
+    @Override
+    public void boardWrite(String subject, String content, String category, List<String> uploadedImages) {
+        // 게시물 저장 로직
+        // ...
+        
+        // 이미지 URL DB에 저장하는 로직 추가
+        for (String imageUrl : uploadedImages) {
+            // 이미지 정보를 DB에 저장하는 코드
+            //boardDAO.saveImageInfo(imageUrl, 게시물ID); // 게시물ID와 이미지 URL을 연동하여 저장
+        }
+    }
 }
