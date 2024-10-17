@@ -73,11 +73,15 @@
                 <label><input name="gender" type="radio" value="2">여자</label>
             </div>
 
-            <div>
-                <input name="email" id="email" type="email" placeholder="example@example.com">
-                <input type="button" value="이메일 인증" id="emailBtn">
+            <div class="form-group">
+                <input class="form-control" name="email" id="email" type="email" placeholder="example@example.com" autofocus>
                 <div id="emailDiv" style="color: red"></div>
+                <input type="button" value="인증하기" class="btn btn-primary" id="emailBtn">
+                <input type="text" id="checkAuthCode" class="form-control" placeholder="인증 코드 6자리를 입력해주세요." maxlength="6" disabled name="authCode" autofocus >
+                <div id="checkAuthCodeDiv" style="color: red"></div>
             </div>
+
+
             <div>
                 <input name="tel" id="tel" type="tel" placeholder="핸드폰번호(01012345678)" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
             </div>
