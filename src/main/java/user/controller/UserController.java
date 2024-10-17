@@ -77,10 +77,27 @@ public class UserController {
            int checkNum = random.nextInt(888888) + 111111;
 
            // 이메일 보낼 내용
-           String title = "회원가입 인증 이메일 입니다.";
-           String content = "인증 코드는 " + checkNum + " 입니다." +
-                   "<br>" +
-                   "해당 인증 코드를 인증 코드 확인란에 기입하여 주세요.";
+           String title = "멍캣 회원가입 인증 이메일입니다.";
+           String content = "<!DOCTYPE html>" +
+                   "<html>" +
+                   "<head>" +
+                   "<meta charset='UTF-8'>" +
+                   "</head>" +
+                   "<body style='margin: 0; padding: 0; background-color: #f4f4f4;'>" +
+                   "  <div style='max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);'>" +
+                   "    <h1 style='color: #a90011; text-align: center;'>멍캣 회원가입 인증</h1>" +
+                   "    <p style='font-size: 16px; line-height: 1.6;'>안녕하세요, <strong>멍캣</strong>에 가입해주셔서 감사합니다!</p>" +
+                   "    <p style='font-size: 16px; line-height: 1.6;'>아래 인증 코드를 회원가입 페이지의 <strong>인증 코드 확인란</strong>에 입력하여 인증을 완료해 주세요:</p>" +
+                   "    <div style='margin: 20px 0; padding: 10px 15px; background-color: #f7f7f7; border: 1px solid #dddddd; border-radius: 4px; font-size: 18px; text-align: center; font-weight: bold; color: #333333;'>" +
+                   checkNum + "</div>" +
+                   "    <p style='font-size: 16px; line-height: 1.6;'>멍캣과 함께 반려동물과의 멋진 시간을 시작하세요!</p>" +
+                   "    <p style='font-size: 16px; line-height: 1.6;'>감사합니다.<br>멍캣 팀 드림</p>" +
+                   "    <div style='margin-top: 30px; text-align: center; font-size: 12px; color: #888888;'>" +
+                   "      <p>&copy; 2024 멍캣 | All Rights Reserved</p>" +
+                   "    </div>" +
+                   "  </div>" +
+                   "</body>" +
+                   "</html>";
 
            // 이메일 전송
            javaMailService.sendEmail(email, title, content);
