@@ -47,8 +47,8 @@
     </div>
     <div>
      <form id="userLoginForm" >
-     	<input id="id" name="id" type="text" placeholder="아이디">
-     	<input id="pwd" name="pwd" type="text" placeholder="비밀번호">
+     	<input id="id" name="id" type="text" placeholder="아이디" required="required">
+     	<input id="pwd" name="pwd" type="password" placeholder="비밀번호" required="required">
      	<div id="checkDiv"></div>
      	<input id="userLoginFormBtn" type="button" value="로그인">
      </form>

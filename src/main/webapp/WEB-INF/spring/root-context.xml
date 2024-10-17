@@ -13,9 +13,13 @@
     <context:component-scan base-package="spring.conf"/>
     <context:component-scan base-package="user.bean"/>
     <context:component-scan base-package="user.service.impl"/>
+    
     <context:component-scan base-package="board.bean"/>
     <context:component-scan base-package="board.service.impl"/>
     
+    <context:component-scan base-package="image.bean"/>
+    <context:component-scan base-package="image.service.impl"/>
+        
     <!-- NCP Context -->
     <context:component-scan base-package="naver.service.impl"/>
 </beans>

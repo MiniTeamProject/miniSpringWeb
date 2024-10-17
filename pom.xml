@@ -255,6 +255,18 @@
            <artifactId>spring-context-support</artifactId>
            <version>5.3.34</version>
        </dependency>
+       
+       <!-- javax 관련 Dependency -->
+       <dependency>
+		    <groupId>javax.xml.bind</groupId>
+		    <artifactId>jaxb-api</artifactId>
+		    <version>2.3.1</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.glassfish.jaxb</groupId>
+		    <artifactId>jaxb-runtime</artifactId>
+		    <version>2.3.1</version>
+		</dependency>
     </dependencies>
     <build>
         <plugins>

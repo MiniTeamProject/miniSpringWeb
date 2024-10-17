@@ -36,5 +36,10 @@ public class UserServiceImpl implements UserService{
 	public void userRegist(UserDTO userDTO) {
 		userDAO.userRegist(userDTO);
 	}
+	
+	@Override
+	public void updateTotalWrite(String id) {
+		userDAO.updateTotalWrite(id);
+	}
 
 }

@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource("classpath:spring/db.properties")  // 프로퍼티 파일 위치 지정
 @MapperScan("user.dao")
 @MapperScan("board.dao")
+@MapperScan("image.dao")
 public class SpringConfiguration {
     private @Value("${jdbc.driver}") String driver;
     private @Value("${jdbc.url}") String url;

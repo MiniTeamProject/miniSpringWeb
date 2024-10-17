@@ -11,8 +11,9 @@ CREATE TABLE MUNGCATUSER (
     addr1 VARCHAR(255),                                         -- 주소
     addr2 VARCHAR(255),                                         -- 상세주소
     profile INTEGER DEFAULT 0,                                  -- 프로필 사진 (이미지 SEQ)
+    totalwrite INTEGER DEFAULT 0,								-- 총 이미지 글작성 수
     admin CHAR(1) DEFAULT '0' NOT NULL,                         -- 관리자 권한((0 -> 일반 사용자), (1 -> 관리자)
-    logtime TIMESTAMP DEFAULT NOW()                             -- 가입일
+    logtime TIMESTAMP DEFAULT NOW()                             -- 가입일    
 );
 
 -- [MySQL TABLE] 커뮤니티 테이블
@@ -30,11 +31,10 @@ CREATE TABLE MUNGCATBOARD(
  -- [MySQL TABLE] 이미지 테이블
  CREATE TABLE MUNGCATIMAGE (
     seq INTEGER PRIMARY KEY AUTO_INCREMENT,                 -- 이미지 ID
-    ref INTEGER,                                            -- 글번호 (MUNGCATBOARD와 연결)
+    ref INTEGER DEFAULT 0,									-- 이미지 첨부 된 글 SEQ
     imageFileName VARCHAR(200) NOT NULL,                    -- 저장된 파일 이름(UUID)
     imageOriginalFileName VARCHAR(200) NOT NULL,            -- 원본 파일 이름
-    logtime TIMESTAMP DEFAULT NOW(),                        -- 이미지 업로드 날짜
-    FOREIGN KEY (ref) REFERENCES MUNGCATBOARD(seq)
+    logtime TIMESTAMP DEFAULT NOW()                         -- 이미지 업로드 날짜
 );
  
  -- [MySQL TABLE] 댓글 테이블
@@ -73,13 +73,9 @@ CREATE TABLE MUNGCATSTORE_REVIEWS (
     FOREIGN KEY (product_id) REFERENCES MUNGCATSTORE(id)        -- 외래 키 설정
 );
 
-drop table mungcatuser;
-drop table mungcatboard;
-drop table Mungcatcomment;
-DROP TABLE MUNGCATIMAGE;
-
 select * from MUNGCATUSER;
 select * from MUNGCATBOARD;
+select * from MUNGCATIMAGE;
 select * from MUNGCATCOMMENT;
 INSERT INTO MUNGCATUSER (id, pwd, nickname, name, gender, email, tel, zipcode, addr1, addr2, profile, admin) 
 VALUES ('admin', '1234', '관리자', '관리자', 'M', 'admin@naver.com', null, NULL, NULL, NULL, '0', '0');
@@ -92,3 +88,8 @@ INSERT INTO MUNGCATBOARD (id, nickname, email, subject, content, imageFileName, 
 ('user5', 'User Five', 'user5@example.com', 'Fifth Post', 'Content for the fifth post', NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, NOW()),
 ('user6', 'User Six', 'user6@example.com', 'Sixth Post', 'Content for the sixth post', NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, NOW()),
 ('user7', 'User Seven', 'user7@example.com', 'Seven Post', 'Content for the fifth post', NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, NOW());
+
+drop table mungcatuser;
+drop table mungcatboard;
+drop table Mungcatcomment;
+DROP TABLE MUNGCATIMAGE;

@@ -5,7 +5,7 @@
 <!-- <mapper namespace="userSQL"> -->
 <mapper namespace="board.dao.BoardDAO">
     <select id="getBoardList" resultType="board.bean.BoardDTO">
-        SELECT * FROM MUNGCATBOARD ORDER BY LOGTIME DESC LIMIT #{startNum}, #{endNum}
+        SELECT * FROM MUNGCATBOARD ORDER BY SEQ DESC LIMIT #{startNum}, #{endNum}
     </select>
     
     <select id="getBoardHotList" resultType="board.bean.BoardDTO">
@@ -14,5 +14,14 @@
     
     <select id="getTotalA" resultType="Integer">
         SELECT COUNT(*) FROM MUNGCATBOARD 
+    </select>
+    
+    <insert id="boardWrite" parameterType="Map">
+    	INSERT INTO MUNGCATBOARD (id, subject, content, reply, hit, category)
+		VALUES (#{id}, #{subject}, #{content}, 0, 0, #{category});
+    </insert>
+    
+    <select id="getRef" parameterType="String">
+    	SELECT MAX(SEQ) FROM MUNGCAT WHERE ID = #{id}
     </select>
 </mapper>

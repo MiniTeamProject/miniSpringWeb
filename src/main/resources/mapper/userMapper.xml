@@ -14,4 +14,7 @@
         INSERT INTO MUNGCATUSER (id, pwd, nickname, name, gender, email, tel, zipcode, addr1, addr2, logtime)
         VALUES (#{id}, #{pwd}, #{nickname}, #{name}, #{gender}, #{email}, #{tel}, #{zipcode}, #{addr1}, #{addr2}, NOW())
     </insert>
+    <update id="updateTotalWrite" parameterType="String">
+    	UPDATE MUNGCATUSER SET TOTALWRITE = (TOTALWRITE + 1) WHERE id = #{id}		    	
+    </update>
 </mapper>

@@ -1,9 +1,6 @@
 package user.service;
 
-import java.util.List;
-import java.util.Map;
 import org.springframework.stereotype.Component;
-import org.springframework.ui.ModelMap;
 
 import user.bean.UserDTO;
 
@@ -15,4 +12,6 @@ public interface UserService {
     public String getCheckId(String id);
 
     public void userRegist(UserDTO userDTO);
+
+	public void updateTotalWrite(String id);
 }
