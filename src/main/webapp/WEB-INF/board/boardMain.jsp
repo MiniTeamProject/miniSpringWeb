@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>멍캣광장</title>
+<title>멍캣: 멍캣광장</title>
 <link rel="stylesheet" href="../css/boardMain.css">
 </head>
 <body>
@@ -25,6 +25,7 @@
             </c:if>
             <c:if test="${empty userDTO.id}">
                 <li class="loginview"><a href="/miniSpringWeb/user/userLoginForm"><img src="../image/logo7.png" alt="logo7" class="nav-icon">로그인</a></li>
+                <li class="loginview"><a href="/miniSpringWeb/user/userRegistForm"><img src="../image/logo6.png" alt="logo6" class="nav-icon">회원가입</a></li>
             </c:if>
         </ul>
         <div class="auth">
@@ -34,6 +35,7 @@
             </c:if>
             <c:if test="${empty userDTO.id}">
                 <a href="/miniSpringWeb/user/userLoginForm">로그인</a>
+                <a href="/miniSpringWeb/user/userRegistForm">회원가입</a>
             </c:if>
         </div>
     </nav>

@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>멍캣: 회원가입</title>
 <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
@@ -24,6 +25,7 @@
             </c:if>
             <c:if test="${empty userDTO.id}">
                 <li class="loginview"><a href="/miniSpringWeb/user/userLoginForm"><img src="../image/logo7.png" alt="logo7" class="nav-icon">로그인</a></li>
+                <li class="loginview"><a href="/miniSpringWeb/user/userRegistForm"><img src="../image/logo6.png" alt="logo6" class="nav-icon">회원가입</a></li>
             </c:if>
         </ul>
         <div class="auth">
@@ -33,6 +35,7 @@
             </c:if>
             <c:if test="${empty userDTO.id}">
                 <a href="/miniSpringWeb/user/userLoginForm">로그인</a>
+                <a href="/miniSpringWeb/user/userRegistForm">회원가입</a>
             </c:if>
         </div>
     </nav>
