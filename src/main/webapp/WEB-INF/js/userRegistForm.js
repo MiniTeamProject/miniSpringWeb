@@ -170,6 +170,10 @@ $(function () {
 
     // 인증번호 입력 후 포커스 아웃 이벤트
     $('#checkAuthCode').on('focusout', checkAuthCode);
+    // 인증번호 입력 필드 클릭 이벤트 - 오류 메시지 초기화
+    $('#checkAuthCode').on('click', function() {
+        $('#checkAuthCodeDiv').text(''); // 오류 메시지 초기화
+    });
 });
 
 
