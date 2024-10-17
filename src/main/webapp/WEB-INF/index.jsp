@@ -33,7 +33,7 @@
                 <a href="/miniSpringWeb/user/logout">로그아웃</a>
             </c:if>
             <c:if test="${empty userDTO.id}">
-                <a href="/userLoginForm">로그인</a>
+                <a href="/miniSpringWeb/user/userLoginForm">로그인</a>
             </c:if>
         </div>
     </nav>

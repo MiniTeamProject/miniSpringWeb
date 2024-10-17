@@ -49,7 +49,7 @@
      	<div id="checkDiv"></div>
      	<input id="userLoginFormBtn" type="button" value="로그인">
      </form>
-     <p><a href="회원가입">회원가입</a></p>
+     <p><a href="/miniSpringWeb/user/userRegistForm">회원가입</a></p>
     </div>
     <div>
     	<div><a>카카오</a></div>

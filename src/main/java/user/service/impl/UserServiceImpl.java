@@ -25,4 +25,16 @@ public class UserServiceImpl implements UserService{
 		return userDTO;
 	}
 
+	@Override
+	public String getCheckId(String id) {
+		UserDTO userDTO = userDAO.getCheckId(id);
+		if (userDTO == null) return "non_exist";
+		else return "exist";
+	}
+
+	@Override
+	public void userRegist(UserDTO userDTO) {
+		userDAO.userRegist(userDTO);
+	}
+
 }

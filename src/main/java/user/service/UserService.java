@@ -10,6 +10,9 @@ import user.bean.UserDTO;
 @Component
 public interface UserService {
 
-	UserDTO userLogin(String id, String pwd);
-  
+	public UserDTO userLogin(String id, String pwd);
+
+    public String getCheckId(String id);
+
+    public void userRegist(UserDTO userDTO);
 }
