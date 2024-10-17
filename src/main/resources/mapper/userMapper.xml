@@ -7,5 +7,11 @@
 	<select id="userLogin" parameterType="java.util.Map" resultType="userDTO">
 		select * from MUNGCATUSER where id=#{id} and pwd=#{pwd};
 	</select>
-
+	<select id="getCheckId" parameterType="String" resultType="userDTO">
+		select * from MUNGCATUSER where id = #{id}
+	</select>
+	<insert id="userRegist" parameterType="user.bean.UserDTO">
+        INSERT INTO MUNGCATUSER (id, pwd, nickname, name, gender, email, tel, zipcode, addr1, addr2, logtime)
+        VALUES (#{id}, #{pwd}, #{nickname}, #{name}, #{gender}, #{email}, #{tel}, #{zipcode}, #{addr1}, #{addr2}, NOW())
+    </insert>
 </mapper>

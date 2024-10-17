@@ -43,33 +43,50 @@
        	<h1>회원가입</h1>
        </div>
       	<div>
-      		<form id="userRegistForm" action="#">
+      		<form name="userRegistForm" id="userRegistForm">
        		<div>
-       			<input type="file">
+       			<input type="file" name="profileFileName">
+       		</div>
+                <!--아이디-->
+       		<div>
+       			<input name="id" id="id" type="text" placeholder="아이디">
+                <div id="idDiv" style="color: red"></div>
+            </div>
+            <div>
+                <input name="pwd" id="pwd" type="password" placeholder="비밀번호">
+                <div id="pwdDiv" style="color: red"></div>
+            </div>
+            <div>
+       			<input name="rePwd" id="rePwd" type="password" placeholder="비밀번호 확인">
+                <div id="rePwdDiv" style="color: red"></div>
        		</div>
        		<div>
-       			<input name="" type="text" placeholder="아이디">
-       			<input name="" type="password" placeholder="비밀번호">
-       			<input name="" type="password" placeholder="비밀번호 확인">
+       			<input name="name" id="name" type="text" placeholder="이름">
+                <div id="nameDiv" style="color: red"></div>
+            </div>
+            <div>
+       			<input name="nickname" id="nickname" type="text" placeholder="닉네임">
+                <div id="nicknameDiv" style="color: red"></div>
        		</div>
        		<div>
-       			<input name="" type="text" placeholder="이름">
-       			<input name="" type="text" placeholder="닉네임">
-       		</div>
-       		<div>
-      				<label><input name="" type="checkbox" value="M">남자</label>
-      				<label><input name="" type="checkbox" value="W">여자</label>
-      			</div>
-      			<div>
-      				<input name="" type="email" placeholder="이메일" placeholder="example@example.com">
-      				<input name="" type="tel" laceholder="01012345678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
-      			</div>
+                <label><input name="gender" type="radio" value="1">남자</label>
+                <label><input name="gender" type="radio" value="2">여자</label>
+            </div>
+
+            <div>
+                <input name="email" id="email" type="email" placeholder="example@example.com">
+                <input type="button" value="이메일 인증" id="emailBtn">
+                <div id="emailDiv" style="color: red"></div>
+            </div>
+            <div>
+                <input name="tel" id="tel" type="tel" placeholder="핸드폰번호(01012345678)" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
+            </div>
        		<div> 
        			<!-- 주소 -->
-     			<input name="" type="text" id="zipcode" name="zipcode" placeholder="우편번호입력" size="10">
+     			<input  type="text" id="zipcode" name="zipcode" placeholder="우편번호입력" size="10">
 		<button name="" type="button" onclick="checkPost()">우편번호 검색</button>
-		<input name="" type="text" id="addr1"  name="addr1" placeholder="주소" size="60" readonly="readonly"><br>
-		<input name="" type="text" id="addr2"  name="addr2" placeholder="상세주소" size="60">
+		<input type="text" id="addr1"  name="addr1" placeholder="주소" size="60" readonly="readonly"><br>
+		<input type="text" id="addr2"  name="addr2" placeholder="상세주소" size="60">
      		</div>
     		</form>
   		<input id="userRegistBtn" type="button" value="가입하기">
@@ -81,6 +98,7 @@
  <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  <script src="../js/header.js"></script>
+ <script src="../js/userRegistForm.js"></script>
  <script type="text/javascript">
    function checkPost() {
        new daum.Postcode({
@@ -100,11 +118,7 @@
            }
        }).open();
    }
-   // -------------- 
-   $(function() {
-	$('#userRegistBtn').click(function() {
-	});
-});
+
    </script>
 </body>
 </html>

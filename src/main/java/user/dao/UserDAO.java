@@ -11,8 +11,10 @@ import user.bean.UserDTO;
 @Mapper
 public interface UserDAO {
 
-	UserDTO userLogin(Map<String, String> map);
-	
-	
+	public UserDTO userLogin(Map<String, String> map);
 
+
+    public UserDTO getCheckId(String id);
+
+    public void userRegist(UserDTO userDTO);
 }
