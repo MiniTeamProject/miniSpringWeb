@@ -20,41 +20,43 @@ import spring.conf.NCPConfiguration;
 @Service
 public class NCPObjectStorageService implements naver.service.ObjectStorageService {
     final AmazonS3 amazonS3;
-    
+
     public NCPObjectStorageService(NCPConfiguration ncpConfiguration) {
         amazonS3 = AmazonS3ClientBuilder
-              .standard()
-              .withEndpointConfiguration(
-                      new AwsClientBuilder.EndpointConfiguration(
-                              ncpConfiguration.getEndPoint(), ncpConfiguration.getRegionName()))
-              .withCredentials(
-                      new AWSStaticCredentialsProvider(
-                              new BasicAWSCredentials(
-                                      ncpConfiguration.getAccessKey(), ncpConfiguration.getSecretKey())))
-              .build();
-     }
-    
+                .standard()
+                .withEndpointConfiguration(
+                        new AwsClientBuilder.EndpointConfiguration(
+                                ncpConfiguration.getEndPoint(), ncpConfiguration.getRegionName()))
+                .withCredentials(
+                        new AWSStaticCredentialsProvider(
+                                new BasicAWSCredentials(
+                                        ncpConfiguration.getAccessKey(), ncpConfiguration.getSecretKey())))
+                .build();
+    }
+
     @Override
     public String uploadFile(String bucketName, String directoryPath, MultipartFile multipartFile) {
-        try(InputStream inputStream = multipartFile.getInputStream()) {
-            String imageFileName = UUID.randomUUID().toString();
+        try (InputStream inputStream = multipartFile.getInputStream()) {
+            String imageFileName = UUID.randomUUID().toString() + "_" + multipartFile.getOriginalFilename();
             
             ObjectMetadata objectMetadata = new ObjectMetadata();
             objectMetadata.setContentType(multipartFile.getContentType());
+            objectMetadata.setContentLength(multipartFile.getSize()); // 파일 크기 설정
             
             PutObjectRequest putObjectRequest =
-                    new PutObjectRequest(bucketName, 
-                                         directoryPath + imageFileName, 
-                                         inputStream, 
-                                         objectMetadata)
-                    .withCannedAcl(CannedAccessControlList.PublicRead);
+                    new PutObjectRequest(bucketName,
+                            directoryPath + imageFileName,
+                            inputStream,
+                            objectMetadata)
+                            .withCannedAcl(CannedAccessControlList.PublicRead); // 공개 읽기 권한 설정
             
             amazonS3.putObject(putObjectRequest);
             
-            return imageFileName;
-            
-        } catch(Exception e) {
-            throw new RuntimeException("파일 업로드 실패");
+            // NCP Object Storage에서 파일에 접근할 수 있는 URL 생성
+            return amazonS3.getUrl(bucketName, directoryPath + imageFileName).toString();
+
+        } catch (Exception e) {
+            throw new RuntimeException("파일 업로드 실패: " + e.getMessage(), e);
         }
     }
 }

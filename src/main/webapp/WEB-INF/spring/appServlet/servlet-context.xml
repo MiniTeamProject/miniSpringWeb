@@ -26,4 +26,5 @@
     <resources location="/WEB-INF/css/" mapping="/css/**"/>
     <resources location="/WEB-INF/js/" mapping="/js/**"/>
     <resources location="/WEB-INF/image/" mapping="/image/**"/>
+    <resources location="/WEB-INF/froalaeditor/" mapping="/froalaeditor/**"/>
 </beans:beans>

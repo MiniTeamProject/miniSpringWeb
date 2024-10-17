@@ -18,8 +18,6 @@ public class UserController {
     @Autowired
     private UserService userService;
     
-    
-    
     @RequestMapping(value="userLoginForm", method = RequestMethod.GET)
     public String userLoginForm() {
         return "user/userLoginForm";
@@ -39,6 +37,11 @@ public class UserController {
     	}
     }
     
+    @RequestMapping(value = "logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
+    }
     
     @RequestMapping(value="userRegistForm", method = RequestMethod.GET)
     public String writeForm() {
@@ -50,7 +53,4 @@ public class UserController {
     public void userRegist() {
     	System.out.println("userRegist");
     }
- 
-    
-    
 }

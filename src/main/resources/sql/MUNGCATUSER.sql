@@ -10,7 +10,8 @@ CREATE TABLE MUNGCATUSER (
     zipcode VARCHAR(20),                -- 우편번호
     addr1 VARCHAR(255),                 -- 주소
     addr2 VARCHAR(255),                 -- 상세주소
-    profile VARCHAR(200) DEFAULT NULL,  -- 프로필 사진(가입 시 입력 X)
-    admin CHAR(1) DEFAULT 0 NOT NULL,   -- 관리자 권한((0 -> 일반 사용자), (1 -> 관리자)
+    profileFileName VARCHAR(200) DEFAULT NULL,         -- 프로필 이미지(파일이름)
+    profileOriginalFileName VARCHAR(200) DEFAULT NULL, -- 프로필 이미지(파일이름)
+    admin CHAR(1) DEFAULT '0' NOT NULL,   -- 관리자 권한((0 -> 일반 사용자), (1 -> 관리자)
     logtime TIMESTAMP DEFAULT NOW()     -- 가입일
 );

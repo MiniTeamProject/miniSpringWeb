@@ -18,13 +18,22 @@
             <li><a href="#"><img src="../image/logo2.png" alt="logo2" class="nav-icon">멍캣마켓</a></li>
             <li><a href="/miniSpringWeb/board/boardMain"><img src="../image/logo3.png" alt="logo3" class="nav-icon">멍캣광장</a></li>
             <li><a href="#"><img src="../image/logo4.png" alt="logo4" class="nav-icon">멍캣정보</a></li>
-            <li class="logoutview"><a href="#"><img src="../image/logo5.png" alt="logo5" class="nav-icon">로그인</a></li>
-            <li class="loginview"><a href="#"><img src="../image/logo7.png" alt="logo7" class="nav-icon">로그아웃</a></li>
-            <li class="loginview"><a href="#"><img src="../image/logo6.png" alt="logo6" class="nav-icon">마이페이지</a></li>
+            <c:if test="${not empty userDTO.id}">
+                <li class="logoutview"><a href="#"><img src="../image/logo5.png" alt="logo5" class="nav-icon">로그아웃</a></li>
+                <li class="logoutview"><a href="#"><img src="../image/logo6.png" alt="logo6" class="nav-icon">마이페이지</a></li>
+            </c:if>
+            <c:if test="${empty userDTO.id}">
+                <li class="loginview"><a href="/miniSpringWeb/user/userLoginForm"><img src="../image/logo7.png" alt="logo7" class="nav-icon">로그인</a></li>
+            </c:if>
         </ul>
         <div class="auth">
-            <a href="/miniSpringWeb/user/userLoginForm">로그인 <span>${sessionScope.userDTO.id }</span></a>
-            <a href="/miniSpringWeb/user/userRegistForm">회원가입</a>
+            <c:if test="${not empty userDTO.id}">
+                <a href="/miniSpringWeb/user/userInfo">${userDTO.nickname} 님</a>
+                <a href="/miniSpringWeb/user/logout">로그아웃</a>
+            </c:if>
+            <c:if test="${empty userDTO.id}">
+                <a href="/miniSpringWeb/user/userLoginForm">로그인</a>
+            </c:if>
         </div>
     </nav>
 </header>
@@ -36,9 +45,8 @@
     <div>
      <form id="userLoginForm" >
      	<input id="id" name="id" type="text" placeholder="아이디">
-     	<div id="idDiv"></div>
      	<input id="pwd" name="pwd" type="text" placeholder="비밀번호">
-     	<div id="pwdDiv"></div>
+     	<div id="checkDiv"></div>
      	<input id="userLoginFormBtn" type="button" value="로그인">
      </form>
      <p><a href="회원가입">회원가입</a></p>
@@ -53,46 +61,6 @@
 </footer>    
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="../js/header.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$('#idDiv').empty();
-		$('#pwdDIv').empty();
-		
-		$('#id').focusout(function(){
-			if($('#id').val()==''){
-				$('#idDiv').html("diq");
-			}
-		});
-		$('#pwd').focusout(function(){
-			if($('#pwd').val()==''){
-				$('#pwdDiv').html("diq");
-			}
-		});
-		
-		$('#userLoginFormBtn').click(function() {
-			$('#pwdDIv').empty();
-			$('#idDiv').empty();
-			
-			$.ajax({
-				type: 'post',
-				url: '/miniSpringWeb/user/userLogin',
-				data: $('#userLoginForm').serialize(),  
-				dataType: 'text',
-				success: function(data){
-					alert(data);
-					if(data=='success'){
-						location.href='/miniSpringWeb/';					
-					}else {
-						return;
-					}
-				},
-				error: function(e){console.log(e);}
-			}); // AJAX 
-		});
-		
-		
-		
-	});
-</script>
+<script type="text/javascript" src="../js/userLogingForm.js"></script>
 </body>
 </html>

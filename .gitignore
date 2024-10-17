@@ -1,5 +1,5 @@
 # Ignore pom.xml file
-porm.xml
+pom.xml
 
 # Ignore .properties
 *.properties
