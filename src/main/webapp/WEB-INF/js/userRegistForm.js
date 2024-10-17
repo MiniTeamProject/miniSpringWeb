@@ -123,4 +123,54 @@ $(function () {
             });
         }
     });
+    // 이메일 인증 요청
+    $('#emailBtn').click(function() {
+        var email = $('#email').val();
+        $.ajax({
+            url: '/miniSpringWeb/user/emailAuth',
+            type: 'POST',
+            data: { email: email },
+            success: function(checkNum) {
+                $('#checkAuthCode').prop('disabled', false); // 인증 코드 입력 필드 활성화
+                alert('인증 코드가 이메일로 발송되었습니다.');
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX 요청 실패: ', error);
+                alert('이메일 인증 중 오류가 발생했습니다.');
+            }
+        });
+    });
+
+    // 인증번호 확인 함수
+    function checkAuthCode() {
+        var inputCode = $('#checkAuthCode').val(); // 사용자가 입력한 인증번호
+        var email = $('#email').val(); // 사용자가 입력한 이메일
+
+        // AJAX 요청
+        $.ajax({
+            url: '/miniSpringWeb/user/verifyAuthCode',
+            type: 'POST',
+            data: {
+                email: email,
+                authCode: inputCode
+            },
+            success: function(response) {
+                if (response.valid) {
+                    $('#checkAuthCodeDiv').text("인증번호가 일치합니다.").css('color', 'green');
+                } else {
+                    $('#checkAuthCodeDiv').text("인증번호가 일치하지 않습니다.").css('color', 'red');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX 요청 실패: ', error);
+                $('#checkAuthCodeDiv').text('인증번호 검증 중 오류가 발생했습니다.').css('color', 'red');
+            }
+        });
+    }
+
+    // 인증번호 입력 후 포커스 아웃 이벤트
+    $('#checkAuthCode').on('focusout', checkAuthCode);
 });
+
+
+
