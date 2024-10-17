@@ -85,18 +85,45 @@ nav {
     font-size: 18px;
 }
 
-#event-alert, #postList, #popular-posts {
+#event-alert {
     margin: 20px 0;
     border: 1px solid #ddd;
     padding: 15px;
 }
 
-.post {
-    border: 1px solid #ddd;
-    margin: 10px 0;
-    padding: 10px;
+#popular-posts, #postList {
+    display: flex;
+    flex-wrap: wrap; /* 요소들이 한 줄을 넘기면 다음 줄로 넘어가도록 설정 */
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
 }
 
+.post {
+    flex: 1 1 calc(30%); /* 3등분하고 간격을 고려한 너비 설정 */
+    box-sizing: border-box; /* 패딩과 보더를 포함한 너비 계산 */
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    width: 300px;
+    height: 300px;
+    border-radius: 30px;
+}
+
+.content {
+	height: 180px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.subject {
+	height: 50px;
+}
+
+.hit {
+	height: 50px;
+}
 /* #functionWrap 스타일 추가 */
 #functionWrap {
     display: flex; /* 기본적으로 flexbox 사용 */

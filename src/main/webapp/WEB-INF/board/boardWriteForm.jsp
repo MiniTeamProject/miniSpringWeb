@@ -22,6 +22,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.3.0/js/plugins/colors.min.js"></script>
 </head>
 <body>
+<c:if test="${empty userDTO.id}">
+	<script type="text/javascript">
+		alert("로그인이 필요합니다.");
+		window.location.href = '/miniSpringWeb/board/boardMain'; // 원하는 리디렉션 URL로 변경
+	</script>
+</c:if>
 <header>
     <nav>
         <div class="logo"><span>멍캣</span></div>
@@ -64,20 +70,23 @@
             <div class="form-group">
                 <label for="category">카테고리</label>
                 <select id="category" name="category">
-                    <option value="일반">일반</option>
-                    <option value="질문">질문</option>
-                    <option value="후기">후기</option>
+                    <option value="0">일반</option>
+                    <option value="1">질문</option>
+                    <option value="2">후기</option>
                 </select>
             </div>
 
-            <div class="form-group">
-                <!-- Froala Editor를 위한 div -->
+            <div class="form-group" id="editorwrap">
                 <div id="editor"></div>
             </div>
 
             <div class="form-buttons">
                 <button type="button" class="btn-submit" id="writeBtn">등록</button>
+                <div id="checkDiv"></div>
                 <button type="button" class="btn-cancel" onclick="history.back();">취소</button>
+            </div>
+            <div class="inputData">
+            	<input type="hidden" id="id" name="id" value="${userDTO.id}"/>
             </div>
         </form>
     </section>

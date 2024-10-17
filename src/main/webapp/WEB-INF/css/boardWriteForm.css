@@ -185,6 +185,12 @@ footer {
     font-size: 14px;
 }
 
+#checkDiv {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 /* 반응형 디자인 */
 @media (max-width: 768px) {
     .search > input[type="text"] {
@@ -254,10 +260,122 @@ footer {
     #event-alert, #postList, #popular-posts {
         padding: 10px; /* 패딩 조정 */
     }
+	
+	footer, body, html {
+		margin-bottom: 0;
+	}
+	/* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
+	html, body {
+	    height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
+	}
+	
+	/* editor css */
+	#editorwrap {
+		height: 500px;
+	}
+    
+    #editor {
+	    height: 70%; /* 부모 요소의 높이를 상속받도록 설정 */
+	}
+	
+}
+
+@media (max-width: 516px) {
+	/* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
+	html, body {
+	    height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
+	}
+	/* editor css */
+	#editorwrap {
+		height: 500px;
+	}
+    
+    #editor {
+	    height: 60%; /* 부모 요소의 높이를 상속받도록 설정 */
+	}
+}
+
+@media (max-width: 374px) {
+	/* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
+	html, body {
+	    height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
+	}
+	/* editor css */
+	#editorwrap {
+		height: 500px;
+	}
+    
+    #editor {
+	    height: 50%; /* 부모 요소의 높이를 상속받도록 설정 */
+	}
+}
+
+@media (max-width: 325px) {
+	/* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
+	html, body {
+	    height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
+	}
+	/* editor css */
+	#editorwrap {
+		height: 500px;
+	}
+    
+    #editor {
+	    height: 40%; /* 부모 요소의 높이를 상속받도록 설정 */
+	}
+}
+
+@media (max-width: 306px) {
+	/* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
+	html, body {
+	    height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
+	}
+	/* editor css */
+	#editorwrap {
+		height: 500px;
+	}
+    
+    #editor {
+	    height: 30%; /* 부모 요소의 높이를 상속받도록 설정 */
+	}
+}
+
+@media (max-width: 264px) {
+	/* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
+	html, body {
+	    height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
+	}
+	/* editor css */
+	#editorwrap {
+		height: 500px;
+	}
+    
+    #editor {
+	    height: 20%; /* 부모 요소의 높이를 상속받도록 설정 */
+	}
+}
+
+@media (max-width: 222px) {
+	/* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
+	html, body {
+	    height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
+	}
+	/* editor css */
+	#editorwrap {
+		height: 500px;
+	}
+    
+    #editor {
+	    height: 10%; /* 부모 요소의 높이를 상속받도록 설정 */
+	}
 }
 
 /* 데스크톱에서 mobile-menu 숨김 */
 @media (min-width: 769px) {
+	/* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
+	html, body {
+	    height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
+	}
 	.nav-links {
         padding-left: 5.5em;
     }
@@ -270,12 +388,24 @@ footer {
         display: none;
     }
     
-    main {
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        flex-direction: column;
-    }
+    /* editor css */
+	#editorwrap {
+		height: 500px;
+	}
+    
+    #editor {
+	    height: 70%; /* 부모 요소의 높이를 상속받도록 설정 */
+	}
+    
+	main {
+	    display: flex;
+	    width: 100%;
+	    justify-content: center;
+	    flex-direction: column;
+	    margin: 0 auto;
+	    overflow: visible; /* 변경: overflow 속성을 visible로 설정하여 자식 요소가 overflow될 때 콘텐츠가 잘리지 않도록 함 */
+	    min-height: 85vh; /* 최소 높이 설정 */
+	}
 
     #event-alert, #postList, #popular-posts {
         border: 1px solid #ddd;
