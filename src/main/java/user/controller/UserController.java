@@ -9,11 +9,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import image.bean.ImageDTO;
+import naver.service.ObjectStorageService;
 import user.bean.UserDTO;
 import user.service.UserService;
 import user.service.impl.JavaMailService;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -24,7 +29,10 @@ import java.util.concurrent.ConcurrentHashMap;
 public class UserController {
     @Autowired
     private UserService userService;
-
+    @Autowired
+	private ObjectStorageService objectStorateService;
+	private String bucketName = "bitcamp-9th-bucket-97";
+    
     @Autowired
     private JavaMailService javaMailService;
 
@@ -53,15 +61,50 @@ public class UserController {
         return "redirect:/";
     }
     
+    @RequestMapping(value = "userInfo")
+    public String userInfo() {
+        return "user/userInfo";
+    }
+    
+    
+    @RequestMapping(value = "userUpdate", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+    @ResponseBody
+    public void userUpdate(@ModelAttribute UserDTO userDTO, @RequestParam MultipartFile profile, HttpSession session) {
+    	String filePath = session.getServletContext().getRealPath("WEB-INF/storage");
+		System.out.println("실제폴더 : " + filePath);
+
+	//	String imageFileName = objectStorateService.uploadFile(bucketName,"storage/", profile);
+		String imageOriginalFileName = profile.getOriginalFilename();
+		File file = new File(filePath, imageOriginalFileName);
+		try {
+			profile.transferTo(file);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		userDTO.setProfile(imageOriginalFileName);
+    	
+    	
+    	
+    	userService.userUpdate(userDTO);
+
+    }
+   
+    
     @RequestMapping(value="userRegistForm", method = RequestMethod.GET)
     public String userRegistForm() {
         return "user/userRegistForm";
     }
-    
+
     @ResponseBody
     @RequestMapping(value = "userRegist", method = RequestMethod.POST)
     public void userRegist(@ModelAttribute UserDTO userDTO) { userService.userRegist(userDTO);}
 
+    
     @ResponseBody
     @RequestMapping(value = "getCheckId", method = RequestMethod.POST)
     public String getCheckId(String id) {return userService.getCheckId(id);}

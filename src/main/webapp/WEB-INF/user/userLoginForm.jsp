@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>멍캣: 로그인</title>
 <link rel="stylesheet" href="../css/index.css">
+<link rel="stylesheet" href="../css/userLoginForm.css">
 </head>
 <body>
 <header>
@@ -42,23 +43,40 @@
 </header>
     
 <section class="main-content">
-    <div class="title">
-    	<h1>로그인</h1>
-    </div>
-    <div>
-     <form id="userLoginForm" >
-     	<input id="id" name="id" type="text" placeholder="아이디" required="required">
-     	<input id="pwd" name="pwd" type="password" placeholder="비밀번호" required="required">
-     	<div id="checkDiv"></div>
-     	<input id="userLoginFormBtn" type="button" value="로그인">
-     </form>
-     <p><a href="/miniSpringWeb/user/userRegistForm">회원가입</a></p>
-    </div>
-    <div>
-    	<div><a>카카오</a></div>
-    	<div><a>네이버</a></div>
-    </div>
+	<div class="form-box">
+		<div class="title">
+			<h1>로그인</h1>
+		</div>
+		<form id="userLoginForm">
+			<div class="input-box">
+				<p>아이디</p>
+				<input id="id" name="id" type="text" placeholder="아이디">
+			</div>
+			<div class="input-box">
+				<p>비밀번호</p>
+				<input id="pwd" name="pwd" type="text" placeholder="비밀번호">
+			</div>
+			<div id="checkDiv"></div>
+			<input id="userLoginFormBtn" class="btn" type="button" value="로그인">
+		</form>
+
+		<div class="login-register">
+			<p>
+				<a href="/miniSpringWeb/user/userRegistForm">회원가입</a>
+			</p>
+		</div>
+		<div>
+			<div>
+				<a>카카오</a>
+			</div>
+			<div>
+				<a>네이버</a>
+			</div>
+		</div>
+	</div>
 </section>
+
+
 <footer>
     <p>Copyright ⓒ 2024 멍캣홈</p>
 </footer>    
