@@ -6,7 +6,10 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.collections4.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -149,5 +152,107 @@ public class BoardController {
         
         return "success";
     }
+    
+    @RequestMapping(value = "boardView")
+    public ModelAndView boardView(@RequestParam("pg") int pg, @RequestParam("seq") int seq) {
+        ModelAndView modelAndView = new ModelAndView();
+        List<BoardDTO> list = boardService.getboardView(seq);
+        
+        modelAndView.addObject("list", list);
+        modelAndView.addObject("pg", pg);
+        modelAndView.setViewName("board/boardView");
+        
+        System.out.println("boardService : " + modelAndView);
+        
+        return modelAndView;        
+    }
+    
+     @RequestMapping(value = "boardUpdateForm")
+     public ModelAndView boardUpdateForm(@RequestParam("seq") int seq, @RequestParam("pg") int pg) {
+         ModelAndView modelAndView = new ModelAndView();
+         List<BoardDTO> list = boardService.getboardView(seq);
+         
+         modelAndView.addObject("list", list);
+         modelAndView.addObject("pg", pg);
+         modelAndView.setViewName("board/boardUpdateForm");
+         
+         return modelAndView;
+     }
+     
+     @RequestMapping(value = "boardUpdate", method = RequestMethod.POST)
+     @ResponseBody
+     public String boardUpdate(@RequestParam("subject") String subject,
+                               @RequestParam("content") String content,
+                               @RequestParam("category") String category,
+                               @RequestParam("id") String id,
+                               @RequestParam("seq") int seq,
+                               @RequestParam(value = "imageUrls[]", required = false) List<String> imageUrls,
+                               @RequestParam(value = "imageFileNames[]", required = false) List<String> imageFileNames,
+                               @RequestParam(value = "imageOriginalFileNames[]", required = false) List<String> imageOriginalFileNames) {
+         
+         // 게시물 저장 로직
+         System.out.println("제목: " + subject);
+         System.out.println("내용: " + content);
+         System.out.println("카테고리: " + category);
+         System.out.println("아이디: " + id);
+         System.out.println("업로드된 이미지 URL: " + imageUrls);
+         System.out.println("업로드된 이미지 파일 이름: " + imageFileNames);
+         System.out.println("업로드된 이미지 원본 파일 이름: " + imageOriginalFileNames);
+         
+         System.out.println("imageFileNames : " + imageFileNames);
+         
+         // 이미지 URL을 포함한 게시물 저장 로직 구현
+         int result = boardService.boardUpdate(id, subject, content, category, seq);
+         
+         if(result > 0) {
+             if(imageFileNames != null) {
+                 userService.updateTotalWrite(id);
+                 for (String imageFileName : imageFileNames) {
+                     System.out.println("업로드된 이미지 URL: " + imageFileName);
+                     imageService.updateRef(imageFileName, seq);
+                     System.out.println("이미지 ref 1증가 : " + imageFileName);
+                 }
+                 System.out.println("이미지 작성글 1증가");
+             } else {
+                 System.out.println("이미지 작성글 그대로");
+                 return "success";
+             }  
+         } else {
+             System.out.println("글작성 실패");
+             return "fail";
+         }
+         
+         return "success";
+     }
+     
+     @RequestMapping(value = "boardDelete", method = RequestMethod.POST)
+     @ResponseBody
+     public String boardDelete(@RequestParam("seq") int seq, 
+                               @RequestParam("id") String id,
+                               @RequestParam("pg") int pg) {
+         System.out.println("데이터 넘어옴");
+         Map<String, Object> map = new HashedMap<String, Object>();
+         map.put("id", id);
+         map.put("seq", seq);
+         int result = boardService.boardDelete(map);
+         System.out.println("삭제 됨 : " + result);
+         
+         if(result > 0) {
+             return "success";
+         } else {
+             return "fail";
+         }
+     }
+     
+     @RequestMapping(value = "increaseHit", method = RequestMethod.POST)
+     @ResponseBody // JSON 형식의 응답을 반환하기 위해 추가합니다.
+     public ResponseEntity<String> increaseHit(@RequestParam("seq") int seq) {
+         boolean isSuccess = boardService.increaseHit(seq); // 게시글 조회수 증가 메서드 호출
 
+         if (isSuccess) {
+             return ResponseEntity.ok("조회수가 증가했습니다."); // 성공 메시지 반환
+         } else {
+             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("조회수 증가 실패."); // 실패 메시지 반환
+         }
+     }
 }

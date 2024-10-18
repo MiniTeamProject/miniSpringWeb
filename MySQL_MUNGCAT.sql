@@ -28,7 +28,7 @@ CREATE TABLE MUNGCATBOARD(
      logtime TIMESTAMP DEFAULT NOW()                    -- 작성일
  );
  
- -- [MySQL TABLE] 이미지 테이블
+-- [MySQL TABLE] 이미지 테이블
  CREATE TABLE MUNGCATIMAGE (
     seq INTEGER PRIMARY KEY AUTO_INCREMENT,                 -- 이미지 ID
     ref INTEGER DEFAULT 0,									-- 이미지 첨부 된 글 SEQ
@@ -39,22 +39,23 @@ CREATE TABLE MUNGCATBOARD(
  
  -- [MySQL TABLE] 댓글 테이블
 CREATE TABLE MUNGCATCOMMENT (
-    seq INTEGER PRIMARY KEY AUTO_INCREMENT,             -- 댓글 번호
-    ref INTEGER NOT NULL,                               -- 원글 번호 (MUNGCATBOARD의 seq를 참조)
-    id VARCHAR(20) NOT NULL,                            -- 댓글 작성자 아이디
-    content VARCHAR(4000) NOT NULL,                     -- 댓글 내용
-    lev INTEGER DEFAULT NULL,                           -- 대댓글일 경우 부모 댓글 ID
-    logtime TIMESTAMP DEFAULT NOW(),                    -- 작성일
-    FOREIGN KEY (ref) REFERENCES MUNGCATBOARD(seq)      -- 게시글과의 관계 설정
+    seq INTEGER PRIMARY KEY AUTO_INCREMENT,
+    ref INTEGER NOT NULL,
+    id VARCHAR(20) NOT NULL,
+    content VARCHAR(4000) NOT NULL,
+    lev INTEGER DEFAULT NULL,
+    logtime TIMESTAMP DEFAULT NOW(),
+    CONSTRAINT fk_mungcatboard_ref FOREIGN KEY (ref) REFERENCES MUNGCATBOARD(seq) ON DELETE CASCADE
 );
- 
+
+
  -- [MySQL TABLE] 애견용품 테이블
 CREATE TABLE MUNGCATSTORE (
     id INT PRIMARY KEY AUTO_INCREMENT,          -- 상품 ID
     name VARCHAR(255) NOT NULL,                 -- 상품명
     description VARCHAR(1000),                  -- 상품 설명
     price VARCHAR(500) NOT NULL,                -- 가격
-    stock INT NOT NULL DEFAULT 0,               -- 재고 수량
+    stock INT NOT NULL DEFAULT 0,               -- 인기 상품
     image VARCHAR(200),                         -- 이미지 파일명
     category VARCHAR(100),                      -- 카테고리
     logtime TIMESTAMP DEFAULT NOW(),            -- 등록일 (created_at에서 변경)
@@ -77,8 +78,11 @@ select * from MUNGCATUSER;
 select * from MUNGCATBOARD;
 select * from MUNGCATIMAGE;
 select * from MUNGCATCOMMENT;
+select * from MUNGCATSTORE;
 INSERT INTO MUNGCATUSER (id, pwd, nickname, name, gender, email, tel, zipcode, addr1, addr2, profile, admin) 
-VALUES ('admin', '1234', '관리자', '관리자', 'M', 'admin@naver.com', null, NULL, NULL, NULL, '0', '0');
+VALUES ('admin', '1234', '관리자', '관리자', 'M', 'admin@naver.com', null, NULL, NULL, NULL, '0', '1');
+INSERT INTO MUNGCATUSER (id, pwd, nickname, name, gender, email, tel, zipcode, addr1, addr2, profile, admin) 
+VALUES ('codelily', '1234', 'CodeLily', '김태훈', '1', 'codelily98@naver.com', null, NULL, NULL, NULL, '0', '1');
 
 INSERT INTO MUNGCATBOARD (id, nickname, email, subject, content, imageFileName, imageOriginalFileName, profileFileName, profileOriginalFileName, ref, lev, step, pseq, reply, hit, category, logtime) VALUES
 ('user1', 'User One', 'user1@example.com', 'First Post', 'Content for the first post', NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, NOW()),

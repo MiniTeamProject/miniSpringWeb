@@ -24,4 +24,25 @@
     <select id="getRef" parameterType="String">
     	SELECT MAX(SEQ) FROM MUNGCATBOARD WHERE ID = #{id}
     </select>
+    
+    <select id="getboardView" parameterType="Integer" resultType="board.bean.BoardDTO">
+        SELECT * FROM MUNGCATBOARD WHERE SEQ = #{seq}
+    </select>
+    
+    <update id="boardUpdate" parameterType="Map">
+	    UPDATE MUNGCATBOARD SET subject = #{subject},
+                                content = #{content},
+                                category = #{category},
+                                logtime = NOW()
+                        	    WHERE 
+                                seq = #{seq};
+    </update>
+    
+    <delete id="boardDelete">
+        DELETE FROM MUNGCATBOARD WHERE id = #{id} AND seq = #{seq}        
+    </delete>
+    
+    <update id="increaseHit">
+        UPDATE MUNGCATBOARD SET hit = (hit + 1) WHERE seq = #{seq}
+    </update>
 </mapper>

@@ -65,4 +65,31 @@ public class BoardServiceImpl implements BoardService {
     public int getRef(String id) {
     	return boardDAO.getRef(id);
     }
+    
+    @Override
+    public List<BoardDTO> getboardView(int seq) {
+        return boardDAO.getboardView(seq);
+    }
+    
+    @Override
+    public int boardUpdate(String id, String subject, String content, String category, int seq) {
+        Map<String, Object> map = new HashedMap<String, Object>();
+        map.put("id", id);
+        map.put("subject", subject);
+        map.put("content", content);
+        map.put("category", category);
+        map.put("seq", seq);
+        return boardDAO.boardUpdate(map);
+    }
+    
+    @Override
+    public int boardDelete(Map<String, Object> map) {
+        return boardDAO.boardDelete(map);
+    }
+    
+    @Override
+    public boolean increaseHit(int seq) {
+        int result = boardDAO.increaseHit(seq);
+        return result > 0; // 결과가 0보다 크면 성공, 그렇지 않으면 실패
+    }
 }
