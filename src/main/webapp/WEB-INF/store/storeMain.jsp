@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>멍캣: 멍캣광장</title>
-<link rel="stylesheet" href="../css/boardMain.css">
+<title>멍캣: 멍캣마켓</title>
+<link rel="stylesheet" href="../css/storeMain.css">
 </head>
 <body>
 <header>
@@ -45,11 +45,11 @@
 </header>
 <main>
     <section id="event-alert">
-        <h2>이벤트 알림📢</h2>
-        <p>실시간으로 업데이트되는 이벤트 정보를 확인하세요!</p>
+        <h2>할인 알림📢</h2>
+        <p>실시간으로 업데이트되는 할인 정보를 확인하세요!</p>
     </section>
     <section id="event-alert">
-        <h2>지금 핫! 한! 인기글🔔</h2>
+        <h2>지금 핫! 한! 인기상품🔔</h2>
     </section>
     <section id="popular-posts">
         <c:choose>
@@ -74,23 +74,23 @@
             </c:when>
             <c:otherwise>
                 <article class="post">
-                     <h3>등록된 게시글이 없습니다.</h3> <!-- 게시물 제목 -->
+                     <h3>등록된 상품이 없습니다.</h3> <!-- 게시물 제목 -->
                  </article>
             </c:otherwise>
         </c:choose>
     </section>
     <section id="event-alert">
-        <h2>게시물 목록</h2>
+        <h2>상품 목록</h2>
     </section>
     <section id="postList">
        <c:choose>
            <c:when test="${fail != 'fail'}">
                <c:forEach var="board" items="${boardList}" varStatus="status">
-	            <article class="post">
-	                <input type="hidden" id="seq" name="seq" value="${board.seq}"/>
-	                <h3 class="subject">${board.subject}</h3> <!-- 게시물 제목 -->
-	                <p class="content">
-	                	<c:choose>
+                <article class="post">
+                    <input type="hidden" id="seq" name="seq" value="${board.seq}"/>
+                    <h3 class="subject">${board.subject}</h3> <!-- 게시물 제목 -->
+                    <p class="content">
+                        <c:choose>
                             <c:when test="${not empty imgSrcList[status.index]}">
                                 <img src="${imgSrcList[status.index]}" alt="게시물 이미지" style="width: 150px; height: 150px;"/>
                             </c:when>
@@ -98,14 +98,14 @@
                                 <h3>이미지가 없습니다</h3>
                             </c:otherwise>
                         </c:choose>
-					</p> <!-- 게시물 내용 -->
-	                <span class="hit">조회수: ${board.hit}</span> <!-- 조회수 -->
-	            </article>
-	        </c:forEach>    
+                    </p> <!-- 게시물 내용 -->
+                    <span class="hit">조회수: ${board.hit}</span> <!-- 조회수 -->
+                </article>
+            </c:forEach>    
            </c:when>
            <c:otherwise>
                 <article class="post">
-                     <h3>등록된 게시글이 없습니다.</h3> <!-- 게시물 제목 -->
+                     <h3>등록된 상품이 없습니다.</h3> <!-- 게시물 제목 -->
                  </article>
             </c:otherwise>
         </c:choose>
@@ -126,9 +126,9 @@
     
     <section id="functionWrap">
         <div id="btnwrap">
-        	<c:if test="${not empty userDTO.id}">
-	        	<input type="button" id="writeBtn" value="글쓰기" onclick="location.href='/miniSpringWeb/board/boardWriteForm'"/>
-	        </c:if>        
+            <c:if test="${not empty userDTO.id}">
+                <input type="button" id="writeBtn" value="글쓰기" onclick="location.href='/miniSpringWeb/board/boardWriteForm'"/>
+            </c:if>        
         </div>
         <div class="search">
             <input type="text" placeholder="검색할 정보를 입력하세요">
@@ -137,7 +137,7 @@
     </section>
 </main>
 <footer>
-    <p>Copyright ⓒ 2024 멍캣광장</p>
+    <p>Copyright ⓒ 2024 자유게시판</p>
 </footer>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="../js/header.js"></script>

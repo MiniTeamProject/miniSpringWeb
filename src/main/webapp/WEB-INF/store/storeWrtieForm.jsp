@@ -5,28 +5,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>멍캣: 글쓰기</title>
+    <title>멍캣: 멍캣마켓</title>
     <link rel="stylesheet" href="../css/boardWriteForm.css">
 
     <!-- Froala Editor CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.3.0/css/froala_editor.pkgd.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.3.0/css/froala_editor.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.3.0/css/froala_style.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.3.0/css/froala_editor.pkgd.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.3.0/css/froala_editor.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.3.0/css/froala_style.min.css">
 
     <!-- jQuery (Froala Editor의 의존성) -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     
     <!-- Froala Editor JS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.3.0/js/froala_editor.pkgd.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.3.0/js/languages/ko.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.3.0/js/plugins/colors.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.3.0/js/froala_editor.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.3.0/js/languages/ko.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.3.0/js/plugins/colors.min.js"></script>
 </head>
 <body>
 <c:if test="${empty userDTO.id}">
-	<script type="text/javascript">
-		alert("로그인이 필요합니다.");
-		window.location.href = '/miniSpringWeb/board/boardMain'; // 원하는 리디렉션 URL로 변경
-	</script>
+    <script type="text/javascript">
+        alert("로그인이 필요합니다.");
+        window.location.href = '/miniSpringWeb/board/boardMain'; // 원하는 리디렉션 URL로 변경
+    </script>
+</c:if>
+<c:if test="${userDTO.id != '1'}">
+    <script type="text/javascript">
+        alert("관리자 권한이 필요합니다.");
+        window.location.href = '/miniSpringWeb/board/boardMain'; // 원하는 리디렉션 URL로 변경
+    </script>
 </c:if>
 <header>
     <nav>
@@ -63,7 +69,7 @@
 
 <main>
     <section class="board-write-section">
-        <h2>게시물 작성</h2>
+        <h2>관리자 작성</h2>
         <form id="boardWriteForm">
             <div class="form-group">
                 <label for="subject">제목</label>
@@ -73,9 +79,10 @@
             <div class="form-group">
                 <label for="category">카테고리</label>
                 <select id="category" name="category">
-                    <option value="0">일반</option>
-                    <option value="1">질문</option>
-                    <option value="2">후기</option>
+                    <c:if test="${userDTO.admin == '1'}">
+                        <option value="3">애견용품</option>
+                        <option value="4">공지사항</option>    
+                    </c:if>                    
                 </select>
             </div>
 
@@ -89,13 +96,13 @@
                 <button type="button" class="btn-cancel" onclick="history.back();">취소</button>
             </div>
             <div class="inputData">
-            	<input type="hidden" id="id" name="id" value="${userDTO.id}"/>
+                <input type="hidden" id="id" name="id" value="${userDTO.id}"/>
             </div>
         </form>
     </section>
 </main>
 <footer>
-    <p>Copyright ⓒ 2024 멍캣광장 글쓰기</p>
+    <p>Copyright ⓒ 2024 멍캣마켓</p>
 </footer>
 <script type="text/javascript" src="../js/boardWriteForm.js"></script>
 <script src="../js/header.js"></script>

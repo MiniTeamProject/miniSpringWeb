@@ -19,6 +19,9 @@
             <li><a href="#"><img src="../image/logo2.png" alt="logo2" class="nav-icon">멍캣마켓</a></li>
             <li><a href="/miniSpringWeb/board/boardMain"><img src="../image/logo3.png" alt="logo3" class="nav-icon">멍캣광장</a></li>
             <li><a href="#"><img src="../image/logo4.png" alt="logo4" class="nav-icon">멍캣정보</a></li>
+            <c:if test="${userDTO.id == '1'}">
+                <li><a href="#"><img src="../image/logo5.png" alt="logo5" class="nav-icon">관리자</a></li>
+            </c:if>
             <c:if test="${not empty userDTO.id}">
                 <li class="logoutview"><a href="#"><img src="../image/logo5.png" alt="logo5" class="nav-icon">로그아웃</a></li>
                 <li class="logoutview"><a href="#"><img src="../image/logo6.png" alt="logo6" class="nav-icon">마이페이지</a></li>
@@ -100,7 +103,7 @@
     	</div>
  </section>
  <footer>
-    <p>Copyright ⓒ 2024 멍캣홈</p>
+    <p>Copyright ⓒ 2024 멍캣회원가입</p>
 </footer> 
  <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
