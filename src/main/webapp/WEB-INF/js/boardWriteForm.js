@@ -45,7 +45,7 @@ $(document).ready(function() {
 		        console.log('이미지 업로드 성공:', imageUrl);
 				console.log('이미지 업로드 성공:', imageFileName);
 				console.log('이미지 업로드 성공:', imageOriginalFileName);
-				
+                
 		        // .inputData에 hidden input 추가 (name 속성을 배열로 설정)
 		        $(".inputData").append(`
 		            <input type="hidden" name="imageUrls[]" value="${imageUrl}"/>

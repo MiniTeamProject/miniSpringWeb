@@ -19,5 +19,13 @@ public interface BoardDAO {
 	public int boardWrite(Map<String, String> map);
 
 	public int getRef(String id);
+
+    public List<BoardDTO> getboardView(int seq);
+
+    public int boardUpdate(Map<String, Object> map);
+
+    public int boardDelete(Map<String, Object> map);
+
+    public int increaseHit(int seq);
     
 }

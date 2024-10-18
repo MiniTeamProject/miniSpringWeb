@@ -110,15 +110,28 @@ nav {
     height: 300px;
     border-radius: 30px;
     margin: 1em auto;
+    transition: transform 0.3s ease; /* 부드러운 변환 */
 }
 
+.post:hover {
+    transform: scale(1.1); /* 크기를 110%로 확대 */
+}
 .content {
+	display: flex;
 	height: 180px;
 	overflow: hidden;
 	text-overflow: ellipsis;
     white-space: normal;
     justify-content: center;
+    align-items: center;
 }
+
+.no-image {
+	
+    font-size: 16px; /* 글자 크기 조정 (필요에 따라 수정) */
+    color: #999; /* 글자 색상 조정 (필요에 따라 수정) */
+}
+
 
 .subject {
 	height: 50px;
@@ -236,8 +249,6 @@ footer {
     color: white; /* 현재 페이지 글자색 */
     pointer-events: none; /* 클릭 불가능 */
 }
-
-
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {

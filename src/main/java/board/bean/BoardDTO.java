@@ -12,6 +12,6 @@ public class BoardDTO {
     private String content;         // 내용 (LONGBLOB이므로 byte[]로 처리)
     private int reply;              // 답변수
     private int hit;                // 조회수
-    private int category;           // 게시판 카테고리
+    private String category;           // 게시판 카테고리
     private Timestamp logtime;      // 작성일
 }
