@@ -119,12 +119,25 @@ nav {
     white-space: normal;
     justify-content: center;
 }
+.description {
+    height: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    justify-content: center;
+}
 
 .subject {
     height: 50px;
 }
+.name {
+    height: 50px;
+}
 
 .hit {
+    height: 50px;
+}
+.stock {
     height: 50px;
 }
 /* #functionWrap 스타일 추가 */

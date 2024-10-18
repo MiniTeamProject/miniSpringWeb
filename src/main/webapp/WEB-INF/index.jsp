@@ -16,7 +16,7 @@
             <div class="hamburger">&#9776;</div>
         </div>
         <ul class="nav-links">
-            <li><a href="#"><img src="./image/logo2.png" alt="logo2" class="nav-icon">멍캣마켓</a></li>
+            <li><a href="/miniSpringWeb/store/storeMain"><img src="./image/logo2.png" alt="logo2" class="nav-icon">멍캣마켓</a></li>
             <li><a href="/miniSpringWeb/board/boardMain"><img src="./image/logo3.png" alt="logo3" class="nav-icon">멍캣광장</a></li>
             <li><a href="#"><img src="./image/logo4.png" alt="logo4" class="nav-icon">멍캣정보</a></li>
             <c:if test="${userDTO.id == '1'}">
