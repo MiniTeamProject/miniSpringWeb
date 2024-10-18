@@ -22,6 +22,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @MapperScan("user.dao")
 @MapperScan("board.dao")
 @MapperScan("image.dao")
+@MapperScan("store.dao")
+
 public class SpringConfiguration {
     private @Value("${jdbc.driver}") String driver;
     private @Value("${jdbc.url}") String url;

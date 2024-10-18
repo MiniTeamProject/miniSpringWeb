@@ -25,13 +25,13 @@
 <c:if test="${empty userDTO.id}">
     <script type="text/javascript">
         alert("로그인이 필요합니다.");
-        window.location.href = '/miniSpringWeb/board/boardMain'; // 원하는 리디렉션 URL로 변경
+        window.location.href = '/miniSpringWeb/store/storeMain'; // 원하는 리디렉션 URL로 변경
     </script>
 </c:if>
-<c:if test="${userDTO.id != '1'}">
+<c:if test="${userDTO.admin == '0'}">
     <script type="text/javascript">
         alert("관리자 권한이 필요합니다.");
-        window.location.href = '/miniSpringWeb/board/boardMain'; // 원하는 리디렉션 URL로 변경
+        window.location.href = '/miniSpringWeb/store/storeMain'; // 원하는 리디렉션 URL로 변경
     </script>
 </c:if>
 <header>
@@ -42,7 +42,7 @@
         </div>
         <ul class="nav-links">
             <li><a href="#"><img src="../image/logo2.png" alt="logo2" class="nav-icon">멍캣마켓</a></li>
-            <li><a href="/miniSpringWeb/board/boardMain"><img src="../image/logo3.png" alt="logo3" class="nav-icon">멍캣광장</a></li>
+            <li><a href="/miniSpringWeb/store/storeMain"><img src="../image/logo3.png" alt="logo3" class="nav-icon">멍캣광장</a></li>
             <li><a href="#"><img src="../image/logo4.png" alt="logo4" class="nav-icon">멍캣정보</a></li>
             <c:if test="${userDTO.id == '1'}">
                 <li><a href="#"><img src="../image/logo5.png" alt="logo5" class="nav-icon">관리자</a></li>
@@ -70,19 +70,23 @@
 <main>
     <section class="board-write-section">
         <h2>관리자 작성</h2>
-        <form id="boardWriteForm">
+        <form id="storeWriteForm" name="storeWriteForm">
             <div class="form-group">
-                <label for="subject">제목</label>
-                <input type="text" id="subject" name="subject" maxlength="100" placeholder="제목을 입력하세요" required>
+                <label for="name">상품명</label>
+                <input type="text" id="name" name="name" maxlength="100" placeholder="상품명을 입력하세요" required>
+            </div>
+            <div class="form-group">
+                <label for="price">가격</label>
+                <input type="text" id="price" name="price" maxlength="100" placeholder="가격을 입력하세요" required>
             </div>
 
             <div class="form-group">
                 <label for="category">카테고리</label>
                 <select id="category" name="category">
-                    <c:if test="${userDTO.admin == '1'}">
+                    <c:if test="${userDTO.admin != '0'}">
                         <option value="3">애견용품</option>
-                        <option value="4">공지사항</option>    
-                    </c:if>                    
+                        <option value="4">공지사항</option>
+                    </c:if>
                 </select>
             </div>
 
@@ -95,16 +99,13 @@
                 <div id="checkDiv"></div>
                 <button type="button" class="btn-cancel" onclick="history.back();">취소</button>
             </div>
-            <div class="inputData">
-                <input type="hidden" id="id" name="id" value="${userDTO.id}"/>
-            </div>
         </form>
     </section>
 </main>
 <footer>
     <p>Copyright ⓒ 2024 멍캣마켓</p>
 </footer>
-<script type="text/javascript" src="../js/boardWriteForm.js"></script>
+<script type="text/javascript" src="../js/storeWriteForm.js"></script>
 <script src="../js/header.js"></script>
 </body>
 </html>

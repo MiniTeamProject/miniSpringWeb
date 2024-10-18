@@ -19,6 +19,9 @@
     
     <context:component-scan base-package="image.bean"/>
     <context:component-scan base-package="image.service.impl"/>
+
+    <context:component-scan base-package="store.bean"/>
+    <context:component-scan base-package="store.service.impl"/>
         
     <!-- NCP Context -->
     <context:component-scan base-package="naver.service.impl"/>

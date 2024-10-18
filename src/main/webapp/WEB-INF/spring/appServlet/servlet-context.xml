@@ -41,7 +41,8 @@
     <context:component-scan base-package="user.controller"/> 
     <context:component-scan base-package="board.controller"/>
     <context:component-scan base-package="image.controller"/>
-    
+    <context:component-scan base-package="store.controller"/>
+
     <resources location="/WEB-INF/storage/" mapping="/storage/**"/>
     <resources location="/WEB-INF/css/" mapping="/css/**"/>
     <resources location="/WEB-INF/js/" mapping="/js/**"/>

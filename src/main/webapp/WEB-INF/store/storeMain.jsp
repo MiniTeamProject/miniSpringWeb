@@ -16,7 +16,7 @@
             <div class="hamburger">&#9776;</div>
         </div>
         <ul class="nav-links">
-            <li><a href="#"><img src="../image/logo2.png" alt="logo2" class="nav-icon">멍캣마켓</a></li>
+            <li><a href="miniSpringWeb/store/storeMain"><img src="../image/logo2.png" alt="logo2" class="nav-icon">멍캣마켓</a></li>
             <li><a href="/miniSpringWeb/board/boardMain"><img src="../image/logo3.png" alt="logo3" class="nav-icon">멍캣광장</a></li>
             <li><a href="#"><img src="../image/logo4.png" alt="logo4" class="nav-icon">멍캣정보</a></li>
             <c:if test="${userDTO.id == '1'}">
@@ -54,10 +54,10 @@
     <section id="popular-posts">
         <c:choose>
             <c:when test="${fail != 'fail'}">
-                <c:forEach var="hot" items="${boardHotList}" varStatus="status">
+                <c:forEach var="hot" items="${storeHotList}" varStatus="status">
                     <article class="post">
-                        <input type="hidden" id="seq" name="seq" value="${hot.seq}"/>
-                        <h3 class="subject">${hot.subject}</h3> <!-- 게시물 제목 -->
+                        <input type="hidden" id="seq" name="seq" value="${hot.id}"/>
+                        <h3 class="subject">${hot.name}</h3> <!-- 게시물 제목 -->
                         <p class="content">
                         <c:choose>
                             <c:when test="${not empty hotImgSrcList[status.index]}">
@@ -68,7 +68,7 @@
                             </c:otherwise>
                         </c:choose>
                         </p> <!-- 게시물 내용 -->
-                        <span class="hit">조회수: ${hot.hit}</span> <!-- 조회수 -->
+                        <span class="hit">조회수: ${hot.stock}</span> <!-- 조회수 -->
                     </article>
                 </c:forEach>    
             </c:when>
@@ -85,11 +85,11 @@
     <section id="postList">
        <c:choose>
            <c:when test="${fail != 'fail'}">
-               <c:forEach var="board" items="${boardList}" varStatus="status">
+               <c:forEach var="store" items="${storeList}" varStatus="status">
                 <article class="post">
-                    <input type="hidden" id="seq" name="seq" value="${board.seq}"/>
-                    <h3 class="subject">${board.subject}</h3> <!-- 게시물 제목 -->
-                    <p class="content">
+                    <input type="hidden" id="id" name="id" value="${store.id}"/>
+                    <h3 class="name">${store.name}</h3> <!-- 게시물 제목 -->
+                    <p class="description">
                         <c:choose>
                             <c:when test="${not empty imgSrcList[status.index]}">
                                 <img src="${imgSrcList[status.index]}" alt="게시물 이미지" style="width: 150px; height: 150px;"/>
@@ -99,7 +99,7 @@
                             </c:otherwise>
                         </c:choose>
                     </p> <!-- 게시물 내용 -->
-                    <span class="hit">조회수: ${board.hit}</span> <!-- 조회수 -->
+                    <span class="stock">조회수: ${store.stock}</span> <!-- 조회수 -->
                 </article>
             </c:forEach>    
            </c:when>
@@ -115,9 +115,9 @@
     <div id="pagingWrap">
         <c:choose>
             <c:when test="${fail != 'fail'}">
-                <c:if test="${not empty boardPaging.pagingHTML}">
+                <c:if test="${not empty storePaging.pagingHTML}">
                     <div id="paging">
-                        ${boardPaging.pagingHTML}
+                        ${storePaging.pagingHTML}
                     </div>
                 </c:if>
             </c:when>
@@ -127,7 +127,7 @@
     <section id="functionWrap">
         <div id="btnwrap">
             <c:if test="${not empty userDTO.id}">
-                <input type="button" id="writeBtn" value="글쓰기" onclick="location.href='/miniSpringWeb/board/boardWriteForm'"/>
+                <input type="button" id="writeBtn" value="글쓰기" onclick="location.href='/miniSpringWeb/store/storeWriteForm'"/>
             </c:if>        
         </div>
         <div class="search">
@@ -141,6 +141,6 @@
 </footer>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="../js/header.js"></script>
-<script src="../js/boardMain.js"></script>
+<script src="../js/storeMain.js"></script>
 </body>
 </html>

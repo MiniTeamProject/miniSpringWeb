@@ -4,7 +4,7 @@ CREATE TABLE MUNGCATSTORE (
     name VARCHAR(255) NOT NULL,                 -- 상품명
     description VARCHAR(1000),                  -- 상품 설명
     price VARCHAR(500) NOT NULL,                -- 가격
-    stock INT NOT NULL DEFAULT 0,               -- 재고 수량
+    stock INT NOT NULL DEFAULT 0,               -- 조회수
     image VARCHAR(200),                         -- 이미지 파일명
     category VARCHAR(100),                      -- 카테고리
     logtime TIMESTAMP DEFAULT NOW(),            -- 등록일 (created_at에서 변경)
