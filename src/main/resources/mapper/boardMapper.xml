@@ -22,6 +22,6 @@
     </insert>
     
     <select id="getRef" parameterType="String">
-    	SELECT MAX(SEQ) FROM MUNGCAT WHERE ID = #{id}
+    	SELECT MAX(SEQ) FROM MUNGCATBOARD WHERE ID = #{id}
     </select>
 </mapper>

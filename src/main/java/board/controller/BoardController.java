@@ -57,6 +57,27 @@ public class BoardController {
 	        }
 		    
 		}
+		
+	    // boardHotList 처리
+	    List<BoardDTO> hotBoardList = (List<BoardDTO>) pagingMap.get("boardHotList");
+	    List<String> hotImgSrcList = new ArrayList<>();
+	    
+	    for (BoardDTO board : hotBoardList) {
+	        String content = board.getContent(); // BoardDTO 객체에서 content 값 추출
+	        System.out.println("Hot Content: " + content); 
+
+	        // 정규 표현식을 사용하여 <img ... > 태그를 추출
+	        Pattern imgPattern = Pattern.compile("<img[^>]*src=[\"']([^\"']*)[\"'][^>]*>");
+	        Matcher matcher = imgPattern.matcher(content);
+	        
+	        if (matcher.find()) {
+	            String imgSrc = matcher.group(1); // img 태그 안의 src 값 추출
+	            hotImgSrcList.add(imgSrc); // 리스트에 이미지 URL 추가
+	            System.out.println("Hot imgSrc: " + imgSrc);
+	        } else {
+	            hotImgSrcList.add(""); // 이미지가 없을 경우 빈 문자열 추가
+	        }
+	    }
         
 	    if (checkValue == null || checkValue.isEmpty()) {
 	        modelAndView.addObject("fail", "fail");
@@ -66,7 +87,8 @@ public class BoardController {
 	        modelAndView.addObject("boardHotList", pagingMap.get("boardHotList"));
 	        modelAndView.addObject("pg", pagingMap.get("pg"));
 	        modelAndView.addObject("boardPaging", pagingMap.get("boardPaging"));
-	        modelAndView.addObject("imgSrcList", imgSrcList); // 리스트를 모델에 추가z
+	        modelAndView.addObject("imgSrcList", imgSrcList); // 리스트를 모델에 추가
+	        modelAndView.addObject("hotImgSrcList", hotImgSrcList); // boardHotList 이미지 URL 리스트 추가
 	        modelAndView.setViewName("board/boardMain");
 	    }
         
