@@ -27,5 +27,7 @@ public interface BoardDAO {
     public int boardDelete(Map<String, Object> map);
 
     public int increaseHit(int seq);
+
+	public List<BoardDTO> findByNameContaining(String query);
     
 }

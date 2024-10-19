@@ -15,7 +15,7 @@
     
     <!-- 이미지 업로드를 위한 bean설정 및 업로드 사이즈 5MB Setter 설정 -->
     <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <beans:property name="maxUploadSize" value="5120000"></beans:property>
+        <beans:property name="maxUploadSize" value="30720000"></beans:property>
     </beans:bean>
     <!-- navermail설정 -->
     <beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">

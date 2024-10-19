@@ -111,6 +111,8 @@ nav {
     border-radius: 30px;
     margin: 1em auto;
     transition: transform 0.3s ease; /* 부드러운 변환 */
+    justify-content: center;
+    align-items: center;
 }
 
 .post:hover {
@@ -119,26 +121,33 @@ nav {
 .content {
 	display: flex;
 	height: 180px;
+	width: 180px;
 	overflow: hidden;
 	text-overflow: ellipsis;
     white-space: normal;
     justify-content: center;
     align-items: center;
+    border-radius: 90px;
+    background-color: #ffffff;
 }
 
 .no-image {
-	
     font-size: 16px; /* 글자 크기 조정 (필요에 따라 수정) */
     color: #999; /* 글자 색상 조정 (필요에 따라 수정) */
 }
 
-
 .subject {
-	height: 50px;
+	height: 25px;
+	margin-bottom: 15px;
+	width: 100%;          /* h3의 최대 너비 설정 */
+    white-space: nowrap;   /* 텍스트가 한 줄로 표시되도록 설정 */
+    overflow: hidden;      /* 넘치는 텍스트를 숨김 */
+    text-overflow: ellipsis; /* 넘치는 부분을 '...'으로 표시 */
 }
 
 .hit {
-	height: 50px;
+	margin-top: 15px;
+	height: 25px;
 }
 /* #functionWrap 스타일 추가 */
 #functionWrap {
@@ -178,10 +187,9 @@ nav {
 	border-style: none;
 	border-bottom: 2px solid #a90011;
 	padding: 5px 15px;
-	margin-left: 17em;
 }
 
-.search > button[type="button"] {
+.search > button[type="submit"] {
     outline: none;
     border-style: none;
     border-bottom: 2px solid #a90011;
@@ -197,7 +205,7 @@ nav {
     background-color: transparent; /* 배경색을 투명하게 설정 */
 }
 
-.search > button[type="button"]:hover {
+.search > button[type="submit"]:hover {
 	cursor: pointer;
 }
 
@@ -248,6 +256,29 @@ footer {
     background-color: #a90011; /* 현재 페이지 배경색 */
     color: white; /* 현재 페이지 글자색 */
     pointer-events: none; /* 클릭 불가능 */
+}
+
+/* 검색기능 선택 기능 CSS */
+#selectForm {
+	outline: none;
+	border-style: none;
+	box-sizing: border-box;
+    height: 27px;
+    width: 100px;
+    border-bottom: 2px solid #a90011;
+    padding: 5px; /* 여백 추가 */
+    position: relative;
+    display: flex;
+    justify-content: cneter;
+    align-items: center;
+    margin: 0;
+    background-color: transparent; /* 배경색을 투명하게 설정 */
+}
+
+#query {
+    border-bottom: 2px solid #a90011;
+    padding: 5px; /* 여백 추가 */
+    width: 100%
 }
 
 /* 반응형 디자인 */
@@ -319,6 +350,13 @@ footer {
     #event-alert, #postList, #popular-posts {
         padding: 10px; /* 패딩 조정 */
     }
+    
+    #selectForm {
+		margin-left: 1em;
+	}
+	#imgBtn {
+		margin-right: 1em;
+	}
 }
 
 /* 데스크톱에서 mobile-menu 숨김 */
@@ -347,5 +385,9 @@ footer {
 	    padding: 15px;
 	    width: 1100px;
 	    margin: 0 auto;
+	}
+	
+	#selectForm {
+		margin-left: 17em;
 	}
 }

@@ -21,4 +21,7 @@
     	update MUNGCATUSER set pwd=#{pwd}, nickname=#{nickname}, name=#{name}, gender=#{gender}, email=#{email}, tel=#{tel}, zipcode=#{zipcode}, addr1=#{addr1}, addr2=#{addr2}, profile=#{profile}
     	WHERE id=#{id}
     </update>
+    <select id="checkNickname" parameterType="String" resultType="userDTO">
+    	select * from MUNGCATUSER where nickname = #{nickname}
+    </select>
 </mapper>

@@ -9,7 +9,7 @@ public class StoreDTO {
     private String id;
     private String name;
     private String description;
-    private String price;
+    private int price;
     private int stock;
     private String image;
     private String category;

@@ -22,6 +22,7 @@ import board.service.BoardService;
 import comment.bean.CommentDTO;
 import comment.service.CommentService;
 import image.service.ImageService;
+import store.bean.StoreDTO;
 import user.service.UserService;
 
 @Controller
@@ -72,7 +73,7 @@ public class BoardController {
 	    
 	    for (BoardDTO board : hotBoardList) {
 	        String content = board.getContent(); // BoardDTO 객체에서 content 값 추출
-	        System.out.println("Hot Content: " + content); 
+//	        System.out.println("Hot Content: " + content); 
 
 	        // 정규 표현식을 사용하여 <img ... > 태그를 추출
 	        Pattern imgPattern = Pattern.compile("<img[^>]*src=[\"']([^\"']*)[\"'][^>]*>");
@@ -262,4 +263,43 @@ public class BoardController {
              return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("조회수 증가 실패."); // 실패 메시지 반환
          }
      }
+     
+ 	@RequestMapping(value = "search")
+ 	public ModelAndView search(@RequestParam("query") String query) {
+ 	    ModelAndView modelAndView = new ModelAndView();
+ 	    
+ 	    // 검색 결과를 가져온다
+ 	    List<BoardDTO> searchResults = boardService.searchList(query);
+ 	    
+ 	    // 각 상품의 이미지 URL을 저장할 리스트 생성
+ 	    List<String> imgSrcList = new ArrayList<>();
+ 	    
+ 	    // 검색 결과에서 이미지 URL 추출
+ 	    for (BoardDTO board : searchResults) {
+ 	        String content = board.getContent(); // StoreDTO 객체에서 description 값 추출
+
+ 	        // 정규 표현식을 사용하여 <img ... > 태그를 추출
+ 	        Pattern imgPattern = Pattern.compile("<img[^>]*src=[\"']([^\"']*)[\"'][^>]*>");
+ 	        Matcher matcher = imgPattern.matcher(content);
+
+ 	        if (matcher.find()) {
+ 	            String imgSrc = matcher.group(1); // img 태그 안의 src 값 추출
+ 	            imgSrcList.add(imgSrc); // 리스트에 이미지 URL 추가
+ 	        } else {
+ 	            imgSrcList.add(""); // 이미지가 없을 경우 빈 문자열 추가
+ 	        }
+ 	    }
+
+ 	    // 모델에 검색 결과와 이미지 URL 리스트 추가
+ 	    if (searchResults == null || searchResults.isEmpty()) {
+ 	    	modelAndView.addObject("fail", "fail");
+ 	    	modelAndView.setViewName("board/searchResults"); // 결과를 보여줄 JSP 페이지
+ 	    } else {
+ 	        modelAndView.addObject("searchResults", searchResults);
+ 	        modelAndView.addObject("imgSrcList", imgSrcList); // 이미지 URL 리스트 추가
+ 	        modelAndView.setViewName("board/searchResults"); // 결과를 보여줄 JSP 페이지
+ 	    }
+
+ 	    return modelAndView;
+ 	}
 }

@@ -19,5 +19,9 @@
         INSERT INTO MUNGCATSTORE (name, description, price, stock, image, category, logtime)
         VALUES (#{name}, #{description}, #{price}, 0, null, #{category}, NOW());
     </insert>
-
+    
+    <select id="findByNameContaining" parameterType="String" resultType="store.bean.StoreDTO">
+        SELECT * FROM MUNGCATSTORE WHERE name LIKE CONCAT('%', #{query}, '%') 
+        OR description LIKE CONCAT('%', #{query}, '%')
+    </select>
 </mapper>

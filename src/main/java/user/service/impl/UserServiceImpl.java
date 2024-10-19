@@ -46,5 +46,10 @@ public class UserServiceImpl implements UserService{
 	public void userUpdate(UserDTO userDTO) {
 		userDAO.userUpdate(userDTO);		
 	}
+	
+	@Override
+	public UserDTO isNicknameExist(String nickname) {
+        return userDAO.checkNickname(nickname);
+	}
 
 }

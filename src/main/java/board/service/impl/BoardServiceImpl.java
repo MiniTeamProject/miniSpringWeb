@@ -92,4 +92,9 @@ public class BoardServiceImpl implements BoardService {
         int result = boardDAO.increaseHit(seq);
         return result > 0; // 결과가 0보다 크면 성공, 그렇지 않으면 실패
     }
+    
+    @Override
+    public List<BoardDTO> searchList(String query) {
+    	return boardDAO.findByNameContaining(query);
+    }
 }

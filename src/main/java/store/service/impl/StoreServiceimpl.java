@@ -4,6 +4,8 @@ import board.bean.BoardDTO;
 import org.apache.commons.collections4.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import store.bean.StoreDTO;
 import store.bean.StorePaging;
 import store.dao.StoreDAO;
 import store.service.StoreService;
@@ -58,5 +60,10 @@ public class StoreServiceimpl implements StoreService {
         map.put("category", category);
 
         return storeDAO.storeWrite(map);
+    }
+    
+    @Override
+    public List<StoreDTO> searchItems(String query) {
+    	return storeDAO.findByNameContaining(query);
     }
 }

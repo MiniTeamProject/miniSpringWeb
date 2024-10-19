@@ -18,4 +18,6 @@ public interface UserDAO {
 	public void updateTotalWrite(String id);
 
 	public void userUpdate(UserDTO userDTO);
+
+	public UserDTO checkNickname(String nickname);
 }

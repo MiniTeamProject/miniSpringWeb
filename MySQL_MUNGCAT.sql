@@ -55,7 +55,7 @@ CREATE TABLE MUNGCATSTORE (
     id INT PRIMARY KEY AUTO_INCREMENT,          -- 상품 ID
     name VARCHAR(255) NOT NULL,                 -- 상품명
     description VARCHAR(1000),                  -- 상품 설명
-    price VARCHAR(500) NOT NULL,                -- 가격
+    price INT NOT NULL,                			-- 가격
     stock INT NOT NULL DEFAULT 0,               -- 인기 상품
     image VARCHAR(200),                         -- 이미지 파일명
     category VARCHAR(100),                      -- 카테고리
@@ -94,7 +94,11 @@ INSERT INTO MUNGCATBOARD (id, nickname, email, subject, content, imageFileName, 
 ('user6', 'User Six', 'user6@example.com', 'Sixth Post', 'Content for the sixth post', NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, NOW()),
 ('user7', 'User Seven', 'user7@example.com', 'Seven Post', 'Content for the fifth post', NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, NOW());
 
+delete from MUNGCATSTORE where id = 8;
+
 drop table mungcatuser;
 drop table mungcatboard;
 drop table Mungcatcomment;
 DROP TABLE MUNGCATIMAGE;
+DROP TABLE mungcatstore;
+DROP TABLE MUNGCATSTORE_REVIEWS;

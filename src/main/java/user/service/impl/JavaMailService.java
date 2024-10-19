@@ -22,6 +22,7 @@ public class JavaMailService {
             helper.setSubject(subject);
             helper.setText(content, true);
             mailSender.send(message);
+            
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("이메일 전송 중 오류가 발생했습니다."); // 예외 처리

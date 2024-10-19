@@ -23,5 +23,7 @@ public interface BoardService {
     public int boardDelete(Map<String, Object> map);
 
     public boolean increaseHit(int seq);
+
+	public List<BoardDTO> searchList(String query);
     
 }

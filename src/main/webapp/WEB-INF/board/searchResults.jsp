@@ -1,12 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>멍캣: 멍캣광장</title>
-<link rel="stylesheet" href="../css/boardMain.css">
+<title>멍캣: 광장검색</title>
+<link rel="stylesheet" href="../css/searchResult.css">
 </head>
 <body>
 <header>
@@ -42,50 +43,20 @@
         </div>
     </nav>
 </header>
-<main><form id="mainForm">
+<main>
     <section id="event-alert">
-        <h2>이벤트 알림📢</h2>
-        <p>실시간으로 업데이트되는 이벤트 정보를 확인하세요!</p>
+        <h2>검색결과</h2>
+        <p>멍캣광장의 검색결과를 확인해보세요!</p>
     </section>
+    
     <section id="event-alert">
-        <h2>지금 핫! 한! 인기글🔔</h2>
+        <h2>글 목록</h2>
     </section>
-    <section id="popular-posts">
-        <c:choose>
-            <c:when test="${fail != 'fail'}">
-                <c:forEach var="hot" items="${boardHotList}" varStatus="status">
-                    <article class="post" onclick="hitandView(this)">
-                        <input type="hidden" id="seq" name="seq" value="${hot.seq}"/>
-                        <input type="hidden" id="authorId" name="authorId" value="${hot.id}"/>
-                        <h3 class="subject">${hot.subject}</h3> <!-- 게시물 제목 -->
-                        <p class="content">
-	                        <c:choose>
-	                            <c:when test="${not empty hotImgSrcList[status.index]}">
-	                                <img src="${hotImgSrcList[status.index]}" alt="게시물 이미지" style="width: 150px; height: 150px; border-radius: 75px;"/>
-	                            </c:when>
-	                            <c:otherwise>
-	                                <span class="no-image">이미지가 없습니다</span>
-	                            </c:otherwise>
-	                        </c:choose>
-                        </p> <!-- 게시물 내용 -->
-                        <span class="hit">조회수: ${hot.hit}</span> <!-- 조회수 -->
-                    </article>
-                </c:forEach>    
-            </c:when>
-            <c:otherwise>
-                <article class="post">
-                     <h3>등록된 게시글이 없습니다.</h3> <!-- 게시물 제목 -->
-                 </article>
-            </c:otherwise>
-        </c:choose>
-    </section>
-    <section id="event-alert">
-        <h2>게시물 목록</h2>
-    </section>
+    
     <section id="postList">
        <c:choose>
            <c:when test="${fail != 'fail'}">
-               <c:forEach var="board" items="${boardList}" varStatus="status">
+               <c:forEach var="board" items="${searchResults}" varStatus="status">
 	            <article class="post" onclick="hitandView(this)">
 	                <input type="hidden" id="seq" name="seq" value="${board.seq}"/>
 	                <input type="hidden" id="authorId" name="authorId" value="${board.id}"/>
@@ -116,42 +87,38 @@
     <div id="pagingWrap">
         <c:choose>
             <c:when test="${fail != 'fail'}">
-                <c:if test="${not empty boardPaging.pagingHTML}">
+                <c:if test="${not empty storePaging.pagingHTML}">
                     <div id="paging">
-                        ${boardPaging.pagingHTML}
+                        ${storePaging.pagingHTML}
                     </div>
                 </c:if>
             </c:when>
         </c:choose>
     </div>
-    <input type="hidden" id="pg" name="pg" value="${pg}"/>
-    <input type="hidden" id="visitorId" name="visitorId" value="${userDTO.id}"/>
-</form> 
-<form id="searchForm" action="/miniSpringWeb/store/search" method="get"> 
-    <section id="functionWrap">
-        <div id="btnwrap">
-        	<c:if test="${not empty userDTO.id}">
-	        	<input type="button" id="writeBtn" value="글쓰기" onclick="location.href='/miniSpringWeb/board/boardWriteForm'"/>
-	        </c:if>        
-        </div>
-        
-	    <div class="search">
-	       	<select id="selectForm" name="selectForm">
-	            <option value="0" selected="selected">멍캣마켓</option>
-	            <option value="1">멍캣광장</option>
-	        </select>
-			<input type="text" id="query" name="query" placeholder="검색할 상품을 입력하세요" required>
-			<button type="submit" id="imgBtn"><img src='../image/logo1.png' alt='logo1' id="searchImg"/></button>
-	    </div>
-    </section>
-</form>
+	<form action="/miniSpringWeb/store/search" method="get">
+	    <section id="functionWrap">
+	        <div id="btnwrap">
+	            <c:if test="${not empty userDTO.id}">
+	                <input type="button" id="writeBtn" value="글쓰기" onclick="location.href='/miniSpringWeb/store/storeWriteForm'"/>
+	            </c:if>        
+	        </div>
+		    <div class="search">
+		       	<select id="selectForm" name="selectForm">
+		            <option value="0" selected="selected">멍캣마켓</option>
+		            <option value="1">멍캣광장</option>
+		        </select>
+				<input type="text" id="query" name="query" placeholder="검색할 상품을 입력하세요" required>
+				<button type="submit" id="imgBtn"><img src='../image/logo1.png' alt='logo1' id="searchImg"/></button>
+		    </div>
+	    </section>
+	</form>
 </main>
 <footer>
-    <p>Copyright ⓒ 2024 멍캣광장</p>
+    <p>Copyright ⓒ 2024 검색</p>
 </footer>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="../js/boardMain.js"></script>
 <script src="../js/header.js"></script>
+<script src="../js/storeMain.js"></script>
 <script src="../js/search.js"></script>
 </body>
 </html>
