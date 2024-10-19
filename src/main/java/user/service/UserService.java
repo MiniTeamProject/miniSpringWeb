@@ -14,4 +14,6 @@ public interface UserService {
     public void userRegist(UserDTO userDTO);
 
 	public void updateTotalWrite(String id);
+
+	public void userUpdate(UserDTO userDTO);
 }

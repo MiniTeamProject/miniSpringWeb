@@ -99,21 +99,63 @@
 		            </div>
 		        </div>
 		    </div>
-		    <input type="hidden" id="seq" name="seq" value="${list[0].seq}"/>
-            <input type="hidden" id="writerId" name="writerId" value="${list[0].id}"/> <!-- 작성자 ID -->
-            <input type="hidden" id="visitorId" name="visitorId" value="${userDTO.id}"/> <!-- 방문자 ID -->
 		</form>
+		<input type="hidden" id="seq" name="seq" value="${list[0].seq}"/>
+        <input type="hidden" id="writerId" name="writerId" value="${list[0].id}"/> <!-- 작성자 ID -->
+        <input type="hidden" id="visitorId" name="visitorId" value="${userDTO.id}"/> <!-- 방문자 ID -->
+		<!-- 댓글 작성 버튼 -->
+		<div id="togglewrap">
+			<input type="button" id="toggleCommentForm" value="<댓글 작성>">
+		</div>
+		
         <form id="boardCommentForm">
-        <div id="bottom">
-            <div class="commentWrtieForm">
-                <label for="comment">${userDTO.nickname}</label>
-                <textarea id="comment" name="comment" placeholder="댓글 입력.."></textarea>
-            </div>
-            <div id="commentBtnWrap">
-                <input type="button" id="commentWriteBtn" value="댓글 작성"/>
-            </div>
-        </div>
+	        <div id="bottom" style="display: none;">
+	            <div class="commentWrtieForm">
+	                <label for="comment">${userDTO.nickname}</label>
+	                <textarea id="comment" name="comment" placeholder="댓글 입력.."></textarea>
+	            </div>
+	            <div id="checkDiv"></div>
+	            <div id="commentBtnWrap">
+	                <input type="button" id="commentWriteBtn" value="댓글 작성"/>
+	            </div>
+	        </div>
+	        <input type="hidden" id="nickname" name="nickname" value="${userDTO.nickname}"/> <!-- 방문자 닉네임 -->
         </form>
+        
+        <!-- 댓글 리스트 출력 -->
+        <div id="printComment">
+            <c:forEach var="comment" items="${commentList}">
+                <div class="commentItem">
+                    <div class="commentWriter">${comment.nickname}</div> <!-- 작성자 닉네임 -->
+                    <div class="commentContent">${comment.content}</div> <!-- 댓글 내용 -->
+                    <c:if test="${comment.id == userDTO.id}">
+                    	<a class="delete-button" href="/miniSpringWeb/comment/commentDelete?id=${comment.id}&seq=${comment.seq}&pg=${pg}&ref=${list[0].seq}" onclick="return confirm('정말로 이 댓글을 삭제하시겠습니까?');">삭제</a> <!-- 삭제 버튼 -->
+                    </c:if>
+                </div>
+            </c:forEach>
+        </div>
+
+        <!-- 댓글 페이징 -->
+        <div id="commentPaging">
+            <c:if test="${commentPaging.totalPage > 1}">
+                <c:if test="${commentPg > 1}">
+                    <a href="/miniSpringWeb/board/boardView?pg=${pg}&seq=${list[0].seq}&commentpg=${commentPg - 1}">이전</a>
+                </c:if>
+                <c:forEach var="i" begin="1" end="${commentPaging.totalPage}">
+                    <c:choose>
+                        <c:when test="${i == commentPg}">
+                            <span>${i}</span> <!-- 현재 페이지 -->
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/miniSpringWeb/board/boardView?pg=${pg}&seq=${list[0].seq}&commentpg=${i}">${i}</a>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+                <c:if test="${commentPg < commentPaging.totalPage}">
+                    <a href="/miniSpringWeb/board/boardView?pg=${pg}&seq=${list[0].seq}&commentpg=${commentPg + 1}">다음</a>
+                </c:if>
+            </c:if>
+        </div>
     </section>
 </main>
 <footer>

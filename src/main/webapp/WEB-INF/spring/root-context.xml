@@ -22,6 +22,9 @@
 
     <context:component-scan base-package="store.bean"/>
     <context:component-scan base-package="store.service.impl"/>
+    
+    <context:component-scan base-package="comment.bean"/>
+    <context:component-scan base-package="comment.service.impl"/>
         
     <!-- NCP Context -->
     <context:component-scan base-package="naver.service.impl"/>

@@ -42,10 +42,11 @@
     <context:component-scan base-package="board.controller"/>
     <context:component-scan base-package="image.controller"/>
     <context:component-scan base-package="store.controller"/>
+    <context:component-scan base-package="comment.controller"/>
 
     <resources location="/WEB-INF/storage/" mapping="/storage/**"/>
     <resources location="/WEB-INF/css/" mapping="/css/**"/>
     <resources location="/WEB-INF/js/" mapping="/js/**"/>
     <resources location="/WEB-INF/image/" mapping="/image/**"/>
-    <resources location="/WEB-INF/froalaeditor/" mapping="/froalaeditor/**"/>
+    <resources location="/WEB-INF/froala/" mapping="/froala/**"/>
 </beans:beans>

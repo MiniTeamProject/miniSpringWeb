@@ -175,7 +175,7 @@ input[type="button"]:hover {
     width: 100%; /* 너비 100% */
     height: 80px; /* 높이 */
     border: 1px solid #ccc; /* 테두리 */
-    border-radius: 5px; /* 둥근 모서리 */
+    border-radius: 10px; /* 둥근 모서리 */
     padding: 10px; /* 여백 */
     font-size: 16px; /* 글자 크기 */
     resize: none; /* 크기 조절 불가능 */
@@ -187,6 +187,63 @@ input[type="button"]:hover {
     display: flex;
     justify-content: flex-end; /* 오른쪽 정렬 */
     margin-top: 10px; /* 위 여백 */
+}
+
+#checkDiv {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 10px;
+}
+
+/* 댓글 리스트 스타일 */
+#printComment {
+    text-align: left; /* 왼쪽 정렬 */
+    margin-top: 20px;
+}
+
+.commentItem {
+	display: flex;
+	flex-direction: column;
+    border-bottom: 1px solid #ddd; /* 댓글 구분선 */
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.commentItem > a {
+	text-align: right;
+	cursor: pointer;
+	text-decoration: none;
+	color: #a90011; /* 버튼 배경색 */
+}
+
+.commentItem > a:hover {
+	cursor: pointer;
+	color: #a90011; /* 버튼 배경색 */
+}
+
+.commentWriter {
+    font-weight: bold; /* 작성자 이름 굵게 */
+}
+
+.commentContent {
+    margin-top: 5px; /* 위 여백 */
+}
+
+/* 댓글 페이징 스타일 */
+#commentPaging {
+    margin-top: 20px;
+}
+
+#commentPaging a {
+    margin: 0 5px; /* 좌우 여백 */
+    color: #a90011; /* 링크 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+#commentPaging a:hover {
+    text-decoration: underline; /* 호버 시 밑줄 추가 */
+    color: #c8102c; /* 버튼 호버 색상 */
 }
 
 /* boardView.css */
@@ -206,6 +263,26 @@ input[type="button"]:hover {
     justify-content: space-between; /* 양쪽 정렬 */
     margin-top: 10px; /* 위쪽 여백 추가 */
     margin-bottom: 10px;
+}
+
+#togglewrap {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+#toggleCommentForm {
+    background: none;
+    border: none;
+    color: #5c1e1e;
+    cursor: pointer;
+    font-size: 16px; /* 적절한 글자 크기 */
+    padding: 5px 15px;
+    margin-bottom: 10px;
+}
+
+#toggleCommentForm:hover {
+    color: #c8102c; /* 버튼 호버 색상 */
 }
 
 #bottom {
@@ -233,12 +310,13 @@ footer {
 @media (max-width: 768px) {
     .search > input[type="text"] {
         margin: 0;
+        width: 100%; /* 입력 필드 전체 너비 사용 */
     }
     
     #functionWrap {
         flex-direction: column; /* 세로로 배열 */
         align-items: center; /* 가운데 정렬 */
-        width: 100%;
+        width: 100%; /* 전체 너비 사용 */
     }
 
     #btnwrap {
@@ -297,24 +375,21 @@ footer {
 
     #event-alert, #postList, #popular-posts {
         padding: 10px; /* 패딩 조정 */
+        width: 100%; /* 전체 너비 사용 */
+        box-sizing: border-box; /* 패딩 포함하여 너비 계산 */
     }
     
     footer, body, html {
         margin-bottom: 0;
     }
-    /* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
+
     html, body {
-        height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
+        height: auto; /* 자동 높이로 설정하여 유연하게 조정 */
+        overflow-x: hidden; /* 수평 스크롤 숨김 */
     }
-    
 }
 
 @media (max-width: 516px) {
-    /* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
-    html, body {
-        height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
-    }
-    /* editor css */
     #editorwrap {
         height: 500px;
     }
@@ -325,12 +400,10 @@ footer {
 }
 
 @media (max-width: 374px) {
-    /* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
     html, body {
-        height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
+        height: auto; /* 자동 높이로 설정하여 유연하게 조정 */
         font-size: 10pt;
     }
-    /* editor css */
     #editorwrap {
         height: 500px;
     }
@@ -347,11 +420,6 @@ footer {
 }
 
 @media (max-width: 325px) {
-    /* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
-    html, body {
-        height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
-    }
-    /* editor css */
     #editorwrap {
         height: 500px;
     }
@@ -362,11 +430,6 @@ footer {
 }
 
 @media (max-width: 306px) {
-    /* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
-    html, body {
-        height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
-    }
-    /* editor css */
     #editorwrap {
         height: 500px;
     }
@@ -377,11 +440,6 @@ footer {
 }
 
 @media (max-width: 264px) {
-    /* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
-    html, body {
-        height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
-    }
-    /* editor css */
     #editorwrap {
         height: 500px;
     }
@@ -392,11 +450,6 @@ footer {
 }
 
 @media (max-width: 222px) {
-    /* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
-    html, body {
-        height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
-    }
-    /* editor css */
     #editorwrap {
         height: 500px;
     }
@@ -408,10 +461,6 @@ footer {
 
 /* 데스크톱에서 mobile-menu 숨김 */
 @media (min-width: 769px) {
-    /* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
-    html, body {
-        height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
-    }
     .nav-links {
         padding-left: 5.5em;
     }
@@ -424,7 +473,6 @@ footer {
         display: none;
     }
     
-    /* editor css */
     #editorwrap {
         height: 500px;
     }
