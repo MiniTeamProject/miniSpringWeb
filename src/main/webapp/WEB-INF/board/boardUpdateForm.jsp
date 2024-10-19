@@ -9,17 +9,17 @@
     <link rel="stylesheet" href="../css/boardUpdateForm.css">
 
     <!-- Froala Editor CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.3.0/css/froala_editor.pkgd.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.3.0/css/froala_editor.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.3.0/css/froala_style.min.css">
+	<link rel="stylesheet" href="../froala/css/froala_editor.pkgd.min.css">
+	<link rel="stylesheet" href="../froala/css/froala_editor.min.css">
+	<link rel="stylesheet" href="../froala/css/froala_style.min.css">
 
     <!-- jQuery (Froala Editor의 의존성) -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     
     <!-- Froala Editor JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.3.0/js/froala_editor.pkgd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.3.0/js/languages/ko.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.3.0/js/plugins/colors.min.js"></script>
+	<script src="../froala/js/froala_editor.pkgd.min.js"></script>
+	<script src="../froala/js/languages/ko.js"></script>
+	<script src="../froala/js/plugins/colors.min.js"></script>
 </head>
 <body>
 <c:if test="${empty userDTO.id}">
@@ -87,7 +87,7 @@
             <div class="form-buttons">
                 <button type="button" class="btn-submit" id="updateBtn">수정</button>
                 <div id="checkDiv"></div>
-                <button type="button" class="btn-cancel" onclick="location.href='/miniSpringWeb/board/boardView?pg=${pg}&seq=${seq}'">뒤로</button>
+                <button type="button" class="btn-cancel" onclick="location.href='/miniSpringWeb/board/boardView?pg=${pg}&seq=${list[0].seq}'">뒤로</button>
             </div>
             <div class="form-delete">
                 <a id="deleteBtn">&lt;삭제&gt;</a>

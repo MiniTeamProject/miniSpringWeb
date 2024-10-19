@@ -19,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import board.bean.BoardDTO;
 import board.service.BoardService;
+import comment.bean.CommentDTO;
+import comment.service.CommentService;
 import image.service.ImageService;
 import user.service.UserService;
 
@@ -27,6 +29,9 @@ import user.service.UserService;
 public class BoardController {
     @Autowired
     private BoardService boardService;
+    
+    @Autowired
+    private CommentService commentService;
     
     @Autowired
     private UserService userService;
@@ -45,7 +50,7 @@ public class BoardController {
         
 		for (BoardDTO board : checkValue) {
 		    String content = board.getContent(); // BoardDTO 객체에서 content 값 추출
-		    System.out.println("Content: " + content); 
+//		    System.out.println("Content: " + content); 
 
 	        // 정규 표현식을 사용하여 <img ... > 태그를 추출
 	        Pattern imgPattern = Pattern.compile("<img[^>]*src=[\"']([^\"']*)[\"'][^>]*>");
@@ -54,7 +59,7 @@ public class BoardController {
 	        if (matcher.find()) {
 	            String imgSrc = matcher.group(1); // img 태그 안의 src 값 추출
 	            imgSrcList.add(imgSrc); // 리스트에 이미지 URL 추가
-	            System.out.println("imgSrc: " + imgSrc);
+//	            System.out.println("imgSrc: " + imgSrc);
 	        } else {
 	            imgSrcList.add(""); // 이미지가 없을 경우 빈 문자열 추가
 	        }
@@ -76,7 +81,7 @@ public class BoardController {
 	        if (matcher.find()) {
 	            String imgSrc = matcher.group(1); // img 태그 안의 src 값 추출
 	            hotImgSrcList.add(imgSrc); // 리스트에 이미지 URL 추가
-	            System.out.println("Hot imgSrc: " + imgSrc);
+//	            System.out.println("Hot imgSrc: " + imgSrc);
 	        } else {
 	            hotImgSrcList.add(""); // 이미지가 없을 경우 빈 문자열 추가
 	        }
@@ -84,7 +89,7 @@ public class BoardController {
         
 	    if (checkValue == null || checkValue.isEmpty()) {
 	        modelAndView.addObject("fail", "fail");
-	        System.out.println("모델 값 : " + modelAndView.getModel().get("fail"));
+//	        System.out.println("모델 값 : " + modelAndView.getModel().get("fail"));
 	    } else {
 	        modelAndView.addObject("boardList", checkValue);
 	        modelAndView.addObject("boardHotList", pagingMap.get("boardHotList"));
@@ -118,16 +123,16 @@ public class BoardController {
 				             @RequestParam(value = "imageOriginalFileNames[]", required = false) List<String> imageOriginalFileNames) {
         
         // 게시물 저장 로직
-        System.out.println("제목: " + subject);
-        System.out.println("내용: " + content);
-        System.out.println("카테고리: " + category);
-        System.out.println("아이디: " + id);
-        System.out.println("업로드된 이미지 URL: " + imageUrls);
-        System.out.println("업로드된 이미지 파일 이름: " + imageFileNames);
-        System.out.println("업로드된 이미지 원본 파일 이름: " + imageOriginalFileNames);
-        
-        System.out.println("imageFileNames : " + imageFileNames);
-        
+//        System.out.println("제목: " + subject);
+//        System.out.println("내용: " + content);
+//        System.out.println("카테고리: " + category);
+//        System.out.println("아이디: " + id);
+//        System.out.println("업로드된 이미지 URL: " + imageUrls);
+//        System.out.println("업로드된 이미지 파일 이름: " + imageFileNames);
+//        System.out.println("업로드된 이미지 원본 파일 이름: " + imageOriginalFileNames);
+//        
+//        System.out.println("imageFileNames : " + imageFileNames);
+//        
         // 이미지 URL을 포함한 게시물 저장 로직 구현
         int result = boardService.boardWrite(id, subject, content, category);
         
@@ -135,18 +140,18 @@ public class BoardController {
         	if(imageFileNames != null) {
         		userService.updateTotalWrite(id);
         		for (String imageFileName : imageFileNames) {
-                    System.out.println("업로드된 이미지 URL: " + imageFileName);
+//                    System.out.println("업로드된 이미지 URL: " + imageFileName);
                     int seq = boardService.getRef(id);
                     imageService.updateRef(imageFileName, seq);
-                    System.out.println("이미지 ref 1증가 : " + imageFileName);
+//                    System.out.println("이미지 ref 1증가 : " + imageFileName);
                 }
-        		System.out.println("이미지 작성글 1증가");
+//        		System.out.println("이미지 작성글 1증가");
         	} else {
-        		System.out.println("이미지 작성글 그대로");
+//        		System.out.println("이미지 작성글 그대로");
         		return "success";
         	}  
         } else {
-        	System.out.println("글작성 실패");
+//        	System.out.println("글작성 실패");
         	return "fail";
         }
         
@@ -154,17 +159,20 @@ public class BoardController {
     }
     
     @RequestMapping(value = "boardView")
-    public ModelAndView boardView(@RequestParam("pg") int pg, @RequestParam("seq") int seq) {
+    public ModelAndView boardView(@RequestParam("pg") int pg, @RequestParam("seq") int seq, @RequestParam(required = false, defaultValue = "1") int commentpg) {
         ModelAndView modelAndView = new ModelAndView();
         List<BoardDTO> list = boardService.getboardView(seq);
+        //댓글 목록과 페이징 정보 가져오기
+        Map<String, Object> pagingMap = commentService.getCommentView(seq, commentpg);
         
         modelAndView.addObject("list", list);
+        modelAndView.addObject("commentList", pagingMap.get("commentList")); // 댓글 리스트
+        modelAndView.addObject("commentPaging", pagingMap.get("commentPaging")); // 댓글 페이징 정보
+        modelAndView.addObject("commentPg", commentpg); // 댓글 페이지 정보
         modelAndView.addObject("pg", pg);
         modelAndView.setViewName("board/boardView");
         
-        System.out.println("boardService : " + modelAndView);
-        
-        return modelAndView;        
+        return modelAndView;
     }
     
      @RequestMapping(value = "boardUpdateForm")
@@ -190,16 +198,15 @@ public class BoardController {
                                @RequestParam(value = "imageFileNames[]", required = false) List<String> imageFileNames,
                                @RequestParam(value = "imageOriginalFileNames[]", required = false) List<String> imageOriginalFileNames) {
          
-         // 게시물 저장 로직
-         System.out.println("제목: " + subject);
-         System.out.println("내용: " + content);
-         System.out.println("카테고리: " + category);
-         System.out.println("아이디: " + id);
-         System.out.println("업로드된 이미지 URL: " + imageUrls);
-         System.out.println("업로드된 이미지 파일 이름: " + imageFileNames);
-         System.out.println("업로드된 이미지 원본 파일 이름: " + imageOriginalFileNames);
-         
-         System.out.println("imageFileNames : " + imageFileNames);
+			/*
+			 * // 게시물 저장 로직 System.out.println("제목: " + subject); System.out.println("내용: "
+			 * + content); System.out.println("카테고리: " + category);
+			 * System.out.println("아이디: " + id); System.out.println("업로드된 이미지 URL: " +
+			 * imageUrls); System.out.println("업로드된 이미지 파일 이름: " + imageFileNames);
+			 * System.out.println("업로드된 이미지 원본 파일 이름: " + imageOriginalFileNames);
+			 * 
+			 * System.out.println("imageFileNames : " + imageFileNames);
+			 */
          
          // 이미지 URL을 포함한 게시물 저장 로직 구현
          int result = boardService.boardUpdate(id, subject, content, category, seq);
@@ -208,17 +215,17 @@ public class BoardController {
              if(imageFileNames != null) {
                  userService.updateTotalWrite(id);
                  for (String imageFileName : imageFileNames) {
-                     System.out.println("업로드된 이미지 URL: " + imageFileName);
+//                     System.out.println("업로드된 이미지 URL: " + imageFileName);
                      imageService.updateRef(imageFileName, seq);
-                     System.out.println("이미지 ref 1증가 : " + imageFileName);
+//                     System.out.println("이미지 ref 1증가 : " + imageFileName);
                  }
-                 System.out.println("이미지 작성글 1증가");
+//					System.out.println("이미지 작성글 1증가");
              } else {
-                 System.out.println("이미지 작성글 그대로");
+//					System.out.println("이미지 작성글 그대로");
                  return "success";
              }  
          } else {
-             System.out.println("글작성 실패");
+//				System.out.println("글작성 실패");
              return "fail";
          }
          
@@ -230,12 +237,12 @@ public class BoardController {
      public String boardDelete(@RequestParam("seq") int seq, 
                                @RequestParam("id") String id,
                                @RequestParam("pg") int pg) {
-         System.out.println("데이터 넘어옴");
+			/* System.out.println("데이터 넘어옴"); */
          Map<String, Object> map = new HashedMap<String, Object>();
          map.put("id", id);
          map.put("seq", seq);
          int result = boardService.boardDelete(map);
-         System.out.println("삭제 됨 : " + result);
+			/* System.out.println("삭제 됨 : " + result); */
          
          if(result > 0) {
              return "success";

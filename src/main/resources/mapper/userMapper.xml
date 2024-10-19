@@ -17,4 +17,8 @@
     <update id="updateTotalWrite" parameterType="String">
     	UPDATE MUNGCATUSER SET TOTALWRITE = (TOTALWRITE + 1) WHERE id = #{id}		    	
     </update>
+    <update id="userUpdate" parameterType="userDTO">
+    	update MUNGCATUSER set pwd=#{pwd}, nickname=#{nickname}, name=#{name}, gender=#{gender}, email=#{email}, tel=#{tel}, zipcode=#{zipcode}, addr1=#{addr1}, addr2=#{addr2}, profile=#{profile}
+    	WHERE id=#{id}
+    </update>
 </mapper>

@@ -1,23 +1,27 @@
 package user.controller;
 
-import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpSession;
-
-import org.apache.commons.logging.Log;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import user.bean.UserDTO;
-import user.service.UserService;
-import user.service.impl.JavaMailService;
-
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import user.bean.UserDTO;
+import user.service.UserService;
+import user.service.impl.JavaMailService;
 
 @Controller
 @RequestMapping("user")
@@ -41,6 +45,10 @@ public class UserController {
 
     	if(userDTO != null){
     		session.setAttribute("userDTO", userDTO);
+    		
+            // 세션 유효 시간을 30분(1800초)으로 설정
+            session.setMaxInactiveInterval(1800); 
+    		
     		return "success";
     	} else {
     		return "fail";
@@ -51,6 +59,36 @@ public class UserController {
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
+    }
+    
+    @RequestMapping(value = "userInfo")
+    public String userInfo() {
+        return "user/userInfo";
+    }
+    
+    
+    @RequestMapping(value = "userUpdate", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+    @ResponseBody
+    public void userUpdate(@ModelAttribute UserDTO userDTO, @RequestParam MultipartFile profile, HttpSession session) {
+    	String filePath = session.getServletContext().getRealPath("WEB-INF/storage");
+		System.out.println("실제폴더 : " + filePath);
+
+		//	String imageFileName = objectStorateService.uploadFile(bucketName,"storage/", profile);
+		String imageOriginalFileName = profile.getOriginalFilename();
+		File file = new File(filePath, imageOriginalFileName);
+		
+		try {
+			profile.transferTo(file);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		userDTO.setProfile(imageOriginalFileName);
+		
+    	userService.userUpdate(userDTO);
+
     }
     
     @RequestMapping(value="userRegistForm", method = RequestMethod.GET)
