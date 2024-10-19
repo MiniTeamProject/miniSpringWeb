@@ -352,6 +352,10 @@ footer {
 
 /* 데스크톱에서 mobile-menu 숨김 */
 @media (min-width: 769px) {
+	#wrap {
+		height: 100%;
+		overflow: auto;
+	}
     .nav-links {
         padding-left: 5.5em;
     }
