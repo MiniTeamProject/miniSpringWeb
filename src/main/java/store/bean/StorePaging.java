@@ -29,16 +29,16 @@ public class StorePaging {
         if(endPage > totalP) endPage = totalP;
 
         if(startPage != 1)
-            pagingHTML.append("<span id='movepaging' onclick='boardPaging(" + (startPage-1) + ")'>이전</span>");
+            pagingHTML.append("<span id='movepaging' onclick='storePaging(" + (startPage-1) + ")'>이전</span>");
 
         for(int i=startPage; i<=endPage; i++) {
             if(i == currentPage)
-                pagingHTML.append("<span id='currentPaging' onclick='boardPaging(" + i + ")'>" + i + "</span>");
+                pagingHTML.append("<span id='currentPaging' onclick='storePaging(" + i + ")'>" + i + "</span>");
             else
-                pagingHTML.append("<span id='paging' onclick='boardPaging(" + i + ")'>" + i + "</span>");
+                pagingHTML.append("<span id='paging' onclick='storePaging(" + i + ")'>" + i + "</span>");
         }
 
         if(endPage < totalP)
-            pagingHTML.append("<span id='movepaging' onclick='boardPaging(" + (endPage+1) + ")'>다음</span>");
+            pagingHTML.append("<span id='movepaging' onclick='storePaging(" + (endPage+1) + ")'>다음</span>");
     }
 }

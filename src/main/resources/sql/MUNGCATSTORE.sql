@@ -1,24 +1,24 @@
--- [MySQL TABLE] ì• ê²¬ìš©í’ˆ í…Œì´ë¸”
+ -- [MySQL TABLE] ¾Ö°ß¿ëÇ° Å×ÀÌºí
 CREATE TABLE MUNGCATSTORE (
-    id INT PRIMARY KEY AUTO_INCREMENT,          -- ìƒí’ˆ ID
-    name VARCHAR(255) NOT NULL,                 -- ìƒí’ˆëª…
-    description VARCHAR(1000),                  -- ìƒí’ˆ ì„¤ëª…
-    price VARCHAR(500) NOT NULL,                -- ê°€ê²©
-    stock INT NOT NULL DEFAULT 0,               -- ì¡°íšŒìˆ˜
-    image VARCHAR(200),                         -- ì´ë¯¸ì§€ íŒŒì¼ëª…
-    category VARCHAR(100),                      -- ì¹´í…Œê³ ë¦¬
-    logtime TIMESTAMP DEFAULT NOW(),            -- ë“±ë¡ì¼ (created_atì—ì„œ ë³€ê²½)
-    logtime_up TIMESTAMP DEFAULT NOW() ON UPDATE NOW()  -- ìˆ˜ì •ì¼ (updated_atì—ì„œ ë³€ê²½)
+    id INT PRIMARY KEY AUTO_INCREMENT,          -- »óÇ° ID
+    name VARCHAR(255) NOT NULL,                 -- »óÇ°¸í
+    description VARCHAR(1000),                  -- »óÇ° ¼³¸í
+    price INT NOT NULL,                			-- °¡°Ý
+    stock INT NOT NULL DEFAULT 0,               -- ÀÎ±â »óÇ°
+    image VARCHAR(200),                         -- ÀÌ¹ÌÁö ÆÄÀÏ¸í
+    category VARCHAR(100),                      -- Ä«Å×°í¸®
+    logtime TIMESTAMP DEFAULT NOW(),            -- µî·ÏÀÏ (created_at¿¡¼­ º¯°æ)
+    logtime_up TIMESTAMP DEFAULT NOW() ON UPDATE NOW()  -- ¼öÁ¤ÀÏ (updated_at¿¡¼­ º¯°æ)
 );
 
--- [MySQL TABLE] ì• ê²¬ìš©í’ˆ ë¦¬ë·° í…Œì´ë¸”
+-- [MySQL TABLE] ¾Ö°ß¿ëÇ° ¸®ºä Å×ÀÌºí
 CREATE TABLE MUNGCATSTORE_REVIEWS (
-    review_id INT PRIMARY KEY AUTO_INCREMENT,                   -- í›„ê¸° ID
-    product_id INT NOT NULL,                                    -- ìƒí’ˆ ID (MUNGCATSTOREì˜ idë¥¼ ì°¸ì¡°)
-    user_id VARCHAR(20) NOT NULL,                               -- ì‚¬ìš©ìž ID (í›„ê¸°ë¥¼ ìž‘ì„±í•œ ì‚¬ìš©ìžì˜ ID)
-    nickname VARCHAR(100) NOT NULL,                             -- í›„ê¸° ìž‘ì„±ìž ë‹‰ë„¤ìž„
-    rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),    -- í‰ì  (1~5)
-    review_text TEXT,                                           -- í›„ê¸° ë‚´ìš©
-    logtime TIMESTAMP DEFAULT NOW(),                            -- ìž‘ì„±ì¼
-    FOREIGN KEY (product_id) REFERENCES MUNGCATSTORE(id)        -- ì™¸ëž˜ í‚¤ ì„¤ì •
+    review_id INT PRIMARY KEY AUTO_INCREMENT,                   -- ÈÄ±â ID
+    product_id INT NOT NULL,                                    -- »óÇ° ID (MUNGCATSTOREÀÇ id¸¦ ÂüÁ¶)
+    user_id VARCHAR(20) NOT NULL,                               -- »ç¿ëÀÚ ID (ÈÄ±â¸¦ ÀÛ¼ºÇÑ »ç¿ëÀÚÀÇ ID)
+    nickname VARCHAR(100) NOT NULL,                             -- ÈÄ±â ÀÛ¼ºÀÚ ´Ð³×ÀÓ
+    rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),    -- ÆòÁ¡ (1~5)
+    review_text TEXT,                                           -- ÈÄ±â ³»¿ë
+    logtime TIMESTAMP DEFAULT NOW(),                            -- ÀÛ¼ºÀÏ
+    FOREIGN KEY (product_id) REFERENCES MUNGCATSTORE(id)        -- ¿Ü·¡ Å° ¼³Á¤
 );

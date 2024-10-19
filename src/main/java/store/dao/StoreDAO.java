@@ -1,6 +1,8 @@
 package store.dao;
 
 import board.bean.BoardDTO;
+import store.bean.StoreDTO;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -16,5 +18,7 @@ public interface StoreDAO {
     public int getTotalA();
 
     public int storeWrite(Map<String, String> map);
+
+	public List<StoreDTO> findByNameContaining(String query);
 
 }

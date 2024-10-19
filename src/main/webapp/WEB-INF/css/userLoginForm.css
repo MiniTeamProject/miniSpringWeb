@@ -1,80 +1,179 @@
 @charset "UTF-8";
 
-html, body {
-	height: 100%;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.main-content{
-	position: relative;
-	display: flex;
-	height: calc(100vh - 100px);
-	display: flex;
-	justify-content: center;
-    align-items: center;  
-    margin-bottom:  50px;
+
+body {
+    font-family: 'Nanum Gothic', sans-serif;
+    color: #5c1e1e;
+    background-color: #fff;
+    text-align: center;
+}
+
+#wrap {
+    width: 100%;
+    height: calc(100vh - 100px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #a90011;
+    padding: 15px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo:hover {
+    cursor: pointer;
+}
+
+/* 모바일 메뉴 스타일 */
+.mobile-menu {
+    cursor: pointer;
+    padding: 10px;
+    order: -1;
+    display: none; /* 기본적으로 숨김 */
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 24px; /* 햄버거 아이콘 크기 */
+    color: white; /* 햄버거 아이콘 색상 */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-icon {
+    margin-right: 8px;
+    display: none; /* 기본적으로 숨김 */
+    width: 50px;
+    height: 50px;
+}
+
+.auth {
+    display: flex;
+    gap: 15px;
+}
+
+.auth a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.main-content {
+    position: relative;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    height: calc(100vh - 100px);
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+#userLoginForm > .input-box {
+	text-align: left;
+}
+
+.input-box > p {
+	margin-left: 0.3em;
+	padding-bottom: 5px;
 }
 
 .form-box {
-	position: relative;
-	width: 400px;
-	height: 700px;
-	padding: 40px;
-	margin: auto;
-	
-	border: 2px solid rgba(255, 255, 255, .5);
+    position: relative;
+    width: 100%; /* 모바일에서 폭을 90%로 설정 */
+    max-width: 600px; /* 최대 폭 설정 */
+    height: 700px;
+    padding: 40px;
+    margin: auto;
+    border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 20px;
-    backdrop-filter: blur(20px);  /* 배경을 흐리게하는 효과 */
+    backdrop-filter: blur(20px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
 }
 
-
 .title h1 {
-	font-size: 2em;
-	text-align: center;
-	color: #a90011;
-	margin-bottom: 50px;
+    font-size: 2em;
+    text-align: center;
+    color: #a90011;
+    margin-bottom: 50px;
 }
 
 .input-box {
-	margin: 20px 0;
+    margin: 20px 0;
 }
+
 .input-box p {
-	font-size: 1.2em;
-	color: #333;
-	margin-bottom: 5px;
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 5px;
 }
+
 .input-box input {
-	width: 100%;
-	height: 40px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	font-size: 1em;
-	box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
-	border-radius: 5px;
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
 }
 
-#checkDiv{
-	height: 40px;
+#checkDiv {
+    height: 40px;
 }
 
-.btn{
-	width: 100%;
-	height: 45px;
-	background-color: #a90011;
-	color: #fff;
-	font-size: 1.1em;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background-color 0.3s;
+.btn {
+    width: 100%;
+    height: 45px;
+    background-color: #a90011;
+    color: #fff;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
+
 .btn:hover {
-    background-color: #900009;    
+    background-color: #900009;
 }
-
-
-
-
 
 .login-register {
     font-size: .9em;
@@ -83,12 +182,186 @@ html, body {
     font-weight: 500;
     margin: 25px 0 10px;
 }
+
 .login-register p a {
     text-decoration: none;
     font-weight: 600;
     color: #94000F;
 }
+
 .login-register p a:hover {
     text-decoration: underline;
 }
 
+#snsWrap {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 2em;
+	gap: 3em;
+}
+
+.snslogin {
+	padding: 15px;
+	background-color: #FFEDC7;
+	border-radius: 30px;
+}
+
+.snslogin > button {
+	width: 100%;
+	height: 100%;
+	border-style: none;
+	outline-color: none;
+	background-color: transparent;
+}
+
+.snslogin > button:hover {
+	cursor: pointer;
+}
+
+.snslogin img {
+	width: 45px;
+	height: 45px;
+}
+
+.snslogin img:hover {
+	cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #f1f1f1;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+    .nav-icon {
+        display: inline; /* 모바일에서만 보이도록 설정 */
+    }
+
+    .loginview,
+    .logoutview {
+        display: inline;
+    }
+
+    .logo {
+        width: 100%;
+        text-align: center;
+    }
+
+    .logo > span {
+        margin-left: -1.4em;
+    }
+
+    .auth {
+        display: none;
+    }
+    
+    #wrap {
+    	height: 100%;
+    	margin-bottom: 0;
+    }
+    
+    footer {
+    	margin-top: 0;
+    }
+    
+    .main-content {
+	    width: 100%;
+	    box-sizing: border-box;
+	    height: 100%;
+	    justify-content: center;
+	    align-items: center;
+	    margin-bottom: 0;
+	    border-radius: 0px;
+	}
+
+    .nav-links {
+        display: none; /* 모바일에서 기본적으로 숨김 */
+        flex-direction: column; /* 세로로 배열 */
+        position: absolute; /* 절대 위치로 설정 */
+        top: 60px; /* 헤더 아래에 위치 */
+        left: 0;
+        background-color: #a90011; /* 배경색 */
+        width: 100%;
+        z-index: 10; /* 다른 요소 위에 위치 */
+        padding-top: 2em;
+        padding-bottom: 2em;
+        font-weight: bold;
+    }
+
+    .nav-links.active {
+        display: flex; /* active 클래스가 있을 때 보여줌 */
+    }
+
+    .mobile-menu {
+        display: block; /* 모바일에서 햄버거 메뉴 보이기 */
+    }
+
+    /* 버튼 크기 조정 */
+    .btn {
+        height: 40px; /* 버튼 높이 조정 */
+        font-size: 1em; /* 폰트 크기 조정 */
+    }
+	
+	#userLoginForm {
+		width: 100%;
+	}
+	
+    .form-box {
+    	display: flex;
+    	flex-direction: column;
+    	justify-content: center;
+    	align-items: center;
+        height: 90vh; /* 폼 박스 높이 자동 조정 */
+        padding: 20px; /* 패딩 줄이기 */
+    }
+    
+    .input-box {
+    	width: 100%;
+    	padding: 0;
+    }
+    
+    input[type="text"], input[type="password"] {
+    	width: 100%;
+    }
+
+    .title h1 {
+        font-size: 1.5em; /* 제목 폰트 크기 조정 */
+    }
+
+    .input-box p {
+        font-size: 1em; /* 입력 설명 폰트 크기 조정 */
+    }
+    
+    .form-box {
+	    border-radius: 0px;
+	}
+	
+	.snslogin {
+		margin-top: 4em;
+		margin-bottom: 2em;
+	}
+	
+	.snslogin img {
+		width: 35px;
+		height: 35px;
+	}
+}
+
+/* 데스크톱에서 mobile-menu 숨김 */
+@media (min-width: 769px) {
+    .nav-links {
+        padding-left: 5.5em;
+    }
+
+    .mobile-menu {
+        display: none; /* 데스크톱에서 숨김 */
+    }
+
+    .loginview,
+    .logoutview {
+        display: none;
+    }
+}

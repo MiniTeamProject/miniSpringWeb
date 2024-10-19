@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>멍캣: 멍캣마켓</title>
-<link rel="stylesheet" href="../css/storeMain.css">
+<title>멍캣: 상품검색</title>
+<link rel="stylesheet" href="../css/searchResult.css">
 </head>
 <body>
 <header>
@@ -45,47 +45,17 @@
 </header>
 <main>
     <section id="event-alert">
-        <h2>할인 알림📢</h2>
-        <p>실시간으로 업데이트되는 할인 정보를 확인하세요!</p>
+        <h2>검색결과</h2>
+        <p>멍캣의 다양한 상품을 확인해보세요!</p>
     </section>
-    <section id="event-alert">
-        <h2>지금 핫! 한! 인기상품🔔</h2>
-    </section>
-    <section id="popular-posts">
-        <c:choose>
-            <c:when test="${fail != 'fail'}">
-                <c:forEach var="hot" items="${storeHotList}" varStatus="status">
-                    <article class="post">
-                        <input type="hidden" id="seq" name="seq" value="${hot.id}"/>
-                        <h3 class="name">[멍캣] ${hot.name}</h3> <!-- 게시물 제목 -->
-                        <p class="description">
-                        <c:choose>
-                            <c:when test="${not empty hotImgSrcList[status.index]}">
-                                <img src="${hotImgSrcList[status.index]}" alt="게시물 이미지" style="width: 150px; height: 150px;"/>
-                            </c:when>
-                            <c:otherwise>
-                                <h3>이미지가 없습니다</h3>
-                            </c:otherwise>
-                        </c:choose>
-                        </p> <!-- 게시물 내용 -->
-                        <span class="stock">가격: <fmt:formatNumber value="${hot.price}" pattern="###,###,###"/>원</span> <!-- 조회수 -->
-                    </article>
-                </c:forEach>    
-            </c:when>
-            <c:otherwise>
-                <article class="post">
-                     <h3>등록된 상품이 없습니다.</h3> <!-- 게시물 제목 -->
-                 </article>
-            </c:otherwise>
-        </c:choose>
-    </section>
+    
     <section id="event-alert">
         <h2>상품 목록</h2>
     </section>
     <section id="postList">
        <c:choose>
-           <c:when test="${fail != 'fail'}">
-               <c:forEach var="store" items="${storeList}" varStatus="status">
+           <c:when test="${searchResults != null}">
+               <c:forEach var="store" items="${searchResults}" varStatus="status">
                 <article class="post">
                     <input type="hidden" id="id" name="id" value="${store.id}"/>
                     <h3 class="name">[멍캣] ${store.name}</h3> <!-- 게시물 제목 -->
@@ -104,9 +74,9 @@
             </c:forEach>    
            </c:when>
            <c:otherwise>
-                <article class="post">
-                     <h3>등록된 상품이 없습니다.</h3> <!-- 게시물 제목 -->
-                 </article>
+		   <article class="post">
+		   	   <h3>등록된 상품이 없습니다.</h3> <!-- 게시물 제목 -->
+		   </article>
             </c:otherwise>
         </c:choose>
     </section>
@@ -123,29 +93,30 @@
             </c:when>
         </c:choose>
     </div>
-<form action="/miniSpringWeb/store/search" method="get">
-    <section id="functionWrap">
-        <div id="btnwrap">
-        	<c:if test="${userDTO.id == '1'}">
-            <input type="button" id="writeBtn" value="상품등록" onclick="location.href='/miniSpringWeb/store/storeWriteForm'"/>
-            </c:if>            
-        </div>
-	    <div class="search">
-	       	<select id="selectForm" name="selectForm">
-	            <option value="0" selected="selected">멍캣마켓</option>
-	            <option value="1">멍캣광장</option>
-	        </select>
-			<input type="text" id="query" name="query" placeholder="검색할 상품을 입력하세요" required>
-			<button type="submit" id="imgBtn"><img src='../image/logo1.png' alt='logo1' id="searchImg"/></button>
-	    </div>
-    </section>
-</form>
+	<form action="/miniSpringWeb/store/search" method="get">
+	    <section id="functionWrap">
+	        <div id="btnwrap">
+	            <c:if test="${not empty userDTO.id}">
+	                <input type="button" id="writeBtn" value="글쓰기" onclick="location.href='/miniSpringWeb/store/storeWriteForm'"/>
+	            </c:if>        
+	        </div>
+		    <div class="search">
+		       	<select id="selectForm" name="selectForm">
+		            <option value="0" selected="selected">멍캣마켓</option>
+		            <option value="1">멍캣광장</option>
+		        </select>
+				<input type="text" id="query" name="query" placeholder="검색할 상품을 입력하세요" required>
+				<button type="submit" id="imgBtn"><img src='../image/logo1.png' alt='logo1' id="searchImg"/></button>
+		    </div>
+	    </section>
+	</form>
 </main>
 <footer>
-    <p>Copyright ⓒ 2024 자유게시판</p>
+    <p>Copyright ⓒ 2024 검색</p>
 </footer>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="../js/header.js"></script>
 <script src="../js/storeMain.js"></script>
+<script src="../js/search.js"></script>
 </body>
 </html>

@@ -10,6 +10,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,7 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import user.bean.UserDTO;
 import user.service.UserService;
@@ -25,7 +34,7 @@ import user.service.impl.JavaMailService;
 
 @Controller
 @RequestMapping("user")
-public class UserController {
+public class UserController {    
     @Autowired
     private UserService userService;
 
@@ -47,7 +56,7 @@ public class UserController {
     		session.setAttribute("userDTO", userDTO);
     		
             // 세션 유효 시간을 30분(1800초)으로 설정
-            session.setMaxInactiveInterval(1800); 
+            session.setMaxInactiveInterval(3600); 
     		
     		return "success";
     	} else {
@@ -66,6 +75,18 @@ public class UserController {
         return "user/userInfo";
     }
     
+    // 닉네임 중복 체크 기능
+    @RequestMapping(value = "/getCheckNickname", method = RequestMethod.POST)
+    @ResponseBody
+    public String getCheckNickname(String nickname) {
+ 	   UserDTO user = userService.isNicknameExist(nickname);
+        
+        if (user != null) {
+            return "exist";
+        } else {
+            return "non_exist";
+        }
+    }    
     
     @RequestMapping(value = "userUpdate", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
     @ResponseBody
@@ -142,6 +163,8 @@ public class UserController {
 
            // 인증번호를 맵에 저장
            authCodes.put(email, checkNum);
+           
+           System.out.println("인증번호 : " + checkNum);
 
            return checkNum; // 생성된 인증 번호 반환
        }
@@ -165,5 +188,6 @@ public class UserController {
 
            return ResponseEntity.ok(response);
        }
+
 }
 

@@ -16,4 +16,6 @@ public interface UserService {
 	public void updateTotalWrite(String id);
 
 	public void userUpdate(UserDTO userDTO);
+
+	public UserDTO isNicknameExist(String nickname);
 }

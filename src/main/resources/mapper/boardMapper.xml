@@ -45,4 +45,9 @@
     <update id="increaseHit">
         UPDATE MUNGCATBOARD SET hit = (hit + 1) WHERE seq = #{seq}
     </update>
+    
+    <select id="findByNameContaining" parameterType="String" resultType="board.bean.BoardDTO">
+        SELECT * FROM MUNGCATBOARD WHERE SUBJECT LIKE CONCAT('%', #{query}, '%') 
+        OR CONTENT LIKE CONCAT('%', #{query}, '%')
+    </select>
 </mapper>

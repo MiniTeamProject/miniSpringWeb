@@ -1,4 +1,7 @@
 $(document).ready(function() {
+	let uploadedImages = []; // 이미지 URL을 저장할 배열 초기화
+    let uploadedFileNames = []; // 업로드된 파일 이름 저장
+    let uploadedOriginalFileNames = []; // 원본 파일 이름 저장
 
     // Froala Editor 인스턴스 생성
     let editor = new FroalaEditor('#editor', {
@@ -27,6 +30,33 @@ $(document).ready(function() {
             'fullscreen'
         ],
 		height: '100%',  // 부모 요소의 높이를 상속받음
+		imageUploadURL: '/miniSpringWeb/image/uploadImage', // 서버의 이미지 업로드 경로
+		'events': {
+		    'image.uploaded': function(response) {
+		        let imageUrl = JSON.parse(response).link; // 서버에서 받은 이미지 URL
+				let imageFileName = JSON.parse(response).imageFileName; // 서버에서 받은 이미지 URL
+				let imageOriginalFileName = JSON.parse(response).imageOriginalFileName; // 서버에서 받은 이미지 URL
+				
+                uploadedImages.push(imageUrl); // 업로드된 이미지 URL 배열에 추가
+                uploadedFileNames.push(imageFileName); // 업로드된 이미지 파일 이름 추가
+                uploadedOriginalFileNames.push(imageOriginalFileName); // 업로드된 이미지 원본 파일 이름 추가
+				
+		        uploadedImages.push(imageUrl); // 업로드된 이미지 URL 배열에 추가
+		        console.log('이미지 업로드 성공:', imageUrl);
+				console.log('이미지 업로드 성공:', imageFileName);
+				console.log('이미지 업로드 성공:', imageOriginalFileName);
+                
+		        // .inputData에 hidden input 추가 (name 속성을 배열로 설정)
+		        $(".inputData").append(`
+		            <input type="hidden" name="imageUrls[]" value="${imageUrl}"/>
+		            <input type="hidden" name="imageFileNames[]" value="${imageFileName}"/>
+		            <input type="hidden" name="imageOriginalFileNames[]" value="${imageOriginalFileName}"/>
+		        `);
+		    },
+		    'image.error': function(error) {
+		        console.log('이미지 업로드 실패:', error);
+		    }
+		}
     });
 
     // 글 등록 버튼 클릭 시

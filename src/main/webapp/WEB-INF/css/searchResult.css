@@ -354,7 +354,7 @@ footer {
     #event-alert, #postList, #popular-posts {
         padding: 10px; /* 패딩 조정 */
     }
-    #selectForm {
+	#selectForm {
 		margin-left: 1em;
 	}
 	#imgBtn {

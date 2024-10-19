@@ -1,67 +1,284 @@
 @charset "UTF-8";
 
+/* 공통 변수 */
+:root {
+    --main-bg-color: #a90011;
+    --main-font-color: white;
+    --secondary-bg-color: #f1f1f1;
+    --btn-bg-color: #a90011;
+    --btn-hover-bg-color: #cf0011;
+    --font-family: 'Nanum Gothic', sans-serif;
+    --font-size-large: 24px;
+    --font-size-medium: 18px;
+    --font-size-small: 1em;
+    --border-radius: 5px;
+}
 
-html, body {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nanum Gothic', sans-serif;
+    color: #5c1e1e;
+    background-color: #fff;
+    text-align: left;    
+}
+
+#wrap {
+	width: 100%;
 	height: 100vh;
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+	align-items: center;
+	padding-bottom: 200px;
+}
+
+header {
+    background-color: #a90011;
+    padding: 15px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between; /* 요소 간 간격 조절 */
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo:hover {
+    cursor: pointer;
+}
+
+/* 모바일 메뉴 스타일 */
+.mobile-menu {
+    cursor: pointer;
+    padding: 10px;
+    order: -1; /* 모바일 메뉴를 왼쪽으로 이동 */
+    display: none; /* 기본적으로 숨김 */
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 24px; /* 햄버거 아이콘 크기 */
+    color: white; /* 햄버거 아이콘 색상 */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: flex; /* flexbox로 요소 정렬 */
+    align-items: center; /* 수직 정렬 */
+    justify-content: center;
+}
+
+.nav-icon {
+    margin-right: 8px; /* 아이콘과 텍스트 간 간격 */
+    display: none; /* 기본적으로 숨김 */
+    width: 50px;
+    height: 50px;
+}
+
+.auth {
+    display: flex;
+    gap: 15px;
+}
+
+.auth a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: var(--secondary-bg-color);
 }
 
 .main-content {
-    width: 90%;
-    max-width: 600px;
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    display: flex;
+    justify-content: center;
 }
 
 .form-box {
-    margin: 20px;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
 }
+
 .title h1 {
-    text-align: center;
-    color: #980f0f;
     margin-bottom: 20px;
+    text-align: center;
 }
+
 .input-box {
     margin-bottom: 15px;
 }
+
 .input-box label {
-    display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #555;
+    text-align: left;
 }
 
-
-
-.input-box input[type="text"],
-.input-box input[type="email"],
-.input-box input[type="password"],
-.input-box input[type="tel"] {
+.input-box input, button, #userRegistBtn {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
 }
 
-.input-box input[type="radio"] {
-    margin-right: 5px;
-}
-.button-group {
-    display: flex;
-    justify-content: space-between;
-}
-
-.btn{
-    background-color: #980f0f;
+.input-box input[type="button"].btn, button, #userRegistBtn {
+    background-color: var(--btn-bg-color);
     color: white;
     border: none;
-    border-radius: 4px;
     padding: 10px 15px;
     cursor: pointer;
-    transition: background-color 0.3s;
-}
-.btn:hover {
-    background-color: #900009;    
+    width: 100%;
+    transition: background-color 0.3s ease;
 }
 
+.input-box input[type="button"].btn:hover, button:hover, #userRegistBtn:hover {
+    background-color: var(--btn-hover-bg-color);
+}
+
+.gender-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center; /* 버튼들을 가운데 정렬하려면 추가 */
+}
+
+.gender-btn {
+    background-color: #ddd;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-sizing: border-box;
+    width: 100%;
+    color: #ffffff;
+}
+
+.gender-btn.active {
+    background-color: #a90011;
+    color: white;
+}
+
+.gender-btn.selected {
+    background-color: #a90011;
+    color: white; /* 선택된 버튼의 글자색 */
+}
+
+.gender-btn:hover {
+    background-color: #cf0011;
+}
+
+input, button {
+	margin-top: 0.5em;
+}
+
+input {
+	outline-color: #a90011;
+}
+
+.checkDiv {
+	color: red;
+	font-size: 9pt;
+	font-weight: bold;
+	margin-top: 5px;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+	.nav-icon {
+        display: inline; /* 모바일에서만 보이도록 설정 */
+    }
+    
+    .loginview, .logoutview {
+        display: inline;
+    }
+    
+    .logo {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .logo > span {
+        margin-left: -1.4em;
+    }
+    
+    .auth {
+        display: none;
+    }
+    
+	.nav-icon {
+        display: inline; /* 모바일에서만 보이도록 설정 */
+    }
+	
+    .nav-links {
+        display: none; /* 모바일에서 기본적으로 숨김 */
+        flex-direction: column; /* 세로로 배열 */
+        position: absolute; /* 절대 위치로 설정 */
+        top: 60px; /* 헤더 아래에 위치 */
+        left: 0;
+        background-color: #a90011; /* 배경색 */
+        width: 100%;
+        z-index: 10; /* 다른 요소 위에 위치 */
+        padding-top: 2em;
+        padding-bottom: 2em;
+        font-weight: bold;
+    }
+
+    .nav-links.active {
+        display: flex; /* active 클래스가 있을 때 보여줌 */
+    }
+
+    .mobile-menu {
+        display: block; /* 모바일에서 햄버거 메뉴 보이기 */
+    }
+}
+
+/* 데스크톱에서 mobile-menu 숨김 */
+@media (min-width: 769px) {
+	.form-box {
+		max-width: 1100px;
+	}
+	
+	.nav-links {
+        padding-left: 5.5em;
+    }
+    
+    .mobile-menu {
+        display: none; /* 데스크톱에서 숨김 */
+    }
+    
+    .loginview, .logoutview {
+        display: none;
+    }
+}
