@@ -55,8 +55,8 @@
         <c:choose>
             <c:when test="${fail != 'fail'}">
                 <c:forEach var="hot" items="${storeHotList}" varStatus="status">
-                    <article class="post">
-                        <input type="hidden" id="seq" name="seq" value="${hot.id}"/>
+                    <article class="post" onclick="location.href='/miniSpringWeb/store/storeView?pg=${pg}&id=${hot.id}'">
+                        <input type="hidden" id="id" name="id" value="${hot.id}"/>
                         <h3 class="name">[멍캣] ${hot.name}</h3> <!-- 게시물 제목 -->
                         <p class="description">
                         <c:choose>
@@ -86,7 +86,7 @@
        <c:choose>
            <c:when test="${fail != 'fail'}">
                <c:forEach var="store" items="${storeList}" varStatus="status">
-                <article class="post">
+                <article class="post" onclick="location.href='/miniSpringWeb/store/storeView?pg=${pg}&id=${store.id}'">
                     <input type="hidden" id="id" name="id" value="${store.id}"/>
                     <h3 class="name">[멍캣] ${store.name}</h3> <!-- 게시물 제목 -->
                     <p class="description">

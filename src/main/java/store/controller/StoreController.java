@@ -7,6 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import board.bean.BoardDTO;
 import image.service.ImageService;
 import store.bean.StoreDTO;
 import store.service.StoreService;
@@ -165,5 +168,18 @@ public class StoreController {
 
 	    return modelAndView;
 	}
-
+	
+    @RequestMapping(value = "storeView")
+    public ModelAndView boardView(@RequestParam("pg") int pg, @RequestParam("id") String id) {
+        ModelAndView modelAndView = new ModelAndView();
+        List<BoardDTO> list = storeService.getStoreView(id);
+        //댓글 목록과 페이징 정보 가져오기
+        //Map<String, Object> pagingMap = commentService.getCommentView(seq, commentpg);
+        
+        modelAndView.addObject("list", list);
+        modelAndView.addObject("pg", pg);
+        modelAndView.setViewName("store/storeView");
+        
+        return modelAndView;
+    }
 }

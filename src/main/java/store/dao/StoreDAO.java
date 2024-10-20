@@ -21,4 +21,8 @@ public interface StoreDAO {
 
 	public List<StoreDTO> findByNameContaining(String query);
 
+	public List<BoardDTO> getstoreView(int id);
+
+	public int increaseHit(int seq);
+
 }

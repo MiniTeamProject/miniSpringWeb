@@ -104,10 +104,16 @@ DROP TABLE mungcatstore;
 DROP TABLE MUNGCATSTORE_REVIEWS;
 
 UPDATE MUNGCATUSER
-SET gender = 'F'  -- 'M'으로 성별을 설정
-WHERE id ="12";  -- id에 '1'이 포함된 모든 사용자
+SET pwd = '1234'  -- 'M'으로 성별을 설정
+WHERE id ="admin";  -- id에 '1'이 포함된 모든 사용자
 
 select * from MUNGCATUSER;
 
 DELETE FROM MUNGCATUSER
 WHERE id = 'aa';
+
+ALTER TABLE MUNGCATUSER
+DROP COLUMN profile;
+
+ALTER TABLE MUNGCATUSER
+ADD COLUMN profile VARCHAR(400) DEFAULT NULL; -- 프로필 사진 (이미지 SEQ)

@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>멍캣: 아이디 찾기</title>
-<link rel="stylesheet" href="../css/userRegistForm.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../css/forgotId.css">
 </head>
 <body>
 <header>
@@ -43,7 +44,6 @@
     </nav>
 </header>
     
-    
 <section class="main-content">
 <div class="form-box">
 	<div class="title">
@@ -57,6 +57,7 @@
 				<input type="button" value="인증하기" class="btn btn-primary" id="emailBtn"> 
 				<div id="emailDiv" class="checkDiv"></div>
 			</div>
+			<div>
 				<input type="text" id="checkAuthCode"
 					class="form-control" placeholder="인증 코드 6자리를 입력해주세요." maxlength="6" disabled name="authCode" autofocus required="required">
 				<div id="checkAuthCodeDiv" class="checkDiv"></div>
@@ -71,22 +72,9 @@
 </div>
 </section>
 
-
-
-
 <footer>
 	<p>Copyright ⓒ 2024 멍캣회원가입</p>
 </footer>
-
-
-
-
-
-
-
-
-
-
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="../js/header.js"></script>

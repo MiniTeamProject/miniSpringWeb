@@ -54,5 +54,12 @@ $(function() {
                 }
             }); // AJAX
         }
-    });        
+    });
+    // 엔터 키를 눌렀을 때 로그인 버튼 클릭
+    $(document).on('keypress', function(e) {
+        if (e.which === 13) { // 엔터 키의 코드
+            e.preventDefault(); // 기본 엔터 동작 방지
+            $('#userLoginFormBtn').click(); // 로그인 버튼 클릭
+        }
+    });
 });

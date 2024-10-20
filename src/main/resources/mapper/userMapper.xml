@@ -32,7 +32,6 @@
     	DELETE FROM MUNGCATUSER WHERE id = #{id}    	
     </delete>
     
-    
     <select id="isEmail" parameterType="String" resultType="String">
     	select email from MUNGCATUSER where email=#{email}
     </select>

@@ -66,4 +66,9 @@ public class StoreServiceimpl implements StoreService {
     public List<StoreDTO> searchItems(String query) {
     	return storeDAO.findByNameContaining(query);
     }
+    
+    @Override
+    public List<BoardDTO> getStoreView(String id) {
+    	return storeDAO.getstoreView(Integer.parseInt(id));
+    }
 }

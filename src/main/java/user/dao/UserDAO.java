@@ -25,7 +25,7 @@ public interface UserDAO {
 
 	public UserDTO checkPassword(Map<String, String> map);
 
-	public String isEmail(String email);
-
 	public String getId(String email);
+
+	public String isEmail(String email);
 }

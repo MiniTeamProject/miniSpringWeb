@@ -110,8 +110,15 @@ $(function(){
 	            data: { email: email }, // 전송할 데이터
 	            dataType: 'text', // 기대하는 응답 데이터 타입
 	            success: function(response) {
-	            	//alert(response);
-	               	$('#findId').val(response); // 성공 시 이메일 표시
+					let result = response.trim();
+					
+					if(result != "null") {
+						//alert(response);
+	               		$('#findId').val(response); // 성공 시 이메일 표시	
+					} else {
+						$('#findId').val("해당 이메일로 가입된 ID 정보가 없습니다."); // 성공 시 이메일 표시
+					}
+	            	
 	            },
 	            error: function(error) {
 	                  $('#findId').val(error);
@@ -119,8 +126,4 @@ $(function(){
 	        });
 	    }
     });
-  
-    
-
-
 });
