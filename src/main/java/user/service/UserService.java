@@ -15,7 +15,11 @@ public interface UserService {
 
 	public void updateTotalWrite(String id);
 
-	public void userUpdate(UserDTO userDTO);
+	public boolean userUpdate(UserDTO userDTO);
 
 	public UserDTO isNicknameExist(String nickname);
+
+	public boolean userDelete(String id);
+
+	public UserDTO checkPassword(String id, String pwd);
 }

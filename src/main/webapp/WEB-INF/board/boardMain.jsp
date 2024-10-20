@@ -18,12 +18,12 @@
         <ul class="nav-links">
             <li><a href="/miniSpringWeb/store/storeMain"><img src="../image/logo2.png" alt="logo2" class="nav-icon">멍캣마켓</a></li>
             <li><a href="/miniSpringWeb/board/boardMain"><img src="../image/logo3.png" alt="logo3" class="nav-icon">멍캣광장</a></li>
-            <c:if test="${userDTO.id == '1'}">
+            <c:if test="${userDTO.id == 'admin'}">
                 <li><a href="#"><img src="../image/logo5.png" alt="logo5" class="nav-icon">관리자</a></li>
             </c:if>
             <c:if test="${not empty userDTO.id}">
-                <li class="logoutview"><a href="/miniSpringWeb/user/logout"><img src="./image/logo5.png" alt="logo5" class="nav-icon">로그아웃</a></li>
-                <li class="logoutview"><a href="/miniSpringWeb/user/userInfo"><img src="./image/logo6.png" alt="logo6" class="nav-icon">마이페이지</a></li>
+                <li class="logoutview"><a href="/miniSpringWeb/user/logout"><img src="../image/logo5.png" alt="logo5" class="nav-icon">로그아웃</a></li>
+                <li class="logoutview"><a href="/miniSpringWeb/user/userInfo"><img src="../image/logo6.png" alt="logo6" class="nav-icon">마이페이지</a></li>
             </c:if>
             <c:if test="${empty userDTO.id}">
                 <li class="loginview"><a href="/miniSpringWeb/user/userLoginForm"><img src="../image/logo7.png" alt="logo7" class="nav-icon">로그인</a></li>

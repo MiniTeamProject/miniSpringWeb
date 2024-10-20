@@ -10,7 +10,7 @@ CREATE TABLE MUNGCATUSER (
     zipcode VARCHAR(20),                                        -- 우편번호
     addr1 VARCHAR(255),                                         -- 주소
     addr2 VARCHAR(255),                                         -- 상세주소
-    profile INTEGER DEFAULT 0,                                  -- 프로필 사진 (이미지 SEQ)
+    profile VARCHAR(400) DEFAULT NULL,                          -- 프로필 사진 (이미지 SEQ)
     totalwrite INTEGER DEFAULT 0,								-- 총 이미지 글작성 수
     admin CHAR(1) DEFAULT '0' NOT NULL,                         -- 관리자 권한((0 -> 일반 사용자), (1 -> 관리자)
     logtime TIMESTAMP DEFAULT NOW()                             -- 가입일    
@@ -102,3 +102,12 @@ drop table Mungcatcomment;
 DROP TABLE MUNGCATIMAGE;
 DROP TABLE mungcatstore;
 DROP TABLE MUNGCATSTORE_REVIEWS;
+
+UPDATE MUNGCATUSER
+SET gender = 'F'  -- 'M'으로 성별을 설정
+WHERE id ="12";  -- id에 '1'이 포함된 모든 사용자
+
+select * from MUNGCATUSER;
+
+DELETE FROM MUNGCATUSER
+WHERE id = 'aa';

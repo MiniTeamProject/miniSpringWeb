@@ -11,9 +11,9 @@ $(document).ready(function() {
         var gender = $(this).data('gender');
         
         // 해당 성별에 맞는 라디오 버튼 선택
-        if (gender == 1) {
+        if (gender == "M") {
             $('#gender-male').prop('checked', true); // 남자 선택
-        } else if (gender == 2) {
+        } else if (gender == "F") {
             $('#gender-female').prop('checked', true); // 여자 선택
         }
     });
