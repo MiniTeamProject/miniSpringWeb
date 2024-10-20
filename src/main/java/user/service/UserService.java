@@ -22,4 +22,8 @@ public interface UserService {
 	public boolean userDelete(String id);
 
 	public UserDTO checkPassword(String id, String pwd);
+
+	public String isEmail(String email);
+
+	public String getId(String email);
 }

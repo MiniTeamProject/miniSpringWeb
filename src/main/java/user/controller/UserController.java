@@ -276,5 +276,33 @@ public class UserController {
 
        return checkNum; // 생성된 인증 번호 반환
    }
+   
+   
+   
+   @RequestMapping(value = "forgotId")
+   public String forgotId() {
+       return "user/forgotId";
+   }
+ 
+   @RequestMapping(value = "isEmail", method = RequestMethod.POST)
+   @ResponseBody
+   public String isEmail(@RequestParam String email) {
+	   String isEmail = userService.isEmail(email);
+	   
+	   if(isEmail != null) { return isEmail;}
+	   else {return "null";}
+   }
+   
+   
+   @RequestMapping(value = "getId", method = RequestMethod.POST)
+   @ResponseBody
+   public String getId(@RequestParam String email) {
+	   String getId = userService.getId(email);
+	   
+	   if(getId != null) { return getId;}
+	   else {return "null";}
+   }
+   
+   
 }
 

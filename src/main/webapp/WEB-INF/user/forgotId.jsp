@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-<title>멍캣: 로그인</title>
-<link rel="stylesheet" href="../css/userLoginForm.css">
+<title>멍캣: 아이디 찾기</title>
+<link rel="stylesheet" href="../css/userRegistForm.css">
 </head>
 <body>
 <header>
@@ -43,59 +42,55 @@
         </div>
     </nav>
 </header>
-
-<div id="wrap">
-	<section class="main-content">
-		<div class="form-box">
-			<div class="title">
-				<h1>로그인</h1>
+    
+    
+<section class="main-content">
+<div class="form-box">
+	<div class="title">
+		<h1>비밀 번호 찾기</h1>
+	</div>
+	<div>
+		<div class="input-box form-group">
+			<div>
+				<label>이메일</label>
+				<input class="form-control" name="email" id="email" type="email" placeholder="example@example.com" autofocus required="required">
+				<input type="button" value="인증하기" class="btn btn-primary" id="emailBtn"> 
+				<div id="emailDiv" class="checkDiv"></div>
 			</div>
-			<form id="userLoginForm">
-				<div class="input-box">
-					<p>아이디</p>
-					<input id="id" name="id" type="text" placeholder="아이디" required="required">
-				</div>
-				<div class="input-box">
-					<p>비밀번호</p>
-					<input id="pwd" name="pwd" type="password" placeholder="비밀번호" required="required">
-				</div>
-				<div id="checkDiv"></div>
-				<input id="userLoginFormBtn" class="btn" type="button" value="로그인">
-			</form>
-	
-			<div id="snsWrap">
-				<div class="snslogin">
-					<button id="" onclick=""><img src="../image/naver.png" alt="naver"/></button>
-				</div>
-				<div class="snslogin">
-					<button id="" onclick=""><img src="../image/kakao.png" alt="kakao"/></button>
-				</div>
-				<div class="snslogin">
-					<button id="" onclick=""><img src="../image/google.png" alt="google"/></button>
-				</div>
-			</div>
-			
-			<div class="login-register">
-				<div class="registerwrap">
-					<a href="/miniSpringWeb/user/forgotId">아이디 찾기</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-				</div>
-				<div class="registerwrap">
-					<a href="/miniSpringWeb/user/forgotPwd">비밀번호 찾기</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-				</div>
-				<div class="registerwrap">
-					<a href="/miniSpringWeb/user/userRegistForm">회원가입</a>
-				</div>
+				<input type="text" id="checkAuthCode"
+					class="form-control" placeholder="인증 코드 6자리를 입력해주세요." maxlength="6" disabled name="authCode" autofocus required="required">
+				<div id="checkAuthCodeDiv" class="checkDiv"></div>
 			</div>
 		</div>
-	</section>
+
+		<div class="input-box">
+			<input id="findIdtBtn" class="btn" type="button" value="아이디 확인">
+			<input id="findId" type="text" readonly="readonly" value="">
+		</div>
+	</div>
 </div>
+</section>
+
+
+
 
 <footer>
-    <p>Copyright ⓒ 2024 멍캣로그인</p>
-</footer>    
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
-<script src="../js/userLogingForm.js"></script>
+	<p>Copyright ⓒ 2024 멍캣회원가입</p>
+</footer>
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="../js/header.js"></script>
+<script src="../js/forgotId.js"></script>
+
 </body>
 </html>
