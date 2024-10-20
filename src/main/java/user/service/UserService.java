@@ -26,4 +26,6 @@ public interface UserService {
 	public String isEmail(String email);
 
 	public String getId(String email);
+
+	public void forgotPwdUpdate(String id, String pwd);
 }
