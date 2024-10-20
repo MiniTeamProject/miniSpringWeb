@@ -318,5 +318,18 @@ public class UserController {
        // 사용자 정보 처리 후 성공 메시지 반환
        return "success";
    }
+   
+   @RequestMapping(value = "forgotPwd")
+   public String forgotPwd() {
+       return "user/forgotPwd";
+   }
+   
+   
+   @ResponseBody
+   @RequestMapping(value = "forgotPwdUpdate", method = RequestMethod.POST)
+   public void forgotPwdUpdate(@RequestParam String id, @RequestParam String pwd) { 
+      userService.forgotPwdUpdate(id, pwd);
+   }
+
 }
 

@@ -76,4 +76,13 @@ public class UserServiceImpl implements UserService{
 		String isEmail = userDAO.isEmail(email);
 		return isEmail;
 	}
+	
+	@Override
+	public void forgotPwdUpdate(String id, String pwd) {
+		Map<String, String> map = new HashedMap<String, String>();
+		map.put("id", id);
+		map.put("pwd", pwd);
+      
+		userDAO.forgotPwdUpdate(map);      
+	}
 }

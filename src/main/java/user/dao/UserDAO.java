@@ -28,4 +28,6 @@ public interface UserDAO {
 	public String getId(String email);
 
 	public String isEmail(String email);
+
+	public void forgotPwdUpdate(Map<String, String> map);
 }

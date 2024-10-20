@@ -39,4 +39,7 @@
     <select id="getId" parameterType="String" resultType="String">
     	select id from MUNGCATUSER where email=#{email}
     </select>
+	<update id="forgotPwdUpdate" parameterType="java.util.Map">
+		update MUNGCATUSER set pwd=#{pwd} where id=#{id}
+    </update>
 </mapper>
