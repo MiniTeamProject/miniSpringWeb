@@ -31,4 +31,13 @@
     <delete id="userDelete" parameterType="String">
     	DELETE FROM MUNGCATUSER WHERE id = #{id}    	
     </delete>
+    
+    
+    <select id="isEmail" parameterType="String" resultType="String">
+    	select email from MUNGCATUSER where email=#{email}
+    </select>
+    
+    <select id="getId" parameterType="String" resultType="String">
+    	select id from MUNGCATUSER where email=#{email}
+    </select>
 </mapper>
