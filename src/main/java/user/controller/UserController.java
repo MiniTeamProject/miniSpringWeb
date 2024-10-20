@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -233,8 +234,7 @@ public class UserController {
        response.put("valid", isValid); // 결과 반환
 
        return ResponseEntity.ok(response);
-   }
-   
+   }   
    
    @ResponseBody
    @RequestMapping(value = "findIdEmailAuth", method = RequestMethod.POST)
@@ -275,6 +275,48 @@ public class UserController {
        System.out.println("인증번호 : " + checkNum);
 
        return checkNum; // 생성된 인증 번호 반환
+   }
+   
+   @RequestMapping(value = "forgotId")
+   public String forgotId() {
+       return "user/forgotId";
+   }
+ 
+   @RequestMapping(value = "isEmail", method = RequestMethod.POST)
+   @ResponseBody
+   public String isEmail(@RequestParam String email) {
+	   String isEmail = userService.isEmail(email);
+	   
+	   if(isEmail != null) { return isEmail;}
+	   else {return "null";}
+   }
+   
+   
+   @RequestMapping(value = "getId", method = RequestMethod.POST)
+   @ResponseBody
+   public String getId(@RequestParam String email) {
+	   String getId = userService.getId(email);
+	   
+	   if(getId != null) { 
+		   return getId;
+	   }
+	   else {
+		   return "null";
+	   }
+   }
+   
+   @RequestMapping(value = "kakao")
+   @ResponseBody
+   public String kakaoLogin(@RequestBody UserDTO userDTO, HttpSession session) {
+       // 클라이언트로부터 받은 JSON 데이터를 UserDTO로 변환하여 처리
+       System.out.println("id: " + userDTO.getId());
+       System.out.println("nickname: " + userDTO.getNickname());
+       
+       // 사용자 정보를 세션에 저장
+       session.setAttribute("userDTO", userDTO);
+
+       // 사용자 정보 처리 후 성공 메시지 반환
+       return "success";
    }
 }
 

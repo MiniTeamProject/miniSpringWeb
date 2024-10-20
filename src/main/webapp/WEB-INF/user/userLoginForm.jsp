@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <title>멍캣: 로그인</title>
+<meta name ="google-signin-client_id" content="152752869386-2qrau71tu7uqd4ete897lck5o7htenfl.apps.googleusercontent.com">
 <link rel="stylesheet" href="../css/userLoginForm.css">
 </head>
 <body>
@@ -65,22 +66,27 @@
 	
 			<div id="snsWrap">
 				<div class="snslogin">
-					<button id="" onclick=""><img src="../image/naver.png" alt="naver"/></button>
+					<button id="naver"><img src="../image/naver.png" alt="naver"/></button>
 				</div>
 				<div class="snslogin">
-					<button id="" onclick=""><img src="../image/kakao.png" alt="kakao"/></button>
+					<c:if test="${empty userDTO.id}">
+						<button id="kakao" onclick="kakaoLogin()"><img src="../image/kakao.png" alt="kakao"/></button>
+					</c:if>
+					<c:if test="${not empty userDTO.id}">
+						<button id="kakao" onclick="kakaoLogout()"><img src="../image/kakao.png" alt="kakao"/></button>
+					</c:if>
 				</div>
 				<div class="snslogin">
-					<button id="" onclick=""><img src="../image/google.png" alt="google"/></button>
+					<button id="google" onclick="GgCustomLogin()"><img src="../image/google.png" alt="google"/></button>
 				</div>
 			</div>
 			
 			<div class="login-register">
 				<div class="registerwrap">
-					<a href="">아이디 찾기</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+					<a href="/miniSpringWeb/user/forgotId">아이디 찾기</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 				</div>
 				<div class="registerwrap">
-					<a href="">비밀번호 찾기</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+					<a href="/miniSpringWeb/user/forgotPwd">비밀번호 찾기</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 				</div>
 				<div class="registerwrap">
 					<a href="/miniSpringWeb/user/userRegistForm">회원가입</a>
@@ -94,8 +100,9 @@
     <p>Copyright ⓒ 2024 멍캣로그인</p>
 </footer>    
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="../js/userLogingForm.js"></script>
+<script src="../js/kakao.js"></script>
 <script src="../js/header.js"></script>
 </body>
 </html>

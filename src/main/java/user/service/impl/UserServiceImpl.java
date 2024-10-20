@@ -64,5 +64,16 @@ public class UserServiceImpl implements UserService{
 		map.put("pwd", pwd);
 		return userDAO.checkPassword(map);
 	}
-
+	
+	@Override
+	public String getId(String email) {
+		String getId = userDAO.getId(email);
+		return getId;
+	}
+	
+	@Override
+	public String isEmail(String email) {
+		String isEmail = userDAO.isEmail(email);
+		return isEmail;
+	}
 }

@@ -24,4 +24,8 @@ public interface UserDAO {
 	public boolean userDelete(String id);
 
 	public UserDTO checkPassword(Map<String, String> map);
+
+	public String getId(String email);
+
+	public String isEmail(String email);
 }

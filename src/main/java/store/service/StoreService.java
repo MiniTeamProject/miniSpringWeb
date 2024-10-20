@@ -2,6 +2,7 @@ package store.service;
 
 import org.springframework.stereotype.Component;
 
+import board.bean.BoardDTO;
 import store.bean.StoreDTO;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface StoreService {
    public int storeWrite(String name, String description, String price, String category);
 
    public List<StoreDTO> searchItems(String query);
+
+   public List<BoardDTO> getStoreView(String id);
 }
