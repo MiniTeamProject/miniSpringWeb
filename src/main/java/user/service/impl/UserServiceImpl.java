@@ -43,13 +43,26 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public void userUpdate(UserDTO userDTO) {
-		userDAO.userUpdate(userDTO);		
+	public boolean userUpdate(UserDTO userDTO) {
+		return userDAO.userUpdate(userDTO);		
 	}
 	
 	@Override
 	public UserDTO isNicknameExist(String nickname) {
         return userDAO.checkNickname(nickname);
+	}
+	
+	@Override
+	public boolean userDelete(String id) {
+		return userDAO.userDelete(id);
+	}
+	
+	@Override
+	public UserDTO checkPassword(String id, String pwd) {
+		Map<String, String> map = new HashedMap<String, String>();
+		map.put("id", id);
+		map.put("pwd", pwd);
+		return userDAO.checkPassword(map);
 	}
 
 }

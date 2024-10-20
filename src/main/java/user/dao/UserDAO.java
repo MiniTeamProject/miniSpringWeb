@@ -17,7 +17,11 @@ public interface UserDAO {
 
 	public void updateTotalWrite(String id);
 
-	public void userUpdate(UserDTO userDTO);
+	public boolean userUpdate(UserDTO userDTO);
 
 	public UserDTO checkNickname(String nickname);
+
+	public boolean userDelete(String id);
+
+	public UserDTO checkPassword(Map<String, String> map);
 }

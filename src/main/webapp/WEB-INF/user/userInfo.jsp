@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>멍캣: 회원정보</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../css/userInfo.css">
 </head>
 <body>
@@ -24,12 +25,12 @@
         <ul class="nav-links">
             <li><a href="/miniSpringWeb/store/storeMain"><img src="../image/logo2.png" alt="logo2" class="nav-icon">멍캣마켓</a></li>
             <li><a href="/miniSpringWeb/board/boardMain"><img src="../image/logo3.png" alt="logo3" class="nav-icon">멍캣광장</a></li>
-            <c:if test="${userDTO.id == '1'}">
+            <c:if test="${userDTO.id == 'admin'}">
                 <li><a href="#"><img src="../image/logo5.png" alt="logo5" class="nav-icon">관리자</a></li>
             </c:if>
             <c:if test="${not empty userDTO.id}">
-                <li class="logoutview"><a href="/miniSpringWeb/user/logout"><img src="./image/logo5.png" alt="logo5" class="nav-icon">로그아웃</a></li>
-                <li class="logoutview"><a href="/miniSpringWeb/user/userInfo"><img src="./image/logo6.png" alt="logo6" class="nav-icon">마이페이지</a></li>
+                <li class="logoutview"><a href="/miniSpringWeb/user/logout"><img src="../image/logo5.png" alt="logo5" class="nav-icon">로그아웃</a></li>
+                <li class="logoutview"><a href="/miniSpringWeb/user/userInfo"><img src="../image/logo6.png" alt="logo6" class="nav-icon">마이페이지</a></li>
             </c:if>
             <c:if test="${empty userDTO.id}">
                 <li class="loginview"><a href="/miniSpringWeb/user/userLoginForm"><img src="../image/logo7.png" alt="logo7" class="nav-icon">로그인</a></li>
@@ -56,8 +57,14 @@
 		</div>
 		<form id="userUpdateForm">
 			<div class="input-box">
-				<img id="showProfile" alt="" src="../image/profile.jpg" width="225px" height="225px">
-				<input type="file" id="profile" name="profile" style="visibility: hidden;">
+				<div id="imgwrap">
+					<c:if test="${userDTO.id != 'admin'}">
+						<img id="showProfile" alt="default" src="../image/default.png" width="225px" height="225px">
+					</c:if>
+					<c:if test="${userDTO.id == 'admin'}">
+						<img id="showProfile" alt="admin" src="../image/admin.png" width="225px" height="225px">
+					</c:if>
+				</div>
 			</div>
 			<div class="input-box">
 				<label for="id">아이디</label>
@@ -86,17 +93,15 @@
 			<div class="input-box">
 			    <label>성별</label>
 			    <div class="gender-buttons">                
-			        <button type="button" class="gender-btn" data-gender="1">남자</button>
-			        <button type="button" class="gender-btn" data-gender="2">여자</button>
+			        <c:if test="${userDTO.gender == 'M'}">
+			        	<input id="gender" class="genderBtn" value="남자" readonly="readonly">
+			        	<input class="genderBtn" value="여자">
+			        </c:if>
+			        <c:if test="${userDTO.gender == 'F'}">
+			        	<input class="genderBtn" value="남자">
+			        	<input id="gender" class="genderBtn" value="여자" readonly="readonly">
+			        </c:if>
 			    </div>
-			    <!-- JSTL을 사용하여 성별 체크 상태 설정 -->
-			    <c:if test="${userDTO.gender == '1'}">
-			   		<input name="gender" type="radio" value="1" id="gender-male" hidden checked="checked"/>
-			    </c:if>
-			    <c:if test="${userDTO.gender == '2'}">
-			    	<input name="gender" type="radio" value="2" id="gender-female" hidden checked="checked"/>
-			    </c:if>
-			    <div id="genderDiv" class="checkDiv"></div>
 			    <div id="genderDiv" class="checkDiv"></div>
 			</div>
 			<div class="input-box">
@@ -123,13 +128,11 @@
 			</div>
 			<div class="button-group">
 				<div class="btnwrap" id="toggleBtn">
-					<input id="userUpdateBtn" class="btn" type="button" value="수정하기">
-				</div>
-				<div class="btnwrap">
-					<input id="userUpdateBtn" class="btn" type="button" value="회원탈퇴">
+					<input id="updateButton" class="btn" type="button" value="회원정보 수정">
 				</div>
 				<div class="btnwrap">
 					<input id="userDeleteBtn" class="btn" type="button" value="회원탈퇴">
+					<input type="hidden" id="sessionPwd" name="sessionPwd" value="${userDTO.pwd}"/>
 				</div>
 			</div>
 		</form>
@@ -140,8 +143,9 @@
     <p>Copyright ⓒ 2024 멍캣회원정보</p>
 </footer>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="../js/userRegistForm2.js"></script>
 <script src="../js/header.js"></script>
-<script src="../js/gender.js"></script>
 <script src="../js/userInfo.js"></script>
 </body>
 </html>

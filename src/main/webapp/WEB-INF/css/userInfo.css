@@ -140,20 +140,26 @@ footer {
     margin-bottom: 15px;
 }
 
+.input-box #imgwrap {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .input-box label {
     margin-bottom: 5px;
     font-weight: bold;
     text-align: left;
 }
 
-.input-box input, button, #userRegistBtn {
+.input-box input, button, #userRegistBtn, .btn {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: var(--border-radius);
 }
 
-.input-box input[type="button"].btn, button, #userRegistBtn {
+.input-box input[type="button"].btn, button, #userRegistBtn, .btn {
     background-color: var(--btn-bg-color);
     color: white;
     border: none;
@@ -163,7 +169,7 @@ footer {
     transition: background-color 0.3s ease;
 }
 
-.input-box input[type="button"].btn:hover, button:hover, #userRegistBtn:hover {
+.input-box input[type="button"].btn:hover, button:hover, #userRegistBtn:hover, .btn:hover {
     background-color: var(--btn-hover-bg-color);
 }
 
@@ -173,7 +179,7 @@ footer {
     justify-content: center; /* 버튼들을 가운데 정렬하려면 추가 */
 }
 
-.gender-btn {
+.genderBtn {
     background-color: #ddd;
     border: none;
     padding: 10px 20px;
@@ -183,20 +189,17 @@ footer {
     box-sizing: border-box;
     width: 100%;
     color: #ffffff;
+    text-align: center;
 }
 
-.gender-btn.active {
+#gender {
     background-color: #a90011;
     color: white;
 }
 
-.gender-btn.selected {
-    background-color: #a90011;
-    color: white; /* 선택된 버튼의 글자색 */
-}
-
-.gender-btn:hover {
-    background-color: #cf0011;
+.genderBtn {
+    background-color: #ffffff;
+    color: #a90011;
 }
 
 input, button {
