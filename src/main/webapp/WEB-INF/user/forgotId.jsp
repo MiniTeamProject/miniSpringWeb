@@ -47,7 +47,7 @@
 <section class="main-content">
 <div class="form-box">
 	<div class="title">
-		<h1>비밀 번호 찾기</h1>
+		<h1>아이디 찾기</h1>
 	</div>
 	<div>
 		<div class="input-box form-group">

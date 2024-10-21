@@ -132,7 +132,7 @@
         </div>
 	    <div class="search">
 	       	<select id="selectForm" name="selectForm">
-	            <option value="0" selected="selected">멍캣마켓</option>
+	            <option value="0">멍캣마켓</option>
 	            <option value="1">멍캣광장</option>
 	        </select>
 			<input type="text" id="query" name="query" placeholder="검색할 상품을 입력하세요" required>
