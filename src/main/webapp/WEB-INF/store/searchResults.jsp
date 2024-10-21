@@ -93,7 +93,7 @@
             </c:when>
         </c:choose>
     </div>
-	<form action="/miniSpringWeb/store/search" method="get">
+	<form id="searchForm">
 	    <section id="functionWrap">
 	        <div id="btnwrap">
 	            <c:if test="${not empty userDTO.id}">
