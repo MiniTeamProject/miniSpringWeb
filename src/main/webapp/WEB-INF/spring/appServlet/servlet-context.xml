@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:beans="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-	<annotation-driven/>
+    <annotation-driven/>
     <beans:bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <beans:property name="prefix" value="/WEB-INF/"/>
         <beans:property name="suffix" value=".jsp"/>
@@ -15,14 +15,38 @@
     
     <!-- 이미지 업로드를 위한 bean설정 및 업로드 사이즈 5MB Setter 설정 -->
     <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <beans:property name="maxUploadSize" value="5120000"></beans:property>
+        <beans:property name="maxUploadSize" value="30720000"></beans:property>
     </beans:bean>
-    
+    <!-- navermail설정 -->
+    <beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    	<beans:property name="host" value="smtp.naver.com"/> <!-- 메이서버 호스트 -->
+    	<beans:property name="port" value="465"/> <!-- 메이서버 포트번호 -->
+    	<beans:property name="username" value="ghks248"/> <!-- 자신의 이메일 아이디 -->
+    	<beans:property name="password" value="kjh960707!"/> <!-- 자신의 비밀번호 -->
+    	<!-- 보안연결 SSL과 관련된 설정 -->
+    	<beans:property name="javaMailProperties">
+    		<beans:props>
+    			<beans:prop key="mail.smtp.auth">true</beans:prop>
+    			<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+    			<beans:prop key="mail.smtps.checkserveridentity">true</beans:prop>
+    			<beans:prop key="mail.transport.protocol">smtp</beans:prop>
+    			<beans:prop key="mail.smtps.ssl.trust">*</beans:prop>
+    			<beans:prop key="mail.debug">true</beans:prop>
+    			<beans:prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</beans:prop>
+    		</beans:props>
+    	</beans:property>
+    </beans:bean>
+
     <context:component-scan base-package="com.controller.miniSpringWeb"/>
-    <context:component-scan base-package="user.controller"/>    
-    
+    <context:component-scan base-package="user.controller"/> 
+    <context:component-scan base-package="board.controller"/>
+    <context:component-scan base-package="image.controller"/>
+    <context:component-scan base-package="store.controller"/>
+    <context:component-scan base-package="comment.controller"/>
+
     <resources location="/WEB-INF/storage/" mapping="/storage/**"/>
     <resources location="/WEB-INF/css/" mapping="/css/**"/>
     <resources location="/WEB-INF/js/" mapping="/js/**"/>
     <resources location="/WEB-INF/image/" mapping="/image/**"/>
+    <resources location="/WEB-INF/froala/" mapping="/froala/**"/>
 </beans:beans>

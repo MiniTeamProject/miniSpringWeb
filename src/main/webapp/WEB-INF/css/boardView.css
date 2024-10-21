@@ -1,0 +1,507 @@
+@charset "UTF-8";
+/* 기본 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nanum Gothic', sans-serif;
+    color: #5c1e1e;
+    background-color: #fff;
+    text-align: center;
+}
+
+header {
+    background-color: #a90011;
+    padding: 15px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between; /* 요소 간 간격 조절 */
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo:hover {
+    cursor: pointer;
+}
+
+/* 모바일 메뉴 스타일 */
+.mobile-menu {
+    cursor: pointer;
+    padding: 10px;
+    order: -1; /* 모바일 메뉴를 왼쪽으로 이동 */
+    display: none; /* 기본적으로 숨김 */
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 24px; /* 햄버거 아이콘 크기 */
+    color: white; /* 햄버거 아이콘 색상 */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: flex; /* flexbox로 요소 정렬 */
+    align-items: center; /* 수직 정렬 */
+    justify-content: center;
+}
+
+.nav-icon {
+    margin-right: 8px; /* 아이콘과 텍스트 간 간격 */
+    display: none; /* 기본적으로 숨김 */
+    width: 50px;
+    height: 50px;
+}
+
+.auth {
+    display: flex;
+    gap: 15px;
+}
+
+.auth a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* 게시판 뷰 섹션 스타일 */
+.board-view-section {
+    padding: 20px;
+    border: 1px solid #dcdcdc; /* 섹션 경계선 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    background-color: #f9f9f9; /* 배경색 */
+    margin: 20px; /* 상하 여백 */
+}
+
+/* 카테고리 스타일 */
+#category {
+    font-size: 16px; /* 글자 크기 */
+    font-weight: bold; /* 글자 굵기 */
+    color: #a90011; /* 카테고리 색상 */
+    margin-bottom: 10px; /* 아래 여백 */
+}
+
+/* 게시물 제목 스타일 */
+#subject {
+    font-size: 24px; /* 제목 크기 */
+    font-weight: bold; /* 제목 굵기 */
+    margin-bottom: 5px; /* 아래 여백 */
+}
+
+/* 게시물 조회수 스타일 */
+#hit {
+    font-size: 16px; /* 조회수 크기 */
+    color: #777; /* 회색 색상 */
+}
+
+/* 작성 시간 스타일 */
+#logtime {
+    font-size: 14px; /* 시간 크기 */
+    color: #aaa; /* 연한 회색 색상 */
+    margin-bottom: 15px; /* 아래 여백 */
+}
+
+/* 게시물 내용 스타일 */
+#content {
+	width: 100%;
+    font-size: 16px; /* 내용 크기 */
+    line-height: 1.5; /* 줄 간격 */
+    text-align: left; /* 왼쪽 정렬 */
+    margin-bottom: 20px; /* 아래 여백 */
+    background-color: #ffffff;
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+img {
+    max-width: 100%; /* 이미지를 부모 요소 너비에 맞게 설정 */
+    height: auto;    /* 비율에 맞게 자동으로 높이 조정 */
+    display: block;  /* 이미지가 inline이 아닌 block 요소로 취급되도록 설정 */
+}
+
+/* 버튼 래퍼 스타일 */
+#btnwrap {
+    display: flex;
+    justify-content: space-between; /* 버튼 간격 조절 */
+}
+
+/* 버튼 스타일 */
+input[type="button"] {
+    background-color: #a90011; /* 버튼 배경색 */
+    color: white; /* 버튼 글자색 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 둥근 모서리 */
+    padding: 10px 15px; /* 여백 */
+    cursor: pointer; /* 포인터 커서 */
+    transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+}
+
+input[type="button"]:hover {
+    background-color: #c8102c; /* 버튼 호버 색상 */
+}
+
+/* 댓글 작성 폼 스타일 */
+.commentWrtieForm {
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    margin-top: 20px; /* 위 여백 */
+}
+
+.commentWrtieForm label {
+    font-weight: bold; /* 라벨 굵게 */
+    margin-bottom: 5px; /* 아래 여백 */
+    text-align: left;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+#comment {
+    width: 100%; /* 너비 100% */
+    height: 80px; /* 높이 */
+    border: 1px solid #ccc; /* 테두리 */
+    border-radius: 10px; /* 둥근 모서리 */
+    padding: 10px; /* 여백 */
+    font-size: 16px; /* 글자 크기 */
+    resize: none; /* 크기 조절 불가능 */
+    overflow: auto;
+}
+
+/* 댓글 버튼 래퍼 스타일 */
+#commentBtnWrap {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    margin-top: 10px; /* 위 여백 */
+}
+
+#checkDiv {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 10px;
+}
+
+/* 댓글 리스트 스타일 */
+#printComment {
+    text-align: left; /* 왼쪽 정렬 */
+    margin-top: 20px;
+}
+
+.commentItem {
+	display: flex;
+	flex-direction: column;
+    border-bottom: 1px solid #ddd; /* 댓글 구분선 */
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.commentItem > a {
+	text-align: right;
+	cursor: pointer;
+	text-decoration: none;
+	color: #a90011; /* 버튼 배경색 */
+}
+
+.commentItem > a:hover {
+	cursor: pointer;
+	color: #a90011; /* 버튼 배경색 */
+}
+
+.commentWriter {
+    font-weight: bold; /* 작성자 이름 굵게 */
+}
+
+.commentContent {
+    margin-top: 5px; /* 위 여백 */
+}
+
+/* 댓글 페이징 스타일 */
+#commentPaging {
+    margin-top: 20px;
+}
+
+#commentPaging a {
+    margin: 0 5px; /* 좌우 여백 */
+    color: #a90011; /* 링크 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+#commentPaging a:hover {
+    text-decoration: underline; /* 호버 시 밑줄 추가 */
+    color: #c8102c; /* 버튼 호버 색상 */
+}
+
+/* boardView.css */
+
+.boardview {
+    padding: 20px; /* 패딩 추가 */
+}
+
+#top-inline {
+    display: flex; /* flexbox 사용 */
+    justify-content: flex-start; /* 제목을 좌측 정렬 */
+    align-items: center; /* 수직 정렬 */
+}
+
+#middle-top {
+    display: flex; /* flexbox 사용 */
+    justify-content: space-between; /* 양쪽 정렬 */
+    margin-top: 10px; /* 위쪽 여백 추가 */
+    margin-bottom: 10px;
+}
+
+#togglewrap {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+#toggleCommentForm {
+    background: none;
+    border: none;
+    color: #5c1e1e;
+    cursor: pointer;
+    font-size: 16px; /* 적절한 글자 크기 */
+    padding: 5px 15px;
+    margin-bottom: 10px;
+}
+
+#toggleCommentForm:hover {
+    color: #c8102c; /* 버튼 호버 색상 */
+}
+
+#bottom {
+	display: flex;
+	flex-direction: column;
+	border-radius: 20px;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 5px 20px 20px 20px;
+	background-color: #FFF2DB;
+	border: 1px solid #5c1e1e;;
+}
+
+textarea {
+	outline-color: #5c1e1e;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #f1f1f1;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .search > input[type="text"] {
+        margin: 0;
+        width: 100%; /* 입력 필드 전체 너비 사용 */
+    }
+    
+    #functionWrap {
+        flex-direction: column; /* 세로로 배열 */
+        align-items: center; /* 가운데 정렬 */
+        width: 100%; /* 전체 너비 사용 */
+    }
+
+    #btnwrap {
+        width: 100%; /* 모바일에서는 전체 너비 사용 */
+        text-align: right; /* 오른쪽 정렬 유지 */
+        margin-bottom: 10px; /* btnwrap과 search 간격 조정 */
+    }
+
+    .search {
+        width: 100%; /* 모바일에서는 전체 너비 사용 */
+        justify-content: center; /* 가운데 정렬 유지 */
+    }
+    
+    .nav-icon {
+        display: inline; /* 모바일에서만 보이도록 설정 */
+    }
+    
+    .loginview, .logoutview {
+        display: inline;
+    }
+    
+    .logo {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .logo > span {
+        margin-left: -1.4em;
+    }
+    
+    .auth {
+        display: none;
+    }
+    
+    .nav-links {
+        display: none; /* 모바일에서 기본적으로 숨김 */
+        flex-direction: column; /* 세로로 배열 */
+        position: absolute; /* 절대 위치로 설정 */
+        top: 60px; /* 헤더 아래에 위치 */
+        left: 0;
+        background-color: #a90011; /* 배경색 */
+        width: 100%;
+        z-index: 10; /* 다른 요소 위에 위치 */
+        padding-top: 2em;
+        padding-bottom: 2em;
+        font-weight: bold;
+    }
+
+    .nav-links.active {
+        display: flex; /* active 클래스가 있을 때 보여줌 */
+    }
+
+    .mobile-menu {
+        display: block; /* 모바일에서 햄버거 메뉴 보이기 */
+    }
+
+    #event-alert, #postList, #popular-posts {
+        padding: 10px; /* 패딩 조정 */
+        width: 100%; /* 전체 너비 사용 */
+        box-sizing: border-box; /* 패딩 포함하여 너비 계산 */
+    }
+    
+    footer, body, html {
+        margin-bottom: 0;
+    }
+
+    html, body {
+        height: auto; /* 자동 높이로 설정하여 유연하게 조정 */
+        overflow-x: hidden; /* 수평 스크롤 숨김 */
+    }
+}
+
+@media (max-width: 516px) {
+    #editorwrap {
+        height: 500px;
+    }
+    
+    #editor {
+        height: 60%; /* 부모 요소의 높이를 상속받도록 설정 */
+    }
+}
+
+@media (max-width: 374px) {
+    html, body {
+        height: auto; /* 자동 높이로 설정하여 유연하게 조정 */
+        font-size: 10pt;
+    }
+    #editorwrap {
+        height: 500px;
+    }
+    
+    #editor {
+        height: 50%; /* 부모 요소의 높이를 상속받도록 설정 */
+    }
+    h2, h3 {
+        font-size: 12pt;
+    }
+    p, div {
+        font-size: 10pt;
+    }
+}
+
+@media (max-width: 325px) {
+    #editorwrap {
+        height: 500px;
+    }
+    
+    #editor {
+        height: 40%; /* 부모 요소의 높이를 상속받도록 설정 */
+    }
+}
+
+@media (max-width: 306px) {
+    #editorwrap {
+        height: 500px;
+    }
+    
+    #editor {
+        height: 30%; /* 부모 요소의 높이를 상속받도록 설정 */
+    }
+}
+
+@media (max-width: 264px) {
+    #editorwrap {
+        height: 500px;
+    }
+    
+    #editor {
+        height: 20%; /* 부모 요소의 높이를 상속받도록 설정 */
+    }
+}
+
+@media (max-width: 222px) {
+    #editorwrap {
+        height: 500px;
+    }
+    
+    #editor {
+        height: 10%; /* 부모 요소의 높이를 상속받도록 설정 */
+    }
+}
+
+/* 데스크톱에서 mobile-menu 숨김 */
+@media (min-width: 769px) {
+    .nav-links {
+        padding-left: 5.5em;
+    }
+    
+    .mobile-menu {
+        display: none; /* 데스크톱에서 숨김 */
+    }
+    
+    .loginview, .logoutview {
+        display: none;
+    }
+    
+    #editorwrap {
+        height: 500px;
+    }
+    
+    #editor {
+        height: 70%; /* 부모 요소의 높이를 상속받도록 설정 */
+    }
+    
+    main {
+        display: flex;
+        width: 1100px;
+        justify-content: center;
+        flex-direction: column;
+        margin: 0 auto;
+        overflow: visible; /* 변경: overflow 속성을 visible로 설정하여 자식 요소가 overflow될 때 콘텐츠가 잘리지 않도록 함 */
+        min-height: 85vh; /* 최소 높이 설정 */
+    }
+
+    #event-alert, #postList, #popular-posts {
+        border: 1px solid #ddd;
+        padding: 15px;
+        width: 1100px;
+        margin: 0 auto;
+    }
+}

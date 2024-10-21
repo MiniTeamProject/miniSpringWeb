@@ -1,16 +1,17 @@
--- [MySQL TABLE] íšŒì› í…Œì´ë¸”
+-- [MySQL TABLE] È¸¿ø Å×ÀÌºí
 CREATE TABLE MUNGCATUSER (
-    id VARCHAR(15) PRIMARY KEY,         -- ì•„ì´ë””, í•„ìˆ˜, ê¸°ë³¸í‚¤
-    pwd VARCHAR(255) NOT NULL,          -- ë¹„ë°€ë²ˆí˜¸, í•„ìˆ˜
-    nickname VARCHAR(50) NOT NULL,      -- ë‹‰ë„¤ìž„, í•„ìˆ˜
-    name VARCHAR(50) NOT NULL,          -- ì´ë¦„, í•„ìˆ˜
-    gender CHAR(1) NOT NULL,            -- ì„±ë³„, í•„ìˆ˜
-    email VARCHAR(300) NOT NULL,        -- ì´ë©”ì¼ ì£¼ì†Œ, í•„ìˆ˜
-    tel VARCHAR(11),                    -- ì „í™”ë²ˆí˜¸ ë’·ìžë¦¬
-    zipcode VARCHAR(20),                -- ìš°íŽ¸ë²ˆí˜¸
-    addr1 VARCHAR(255),                 -- ì£¼ì†Œ
-    addr2 VARCHAR(255),                 -- ìƒì„¸ì£¼ì†Œ
-    profile VARCHAR(200) DEFAULT NULL,  -- í”„ë¡œí•„ ì‚¬ì§„(ê°€ìž… ì‹œ ìž…ë ¥ X)
-    admin CHAR(1) DEFAULT 0 NOT NULL,   -- ê´€ë¦¬ìž ê¶Œí•œ((0 -> ì¼ë°˜ ì‚¬ìš©ìž), (1 -> ê´€ë¦¬ìž)
-    logtime TIMESTAMP DEFAULT NOW()     -- ê°€ìž…ì¼
+    id VARCHAR(15) PRIMARY KEY,                                 -- ¾ÆÀÌµð, ÇÊ¼ö, ±âº»Å°
+    pwd VARCHAR(255) NOT NULL,                                  -- ºñ¹Ð¹øÈ£, ÇÊ¼ö
+    nickname VARCHAR(50) NOT NULL,                              -- ´Ð³×ÀÓ, ÇÊ¼ö
+    name VARCHAR(50) NOT NULL,                                  -- ÀÌ¸§, ÇÊ¼ö
+    gender CHAR(1) NOT NULL,                                    -- ¼ºº°, ÇÊ¼ö
+    email VARCHAR(300) NOT NULL,                                -- ÀÌ¸ÞÀÏ ÁÖ¼Ò, ÇÊ¼ö
+    tel VARCHAR(11),                                            -- ÀüÈ­¹øÈ£ µÞÀÚ¸®
+    zipcode VARCHAR(20),                                        -- ¿ìÆí¹øÈ£
+    addr1 VARCHAR(255),                                         -- ÁÖ¼Ò
+    addr2 VARCHAR(255),                                         -- »ó¼¼ÁÖ¼Ò
+    profile INTEGER DEFAULT 0,                                  -- ÇÁ·ÎÇÊ »çÁø (ÀÌ¹ÌÁö SEQ)
+    totalwrite INTEGER DEFAULT 0,								-- ÃÑ ÀÌ¹ÌÁö ±ÛÀÛ¼º ¼ö
+    admin CHAR(1) DEFAULT '0' NOT NULL,                         -- °ü¸®ÀÚ ±ÇÇÑ((0 -> ÀÏ¹Ý »ç¿ëÀÚ), (1 -> °ü¸®ÀÚ)
+    logtime TIMESTAMP DEFAULT NOW()                             -- °¡ÀÔÀÏ    
 );

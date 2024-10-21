@@ -1,15 +1,31 @@
 package user.service;
 
-import java.util.List;
-import java.util.Map;
 import org.springframework.stereotype.Component;
-import org.springframework.ui.ModelMap;
 
 import user.bean.UserDTO;
 
 @Component
 public interface UserService {
 
-	UserDTO userLogin(String id, String pwd);
-  
+	public UserDTO userLogin(String id, String pwd);
+
+    public String getCheckId(String id);
+
+    public void userRegist(UserDTO userDTO);
+
+	public void updateTotalWrite(String id);
+
+	public boolean userUpdate(UserDTO userDTO);
+
+	public UserDTO isNicknameExist(String nickname);
+
+	public boolean userDelete(String id);
+
+	public UserDTO checkPassword(String id, String pwd);
+
+	public String isEmail(String email);
+
+	public String getId(String email);
+
+	public void forgotPwdUpdate(String id, String pwd);
 }

@@ -7,5 +7,39 @@
 	<select id="userLogin" parameterType="java.util.Map" resultType="userDTO">
 		select * from MUNGCATUSER where id=#{id} and pwd=#{pwd};
 	</select>
-
+	<select id="getCheckId" parameterType="String" resultType="userDTO">
+		select * from MUNGCATUSER where id = #{id}
+	</select>
+	<insert id="userRegist" parameterType="user.bean.UserDTO">
+        INSERT INTO MUNGCATUSER (id, pwd, nickname, name, gender, email, tel, zipcode, addr1, addr2, logtime)
+        VALUES (#{id}, #{pwd}, #{nickname}, #{name}, #{gender}, #{email}, #{tel}, #{zipcode}, #{addr1}, #{addr2}, NOW())
+    </insert>
+    <update id="updateTotalWrite" parameterType="String">
+    	UPDATE MUNGCATUSER SET TOTALWRITE = (TOTALWRITE + 1) WHERE id = #{id}		    	
+    </update>
+    <update id="userUpdate" parameterType="userDTO">
+    	update MUNGCATUSER set pwd = #{pwd}, nickname = #{nickname}, tel = #{tel}, zipcode = #{zipcode}, addr1 = #{addr1}, addr2 = #{addr2} WHERE id = #{id}
+    </update>
+    <select id="checkNickname" parameterType="String" resultType="userDTO">
+    	select * from MUNGCATUSER where nickname = #{nickname}
+    </select>
+    
+    <select id="checkPassword" parameterType="Map" resultType="userDTO">
+    	SELECT * FROM MUNGCATUSER WHERE ID = #{id} AND PWD = #{pwd}
+    </select>
+    
+    <delete id="userDelete" parameterType="String">
+    	DELETE FROM MUNGCATUSER WHERE id = #{id}    	
+    </delete>
+    
+    <select id="isEmail" parameterType="String" resultType="String">
+    	select email from MUNGCATUSER where email=#{email}
+    </select>
+    
+    <select id="getId" parameterType="String" resultType="String">
+    	select id from MUNGCATUSER where email=#{email}
+    </select>
+	<update id="forgotPwdUpdate" parameterType="java.util.Map">
+		update MUNGCATUSER set pwd=#{pwd} where id=#{id}
+    </update>
 </mapper>

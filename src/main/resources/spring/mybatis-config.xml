@@ -3,8 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <typeAliases>
+<!--     <typeAliases>
 		<typeAlias type="user.dao.UserDAO" alias="user"/>
 		<typeAlias type="user.bean.UserDTO" alias="userDTO"/>
-	</typeAliases>
+	</typeAliases> -->
 </configuration>

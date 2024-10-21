@@ -1,19 +1,11 @@
--- [MySQL TABLE] 커뮤니티 테이블
+-- [MySQL TABLE] Ŀ�´�Ƽ ���̺�
 CREATE TABLE MUNGCATBOARD(
-     seq INTEGER PRIMARY KEY AUTO_INCREMENT,    -- 글번호
-     id VARCHAR(20) NOT NULL,                   -- 아이디
-     nickname VARCHAR(100),                     -- 닉네임
-     email VARCHAR(100),                        -- 이메일
-     subject VARCHAR(255) NOT NULL,             -- 제목
-     content LONGBLOB NOT NULL,                 -- 내용
-     image1 VARCHAR(200) DEFAULT NULL,          -- 게시글 이미지 파일(파일이름)
-     profile VARCHAR(200) DEFAULT NULL,         -- 프로필 이미지(파일이름)
-     ref int DEFAULT 0 NOT NULL,                -- 그룹번호
-     lev int DEFAULT 0 NOT NULL,                -- 단계
-     step int DEFAULT 0 NOT NULL,               -- 글순서
-     pseq int DEFAULT 0 NOT NULL,               -- 원글번호
-     reply int DEFAULT 0 NOT NULL,              -- 답변수
-     hit int DEFAULT 0,                         -- 조회수
-     category INTEGER DEFAULT 0,                -- 게시판 카테고리
-     logtime TIMESTAMP DEFAULT NOW()            -- 작성일
+     seq INTEGER PRIMARY KEY AUTO_INCREMENT,            -- �۹�ȣ
+     id VARCHAR(20) NOT NULL,                           -- ���̵�
+     subject VARCHAR(255) NOT NULL,                     -- ����
+     content LONGBLOB NOT NULL,                         -- ����
+     reply int DEFAULT 0 NOT NULL,                      -- �亯��
+     hit int DEFAULT 0,                                 -- ��ȸ��
+     category INTEGER DEFAULT 0,                        -- �Խ��� ī�װ���
+     logtime TIMESTAMP DEFAULT NOW()                    -- �ۼ���
  );

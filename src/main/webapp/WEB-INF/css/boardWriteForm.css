@@ -1,0 +1,434 @@
+@charset "UTF-8";
+/* 기본 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nanum Gothic', sans-serif;
+    color: #5c1e1e;
+    background-color: #fff;
+    text-align: center;
+}
+
+header {
+    background-color: #a90011;
+    padding: 15px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between; /* 요소 간 간격 조절 */
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo:hover {
+    cursor: pointer;
+}
+
+/* 모바일 메뉴 스타일 */
+.mobile-menu {
+    cursor: pointer;
+    padding: 10px;
+    order: -1; /* 모바일 메뉴를 왼쪽으로 이동 */
+    display: none; /* 기본적으로 숨김 */
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 24px; /* 햄버거 아이콘 크기 */
+    color: white; /* 햄버거 아이콘 색상 */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: flex; /* flexbox로 요소 정렬 */
+    align-items: center; /* 수직 정렬 */
+    justify-content: center;
+}
+
+.nav-icon {
+    margin-right: 8px; /* 아이콘과 텍스트 간 간격 */
+    display: none; /* 기본적으로 숨김 */
+    width: 50px;
+    height: 50px;
+}
+
+.auth {
+    display: flex;
+    gap: 15px;
+}
+
+.auth a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+main {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+}
+
+/* 게시물 작성 섹션 */
+.board-write-section {
+    background-color: white;
+    padding: 20px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.board-write-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.form-group input[type="file"] {
+    padding: 5px;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.btn-submit {
+    background-color: #a90011;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #5c1e1e;
+}
+
+.btn-cancel {
+    background-color: #6c757d;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268;
+}
+
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #f1f1f1;
+}
+
+
+#checkDiv {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.form-delete {
+    text-align: right; /* 우측 정렬 */
+    margin-top: 20px; /* 약간의 상단 여백 */
+}
+
+.form-delete a {
+    color: #ff4d4d; /* 삭제와 관련된 빨간색 계열 */
+    text-decoration: none; /* 기본 밑줄 제거 */
+    font-weight: bold; /* 글자 굵게 */
+    border: 1px solid #ff4d4d; /* 테두리 추가 */
+    padding: 5px 10px; /* 내부 여백 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    transition: background-color 0.3s ease, color 0.3s ease; /* 호버 시 부드러운 색상 전환 */
+}
+
+.form-delete a:hover {
+    background-color: #ff4d4d; /* 호버 시 배경색을 빨간색으로 변경 */
+    color: #fff; /* 글자색을 흰색으로 변경 */
+}
+
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .search > input[type="text"] {
+        margin: 0;
+    }
+    
+    #functionWrap {
+        flex-direction: column; /* 세로로 배열 */
+        align-items: center; /* 가운데 정렬 */
+        width: 100%;
+    }
+
+    #btnwrap {
+        width: 100%; /* 모바일에서는 전체 너비 사용 */
+        text-align: right; /* 오른쪽 정렬 유지 */
+        margin-bottom: 10px; /* btnwrap과 search 간격 조정 */
+    }
+
+    .search {
+        width: 100%; /* 모바일에서는 전체 너비 사용 */
+        justify-content: center; /* 가운데 정렬 유지 */
+    }
+    
+    .nav-icon {
+        display: inline; /* 모바일에서만 보이도록 설정 */
+    }
+    
+    .loginview, .logoutview {
+        display: inline;
+    }
+    
+    .logo {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .logo > span {
+        margin-left: -1.4em;
+    }
+    
+    .auth {
+        display: none;
+    }
+    
+    .nav-links {
+        display: none; /* 모바일에서 기본적으로 숨김 */
+        flex-direction: column; /* 세로로 배열 */
+        position: absolute; /* 절대 위치로 설정 */
+        top: 60px; /* 헤더 아래에 위치 */
+        left: 0;
+        background-color: #a90011; /* 배경색 */
+        width: 100%;
+        z-index: 10; /* 다른 요소 위에 위치 */
+        padding-top: 2em;
+        padding-bottom: 2em;
+        font-weight: bold;
+    }
+
+    .nav-links.active {
+        display: flex; /* active 클래스가 있을 때 보여줌 */
+    }
+
+    .mobile-menu {
+        display: block; /* 모바일에서 햄버거 메뉴 보이기 */
+    }
+
+    #event-alert, #postList, #popular-posts {
+        padding: 10px; /* 패딩 조정 */
+    }
+	
+	footer, body, html {
+		margin-bottom: 0;
+	}
+	/* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
+	html, body {
+	    height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
+	}
+	
+	/* editor css */
+	#editorwrap {
+		height: 500px;
+	}
+    
+    #editor {
+	    height: 70%; /* 부모 요소의 높이를 상속받도록 설정 */
+	}
+	
+}
+
+@media (max-width: 516px) {
+	/* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
+	html, body {
+	    height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
+	}
+	/* editor css */
+	#editorwrap {
+		height: 500px;
+	}
+    
+    #editor {
+	    height: 60%; /* 부모 요소의 높이를 상속받도록 설정 */
+	}
+}
+
+@media (max-width: 374px) {
+	/* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
+	html, body {
+	    height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
+	}
+	/* editor css */
+	#editorwrap {
+		height: 500px;
+	}
+    
+    #editor {
+	    height: 50%; /* 부모 요소의 높이를 상속받도록 설정 */
+	}
+}
+
+@media (max-width: 325px) {
+	/* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
+	html, body {
+	    height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
+	}
+	/* editor css */
+	#editorwrap {
+		height: 500px;
+	}
+    
+    #editor {
+	    height: 40%; /* 부모 요소의 높이를 상속받도록 설정 */
+	}
+}
+
+@media (max-width: 306px) {
+	/* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
+	html, body {
+	    height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
+	}
+	/* editor css */
+	#editorwrap {
+		height: 500px;
+	}
+    
+    #editor {
+	    height: 30%; /* 부모 요소의 높이를 상속받도록 설정 */
+	}
+}
+
+@media (max-width: 264px) {
+	/* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
+	html, body {
+	    height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
+	}
+	/* editor css */
+	#editorwrap {
+		height: 500px;
+	}
+    
+    #editor {
+	    height: 20%; /* 부모 요소의 높이를 상속받도록 설정 */
+	}
+}
+
+@media (max-width: 222px) {
+	/* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
+	html, body {
+	    height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
+	}
+	/* editor css */
+	#editorwrap {
+		height: 500px;
+	}
+    
+    #editor {
+	    height: 10%; /* 부모 요소의 높이를 상속받도록 설정 */
+	}
+}
+
+/* 데스크톱에서 mobile-menu 숨김 */
+@media (min-width: 769px) {
+	/* 추가: 부모 요소나 조상 요소에 대한 높이 설정 */
+	html, body {
+	    height: 100%; /* html, body의 height를 100%로 설정하여 상위 요소들이 자동으로 높이를 계산하도록 함 */
+	}
+	.nav-links {
+        padding-left: 5.5em;
+    }
+	
+    .mobile-menu {
+        display: none; /* 데스크톱에서 숨김 */
+    }
+    
+    .loginview, .logoutview {
+        display: none;
+    }
+    
+    /* editor css */
+	#editorwrap {
+		height: 500px;
+	}
+    
+    #editor {
+	    height: 70%; /* 부모 요소의 높이를 상속받도록 설정 */
+	}
+    
+	main {
+	    display: flex;
+	    width: 100%;
+	    justify-content: center;
+	    flex-direction: column;
+	    margin: 0 auto;
+	    overflow: visible; /* 변경: overflow 속성을 visible로 설정하여 자식 요소가 overflow될 때 콘텐츠가 잘리지 않도록 함 */
+	    min-height: 85vh; /* 최소 높이 설정 */
+	}
+
+    #event-alert, #postList, #popular-posts {
+        border: 1px solid #ddd;
+        padding: 15px;
+        width: 1100px;
+        margin: 0 auto;
+    }
+}

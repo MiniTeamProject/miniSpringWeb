@@ -1,18 +1,33 @@
 package user.dao;
 
-import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.ui.ModelMap;
 
 import user.bean.UserDTO;
 
 @Mapper
 public interface UserDAO {
 
-	UserDTO userLogin(Map<String, String> map);
-	
-	
+	public UserDTO userLogin(Map<String, String> map);
 
+    public UserDTO getCheckId(String id);
+
+    public void userRegist(UserDTO userDTO);
+
+	public void updateTotalWrite(String id);
+
+	public boolean userUpdate(UserDTO userDTO);
+
+	public UserDTO checkNickname(String nickname);
+
+	public boolean userDelete(String id);
+
+	public UserDTO checkPassword(Map<String, String> map);
+
+	public String getId(String email);
+
+	public String isEmail(String email);
+
+	public void forgotPwdUpdate(Map<String, String> map);
 }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- <mapper namespace="userSQL"> -->
+<mapper namespace="board.dao.BoardDAO">
+    <select id="getBoardList" resultType="board.bean.BoardDTO">
+        SELECT * FROM MUNGCATBOARD ORDER BY SEQ DESC LIMIT #{startNum}, #{endNum}
+    </select>
+    
+    <select id="getBoardHotList" resultType="board.bean.BoardDTO">
+        SELECT * FROM MUNGCATBOARD ORDER BY HIT DESC LIMIT #{startNum}, #{endNum}
+    </select>
+    
+    <select id="getTotalA" resultType="Integer">
+        SELECT COUNT(*) FROM MUNGCATBOARD 
+    </select>
+    
+    <insert id="boardWrite" parameterType="Map">
+    	INSERT INTO MUNGCATBOARD (id, subject, content, reply, hit, category)
+		VALUES (#{id}, #{subject}, #{content}, 0, 0, #{category});
+    </insert>
+    
+    <select id="getRef" parameterType="String">
+    	SELECT MAX(SEQ) FROM MUNGCATBOARD WHERE ID = #{id}
+    </select>
+    
+    <select id="getboardView" parameterType="Integer" resultType="board.bean.BoardDTO">
+        SELECT * FROM MUNGCATBOARD WHERE SEQ = #{seq}
+    </select>
+    
+    <update id="boardUpdate" parameterType="Map">
+	    UPDATE MUNGCATBOARD SET subject = #{subject},
+                                content = #{content},
+                                category = #{category},
+                                logtime = NOW()
+                        	    WHERE 
+                                seq = #{seq};
+    </update>
+    
+    <delete id="boardDelete">
+        DELETE FROM MUNGCATBOARD WHERE id = #{id} AND seq = #{seq}        
+    </delete>
+    
+    <update id="increaseHit">
+        UPDATE MUNGCATBOARD SET hit = (hit + 1) WHERE seq = #{seq}
+    </update>
+    
+    <select id="findByNameContaining" parameterType="String" resultType="board.bean.BoardDTO">
+        SELECT * FROM MUNGCATBOARD WHERE SUBJECT LIKE CONCAT('%', #{query}, '%') 
+        OR CONTENT LIKE CONCAT('%', #{query}, '%')
+    </select>
+</mapper>

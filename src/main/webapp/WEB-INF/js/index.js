@@ -1,16 +1,17 @@
 $(document).ready(function() {
-    // 모바일 메뉴 클릭 시 메뉴 토글
-    $('.mobile-menu').click(function(event) {
-        event.stopPropagation(); // 클릭 이벤트 전파 방지
-        $('.nav-links').toggleClass('active');
-        $('.hamburger').toggleClass('active');
-    });
-
-    // 메뉴 외부 클릭 시 메뉴 숨기기
-    $(document).click(function(event) {
-        if (!$(event.target).closest('.mobile-menu').length && !$(event.target).closest('.nav-links').length) {
-            $('.nav-links').removeClass('active');
-            $('.hamburger').removeClass('active');
+    function updatePlaceholder() {
+        if ($(window).width() <= 768) {
+            $('#query').attr('placeholder', '내용 입력');
+        } else {
+            $('#query').attr('placeholder', '검색할 내용을 입력하세요');
         }
+    }
+
+    // 초기 로드 시 placeholder 업데이트
+    updatePlaceholder();
+
+    // 윈도우 크기 변경 시 placeholder 업데이트
+    $(window).resize(function() {
+        updatePlaceholder();
     });
 });

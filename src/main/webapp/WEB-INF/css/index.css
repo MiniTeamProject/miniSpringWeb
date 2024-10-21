@@ -12,6 +12,16 @@ body {
     text-align: center;
 }
 
+#wrap {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+	align-items: center;
+	padding-bottom: 200px;
+}
+
 header {
     background-color: #a90011;
     padding: 15px;
@@ -27,6 +37,10 @@ nav {
     color: white;
     font-size: 24px;
     font-weight: bold;
+}
+
+.logo:hover {
+    cursor: pointer;
 }
 
 /* 모바일 메뉴 스타일 */
@@ -58,6 +72,16 @@ nav {
     color: white;
     text-decoration: none;
     font-size: 18px;
+    display: flex; /* flexbox로 요소 정렬 */
+    align-items: center; /* 수직 정렬 */
+    justify-content: center;
+}
+
+.nav-icon {
+    margin-right: 8px; /* 아이콘과 텍스트 간 간격 */
+    display: none; /* 기본적으로 숨김 */
+    width: 50px;
+    height: 50px;
 }
 
 .auth {
@@ -86,33 +110,105 @@ nav {
     margin-bottom: 30px;
 }
 
-.search {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+.search > input[type="text"] {
+	outline: none;
+	border-style: none;
+	box-sizing: border-box;
+	border-bottom: 2px solid #a90011;
+	padding: 5px 15px;
+	height: 50px;
 }
 
-.search input[type="text"] {
-    padding: 10px;
-    font-size: 16px;
+.search > button[type="submit"] {
+    outline: none;
     border-style: none;
     border-bottom: 2px solid #a90011;
-    margin-right: 10px;
-    outline: none;
+    box-sizing: border-box;
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    position: relative;
+    display: flex;
+    justify-content: cneter;
+    align-items: center;
+    margin: 0;
+    background-color: transparent; /* 배경색을 투명하게 설정 */
 }
 
-.search button {
-    background-color: #a90011;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
+.search > button[type="submit"]:hover {
+	cursor: pointer;
+}
+
+#searchImg {
+	position: absolute;	
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+.search {
+    width: 80%; /* search 너비 설정 */
+    display: flex; /* flexbox 사용 */
+    justify-content: center; /* 가운데 정렬 */
+    align-items: center; /* 수직 정렬 */
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #f1f1f1;
+}
+
+/* 검색기능 선택 기능 CSS */
+#selectForm {
+	outline: none;
+	border-style: none;
+	box-sizing: border-box;
+    height: 50px;
+    width: 100px;
+    border-bottom: 2px solid #a90011;
+    padding: 5px; /* 여백 추가 */
+    position: relative;
+    display: flex;
+    justify-content: cneter;
+    align-items: center;
+    margin: 0;
+    background-color: transparent; /* 배경색을 투명하게 설정 */
+}
+
+#query {
+    border-bottom: 2px solid #a90011;
+    padding: 5px; /* 여백 추가 */
+    width: 100%
 }
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
+	.nav-icon {
+        display: inline; /* 모바일에서만 보이도록 설정 */
+    }
+    
+    .loginview, .logoutview {
+        display: inline;
+    }
+    
+    .logo {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .logo > span {
+        margin-left: -1.4em;
+    }
+    
+    .auth {
+        display: none;
+    }
+    
+	.nav-icon {
+        display: inline; /* 모바일에서만 보이도록 설정 */
+    }
+	
     .nav-links {
         display: none; /* 모바일에서 기본적으로 숨김 */
         flex-direction: column; /* 세로로 배열 */
@@ -134,11 +230,49 @@ nav {
     .mobile-menu {
         display: block; /* 모바일에서 햄버거 메뉴 보이기 */
     }
+    
+    #searchWrap {
+    	display: flex;
+    	justify-content: center;
+    	align-items: center;
+	}
+	#selectForm {
+		margin-left: 1em;
+	}
+	
+	#imgBtn {
+		margin-right: 1em;
+	}
 }
 
 /* 데스크톱에서 mobile-menu 숨김 */
-@media (min-width: 769px) {
+@media (min-width: 769px) {	
+	.nav-links {
+        padding-left: 5.5em;
+    }
+    
     .mobile-menu {
         display: none; /* 데스크톱에서 숨김 */
     }
+    
+    .loginview, .logoutview {
+        display: none;
+    }
+	
+	#selectForm {
+		margin-left: 17em;
+	}	
+	
+	#wrap {
+		width: 100%;
+		height: (100vh - 20px);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 12pt; 
+	}
+	
+	.main-content {
+		min-width: 1100px;
+	}
 }
