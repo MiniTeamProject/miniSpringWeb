@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- <mapper namespace="userSQL"> -->
+<mapper namespace="comment.dao.CommentDAO">
+	<select id="getCommentList" parameterType="Map">
+		SELECT * FROM MUNGCATCOMMENT WHERE ref = #{ref} ORDER BY SEQ DESC LIMIT #{startNum}, #{endNum}
+	</select>
+	
+	<select id="getTotalComments" parameterType="Integer">
+		SELECT COUNT(*) FROM MUNGCATCOMMENT WHERE REF = #{ref}
+	</select>
+	
+	<insert id="writeComment" parameterType="comment.bean.CommentDTO">
+       	INSERT INTO MUNGCATCOMMENT (ref, id, nickname, content)
+        VALUES (#{ref}, #{id}, #{nickname}, #{content})
+	</insert>
+	
+	<delete id="deleteComment" parameterType="Map">
+	    DELETE FROM MUNGCATCOMMENT
+    	WHERE seq = #{seq}
+	</delete>
+</mapper>
