@@ -20,7 +20,7 @@
     <!-- navermail설정 -->
     <beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
     	<beans:property name="host" value="smtp.naver.com"/> <!-- 메이서버 호스트 -->
-    	<beans:property name="port" value="465"/> <!-- 메이서버 포트번호 -->
+    	<beans:property name="port" value="587"/> <!-- 메이서버 포트번호 -->
     	<beans:property name="username" value="ghks248"/> <!-- 자신의 이메일 아이디 -->
     	<beans:property name="password" value="kjh960707!"/> <!-- 자신의 비밀번호 -->
     	<!-- 보안연결 SSL과 관련된 설정 -->
