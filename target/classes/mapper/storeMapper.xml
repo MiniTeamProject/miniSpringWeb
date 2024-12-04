@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- <mapper namespace="userSQL"> -->
+<mapper namespace="store.dao.StoreDAO">
+    <select id="getStoreList" resultType="store.bean.StoreDTO">
+        SELECT * FROM MUNGCATSTORE ORDER BY Id DESC LIMIT #{startNum}, #{endNum}
+    </select>
+
+    <select id="getStoreHotList" resultType="store.bean.StoreDTO">
+        SELECT * FROM MUNGCATSTORE ORDER BY STOCK DESC LIMIT #{startNum}, #{endNum}
+    </select>
+
+    <select id="getTotalA" resultType="Integer">
+        SELECT COUNT(*) FROM MUNGCATSTORE
+    </select>
+    <insert id="storeWrite" parameterType="Map">
+        INSERT INTO MUNGCATSTORE (name, description, price, stock, image, category, logtime)
+        VALUES (#{name}, #{description}, #{price}, 0, null, #{category}, NOW());
+    </insert>
+    
+    <select id="findByNameContaining" parameterType="String" resultType="store.bean.StoreDTO">
+        SELECT * FROM MUNGCATSTORE WHERE name LIKE CONCAT('%', #{query}, '%') 
+        OR description LIKE CONCAT('%', #{query}, '%')
+    </select>
+    
+    <update id="increaseHit">
+        UPDATE MUNGCATSTORE SET STOCK = (STOCK + 1) WHERE id = #{id}
+    </update>
+    
+    <select id="getstoreView" parameterType="Integer" resultType="store.bean.StoreDTO">
+    	SELECT * FROM MUNGCATSTORE WHERE id = #{id}
+    </select>
+</mapper>

@@ -110,7 +110,7 @@ WHERE id ="admin";  -- id에 '1'이 포함된 모든 사용자
 select * from MUNGCATUSER;
 
 DELETE FROM MUNGCATUSER
-WHERE id = 'aa';
+WHERE id = '1';
 
 ALTER TABLE MUNGCATUSER
 DROP COLUMN profile;
